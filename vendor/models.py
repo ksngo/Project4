@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from location.models import Postal, Town
 
@@ -20,9 +21,8 @@ class Vendor(models.Model):
     street = models.CharField(max_length=254, null=False, blank=False)
     contact = models.PositiveIntegerField(validators=[MinValueValidator(10000000), MaxValueValidator(99999999)], null=False, blank=False)
     date_joined = models.DateTimeField(auto_now_add=True)
-    owner_name = models.CharField(max_length=100, null=False, blank=False)
-    owner_contact = models.PositiveIntegerField(validators=[MinValueValidator(10000000), MaxValueValidator(99999999)], null=False, blank=False)
-    owner_email = models.EmailField(null=True, blank=True)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    user_contact = models.PositiveIntegerField(validators=[MinValueValidator(10000000), MaxValueValidator(99999999)], null=False, blank=False)
     license_number = models.CharField(max_length=10, null=False, blank=False)
     license_check = models.BooleanField(default=False)
     photo_url=models.URLField(max_length=1024, null=True, blank=True)
