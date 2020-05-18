@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'food',
     'location',
     'vendor',
+    'buyer',
 
 ]
 
