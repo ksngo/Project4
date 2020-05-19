@@ -1,0 +1,34 @@
+{% extends 'base_template.html' %}
+
+{%block title%} Delivery area {%endblock%}
+
+{%block content%}
+
+<h1> Add delivery area </h1>
+
+<ol>
+{%for i in towns %}
+ <li>{{i}}</li>
+{%endfor%}
+</ol>
+
+<ol>
+{%for i in postals %}
+ <li>{{i}}</li>
+{%endfor%}
+</ol>
+
+<form method="POST">
+    {%csrf_token%}
+    {{ town_form.as_p}}
+    <input type="submit" value="Add town">
+</form>
+
+
+<form method="POST">
+    {%csrf_token%}
+    {{ postal_form.as_p}}
+    <input type="submit" value="Add postal code">
+</form>
+
+{%endblock%}

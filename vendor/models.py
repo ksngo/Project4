@@ -35,8 +35,13 @@ class Vendor_Deliver_To_Town(models.Model):
     town = models.ForeignKey(Town, null=False, blank=False, on_delete=models.CASCADE)
     vendor = models.ForeignKey(Vendor, null=False, blank=False, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return '%s delivers to %s' % (self.vendor, self.town)
+
 
 class Vendor_Deliver_To_Postal(models.Model):
     postal_code = models.ForeignKey(Postal, null=False, blank=False, on_delete=models.CASCADE)
     vendor = models.ForeignKey(Vendor, null=False, blank=False, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return '%s delivers to %s' % (self.vendor, self.postal_code)
