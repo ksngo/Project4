@@ -36,7 +36,9 @@
                 <td> {{j.license_number}} </td>
                 <td> {{j.license_check}} </td>
                 <td> {{j.photo_url}} </td>
-                <td> <a href="{% url 'edit_vendor_profile_route' vendor_profile_id=j.id %}"> edit</a> </td>
+                <td> <a href="{% url 'edit_vendor_profile_route' vendor_profile_id=j.id %}"> edit</a> 
+                    <a href="{% url 'delete_vendor_profile_route' vendor_profile_id=j.id %}">delete</a>
+                </td>
             </tr>
         {%endfor%}
         

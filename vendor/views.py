@@ -73,3 +73,17 @@ def edit_vendor_profile(request, vendor_profile_id):
         })
 
 
+def delete_vendor_profile(request, vendor_profile_id):
+
+    if request.method == "POST":
+
+        vendor_profile = get_object_or_404(Vendor, pk=vendor_profile_id)
+        vendor_profile.delete()
+
+        return redirect(reverse(view_vendor_profile))
+
+    else:
+        
+        return render(request, "vendor/vendor_delete_profile.html")
+
+
