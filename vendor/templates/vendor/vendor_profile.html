@@ -20,6 +20,7 @@
                 <th> license number </th>
                 <th> license check </th>
                 <th> photo </th>
+                <th> &nbsp; </th>
             </thead>
         </tr>
        
@@ -35,6 +36,7 @@
                 <td> {{j.license_number}} </td>
                 <td> {{j.license_check}} </td>
                 <td> {{j.photo_url}} </td>
+                <td> <a href="{% url 'edit_vendor_profile_route' vendor_profile_id=j.id %}"> edit</a> </td>
             </tr>
         {%endfor%}
         

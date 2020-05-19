@@ -1,0 +1,17 @@
+{% extends 'base_template.html' %}
+
+{%block title%} Profile Detail {%endblock%}
+
+{%block content%}
+
+<h1> Vendor Profile Detail </h1>
+
+<form method="POST">
+    {%csrf_token%}
+    {{ form.as_p}}
+    <input type="submit"> 
+</form>
+
+
+{%endblock%}
+
