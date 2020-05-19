@@ -20,5 +20,6 @@ from food import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('index/', views.index)
+    path('index/', views.index),
+    path('vendor/', include('vendor.urls'))
 ]

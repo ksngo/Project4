@@ -15,4 +15,4 @@ class Postal(models.Model):
     postal_code = models.PositiveIntegerField(validators=[MinValueValidator(10000), MaxValueValidator(999999)], null=False, blank=False)
 
     def __str__(self):
-        return self.postal_code
+        return str(self.postal_code)
