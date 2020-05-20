@@ -69,7 +69,8 @@ def edit_vendor_profile(request, vendor_profile_id):
     else:
         
         return render(request, "vendor/vendor_profile_detail.html", {
-            "form": profile_form
+            "form": profile_form,
+            "vendor_profile_id": vendor_profile_id
         })
 
 
