@@ -8,13 +8,13 @@
 
 <ol>
 {%for i in towns %}
- <li>{{i}}</li>
+ <li>{{i}} <a href="{% url 'remove_town_vendor_route' town_vendor_id=i.id vendor_profile_id=vendor_profile_id %}">Remove</a> </li>
 {%endfor%}
 </ol>
 
 <ol>
 {%for i in postals %}
- <li>{{i}}</li>
+ <li>{{i}} <a href="{% url 'remove_postal_vendor_route' postal_vendor_id=i.id vendor_profile_id=vendor_profile_id %}">Remove</a></li>
 {%endfor%}
 </ol>
 
