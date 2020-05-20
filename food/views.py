@@ -89,4 +89,18 @@ def edit_vendor_food(request, vendor_profile_id, vendor_food_id):
         })
 
 
+@login_required
+def delete_vendor_food(request, vendor_profile_id, vendor_food_id):
 
+    vendor_food = get_object_or_404(Food, pk=vendor_food_id)
+
+    if request.method == "POST":
+        vendor_food.delete()
+        return redirect(reverse(view_vendor_food_gallery, kwargs={"vendor_profile_id": vendor_profile_id}))
+
+    else:
+
+        return render(request, "food/delete_vendor_food.html", {
+            "food": vendor_food,
+            "vendor_profile_id": vendor_profile_id
+        })
