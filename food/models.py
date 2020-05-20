@@ -9,6 +9,8 @@ from vendor.models import Vendor
 class Tag(models.Model):
     title = models.CharField(max_length=100, null=False, blank=False)
 
+    def __str__(self):
+        return self.title
 
 class Food(models.Model):
     vendor = models.ForeignKey(Vendor, null=False, blank=False, on_delete=models.CASCADE)

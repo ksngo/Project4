@@ -128,19 +128,14 @@ def create_delivery_area(request, vendor_profile_id):
 def remove_town_vendor(request, vendor_profile_id, town_vendor_id):
 
     town_vendor = get_object_or_404(Vendor_Deliver_To_Town, pk=town_vendor_id)
-
     town_vendor.delete()
 
     return redirect(reverse(create_delivery_area, kwargs={'vendor_profile_id': vendor_profile_id}))
 
 
-
 def remove_postal_vendor(request, vendor_profile_id, postal_vendor_id):
 
-    print("helloxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
     postal_vendor = get_object_or_404(Vendor_Deliver_To_Postal, pk=postal_vendor_id)
-    print(postal_vendor, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-
     postal_vendor.delete()
 
     return redirect(reverse(create_delivery_area, kwargs={'vendor_profile_id': vendor_profile_id}))

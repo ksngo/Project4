@@ -1,0 +1,47 @@
+{% extends 'base_template.html' %}
+
+{% block title %} Food Gallery {%endblock%}
+
+{%block content%}
+
+<h1> Vendor Food Gallery </h1>
+
+
+<table class="table">
+    <thead>
+        <th> Index </th>
+        <th> Title </th>
+        <th> Description </th>
+        <th> Portion (pax) </th>
+        <th> Price ($) </th>
+        <th> date_posted </th>
+        <th> date_edited </th>
+        <th> photo url </th>
+        <th> delivery time </th>
+        <th> Tags </th>
+        <th> &nbsp; </th>
+    </thead>
+    {%for i in foods %}
+    <tr>
+        <td> {{forloop.counter}} </td>
+        <td> {{i.title}} </td>
+        <td> {{i.description}} </td>
+        <td> {{i.portion}} </td>
+        <td> {{i.price}} </td>
+        <td> {{i.date_posted}} </td>
+        <td> {{i.date_edited}} </td>
+        <td> {{i.photo_url}} </td>
+        <td> {{i.delivery_time}} </td>
+        <td> {%for j in i.tag.all%} {{j}} {%endfor%} </td>
+        <td> <a href="#"> Edit </a> <a href="#"> Delete </a> </td>
+    </tr>
+    {%endfor%}
+
+</table>
+
+<a href="{%url 'add_vendor_food_route' vendor_profile_id=vendor_profile_id %}"> Add </a>
+
+{%endblock%}
+
+
+
