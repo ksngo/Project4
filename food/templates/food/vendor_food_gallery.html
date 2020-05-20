@@ -35,6 +35,7 @@
         <td> {%for j in i.tag.all%} {{j}} {%endfor%} </td>
         <td> <a href="{%url 'edit_vendor_food_route' vendor_profile_id=vendor_profile_id vendor_food_id=i.id %}" > Edit </a> 
             <a href="{%url 'delete_vendor_food_route' vendor_profile_id=vendor_profile_id vendor_food_id=i.id %}"> Delete </a> </td>
+        
     </tr>
     {%endfor%}
 

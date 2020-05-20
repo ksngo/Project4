@@ -7,13 +7,13 @@ from .models import Vendor, Vendor_Deliver_To_Town, Vendor_Deliver_To_Postal
 # Create your views here.
 
 @login_required
-def view_vendor_profile(request):
-    vendor_profile = Vendor.objects.filter(user=request.user)
+def view_vendor_profiles(request):
+    vendor_profiles = Vendor.objects.filter(user=request.user)
+    username = request.user.username
     
-    # get_object_or_404(Vendor, pk=vendor_id)
-
-    return render(request, "vendor/vendor_profile.html", {
-            "vendor_profile": vendor_profile
+    return render(request, "vendor/vendor_profiles.html", {
+            "vendor_profiles": vendor_profiles,
+            "username": username
     })
 
 
@@ -32,7 +32,7 @@ def create_vendor(request):
             form.user = request.user
             form.save()
             
-            return redirect(reverse(view_vendor_profile))
+            return redirect(reverse(view_vendor_profiles))
             
         else:
             return render(request, "vendor/vendor_form.html", {
@@ -60,7 +60,7 @@ def edit_vendor_profile(request, vendor_profile_id):
 
             create_form.save()
 
-            return redirect(reverse(view_vendor_profile))
+            return redirect(reverse(view_vendor_profiles))
         
         else:
 
@@ -81,7 +81,7 @@ def delete_vendor_profile(request, vendor_profile_id):
         vendor_profile = get_object_or_404(Vendor, pk=vendor_profile_id)
         vendor_profile.delete()
 
-        return redirect(reverse(view_vendor_profile))
+        return redirect(reverse(view_vendor_profiles))
 
     else:
         
