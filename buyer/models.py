@@ -17,7 +17,7 @@ class Buyer(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return self.user.username
+        return '%s, %s %s (%s), %s' % (self.user.username, self.block, self.street, self.postal_code, self.town)
 
 
 class Bookmark(models.Model):
