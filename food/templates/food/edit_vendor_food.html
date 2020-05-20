@@ -1,0 +1,19 @@
+{% extends 'base_template.html' %}
+
+{% block title %} Edit vendor food {%endblock%}
+
+{%block content%}
+
+<h1> Edit vendor food </h1>
+
+<form method="POST">
+    {%csrf_token%}
+    {{form.as_p}}
+    <input type="submit">
+    <a href="{% url 'view_vendor_food_gallery_route' vendor_profile_id=vendor_profile_id %}"> back </a>
+</form>
+
+{%endblock%}
+
+
+
