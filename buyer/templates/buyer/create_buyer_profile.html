@@ -6,6 +6,8 @@
 
 <h1> Create Profile </h1>
 
+<a href="{% url 'show_buyer_profiles_route' %}"> Back </a>
+
 <form method="POST">
     {%csrf_token%}
     <table>{{ form.as_table}}</table>
@@ -17,4 +19,3 @@
 
 {%endblock%}
 
-<!-- <a href="{% url '' %}"> Back </a> -->

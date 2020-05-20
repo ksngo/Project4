@@ -17,7 +17,7 @@ def create_buyer_profile(request):
             form = buyer_form.save(commit=False)
             form.user = request.user
             form.save()
-            return HttpResponse("profile is saved")
+            return redirect(reverse(show_buyer_profiles))
         else:
             return redirect(reverse(create_buyer_profile))
 
@@ -37,7 +37,7 @@ def edit_buyer_profile(request, buyer_id):
         buyer_form = BuyerForm(request.POST, instance=buyer_profile)
         buyer_form.save()  # does not require to commit False form to save user as request.user; user still intact in database after the save
 
-        return HttpResponse("success update")
+        return redirect(reverse(show_buyer_profiles))
 
     else:
 
@@ -48,4 +48,11 @@ def edit_buyer_profile(request, buyer_id):
         })
 
 
+@login_required
+def show_buyer_profiles(request):
 
+    buyer_profiles = Buyer.objects.all().filter(user=request.user)
+
+    return render(request, "buyer/buyer_profiles.html", {
+        "objects": buyer_profiles
+    })

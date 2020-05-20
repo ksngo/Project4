@@ -1,0 +1,35 @@
+{% extends 'base_template.html' %}
+
+{%block title%} Your Profiles {%endblock%}
+
+{%block content%}
+
+<h1> Your Profiles </h1>
+
+<a href="{% url 'create_buyer_profile_route'  %}"> Add new profile </a>
+
+<table class="table">
+    <thead>
+        <th> Profile </th>
+        <th> user display </th>
+        <th> contact </th>
+        <th> date joined </th>
+        <th> &nbsp; </th>
+    </thead>
+    {%for i in objects%}
+    <tr>
+        <td> {{forloop.counter}} </td>
+        <td> {{i}} </td>
+        <td> {{i.contact}} </td>
+        <td> {{i.date_joined}} </td>
+        <td> <a href="{% url 'edit_buyer_profile_route' buyer_id=i.id %}">Edit</a> 
+            <a href="#"> Delete </a>
+        </td>
+    </tr>
+    {%endfor%}
+</table>
+    
+
+{%endblock%}
+
+<!-- <a href="{% url '' %}"> Back </a> -->
