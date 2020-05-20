@@ -1,0 +1,17 @@
+{% extends 'base_template.html' %}
+
+{%block title%} Delete profile {%endblock%}
+
+{%block content%}
+
+<h1> Deleting {{object}} </h1>
+
+<p> Are you sure? </p>
+<form method="POST">
+    {%csrf_token%}
+    <input type="submit" value="Yes">
+    <a href="{% url 'show_buyer_profiles_route' %}">No</a>
+</form>
+
+
+{%endblock%}

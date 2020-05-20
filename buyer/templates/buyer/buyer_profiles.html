@@ -23,7 +23,7 @@
         <td> {{i.contact}} </td>
         <td> {{i.date_joined}} </td>
         <td> <a href="{% url 'edit_buyer_profile_route' buyer_id=i.id %}">Edit</a> 
-            <a href="#"> Delete </a>
+            <a href="{% url 'delete_buyer_profile_route' buyer_id=i.id %}"> Delete </a>
         </td>
     </tr>
     {%endfor%}

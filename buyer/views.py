@@ -56,3 +56,18 @@ def show_buyer_profiles(request):
     return render(request, "buyer/buyer_profiles.html", {
         "objects": buyer_profiles
     })
+
+@login_required
+def delete_buyer_profile(request, buyer_id):
+
+    buyer_profile = get_object_or_404(Buyer, pk=buyer_id)
+
+    if request.method == "POST":
+        buyer_profile.delete()
+        return redirect(reverse(show_buyer_profiles))
+    
+    else:
+
+        return render(request, "buyer/delete_buyer_profile.html", {
+            "object" : buyer_profile
+        })
