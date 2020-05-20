@@ -1,10 +1,10 @@
 {% extends 'base_template.html' %}
 
-{%block title%} Vendor Profile Form {%endblock%}
+{%block title%} Create Profile {%endblock%}
 
 {%block content%}
 
-<h1> Vendor Profile apply form </h1>
+<h1> Create Profile </h1>
 
 <form method="POST">
     {%csrf_token%}
@@ -12,7 +12,8 @@
     <input type="submit">
 </form>
 
-<a href="{% url 'view_vendor_profiles_route' %}"> Back </a>
+
 
 {%endblock%}
 
+<!-- <a href="{% url '' %}"> Back </a> -->
