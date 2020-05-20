@@ -6,6 +6,8 @@
 
 <h1> Add delivery area </h1>
 
+<a href="{% url 'view_vendor_profiles_route' %}"> Back </a>
+
 <ol>
 {%for i in towns %}
  <li>{{i}} <a href="{% url 'remove_town_vendor_route' town_vendor_id=i.id vendor_profile_id=vendor_profile_id %}">Remove</a> </li>
