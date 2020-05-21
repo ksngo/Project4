@@ -1,0 +1,59 @@
+{% extends 'base_template.html' %}
+
+{%block title%} Your Profiles {%endblock%}
+
+{%block content%}
+
+<nav>
+    <ul>
+        <li> <a href="{% url 'show_buyer_profiles_route' %}"> Go to Profiles </a> </li>
+    </ul>
+</nav>
+
+<h1> Index </h1>
+
+
+<div>
+    <ul>
+        {%for i in buyer_profiles %}
+        <li> {{i}} <a href="{% url 'index_by_profile_route' buyer_id=i.id %}"> Use </a> </li>
+        {%endfor%}
+    </ul>
+</div>
+
+<h3> Vendor Available </h3>
+<div style="display:flex; flex-wrap:wrap; justify-content:space-around;">
+    
+    {%for i in vendor_available %}
+    <div>
+        <ol>
+            <li> {{i}} </li>
+            <li> {{i.block}} {{i.street}} {{i.postal_code}} </li>
+            <li> {{i.contact}} </li>
+            <li> {%for j in i.category.all %} <button>{{j}}</button> {%endfor%}</li>
+            <li> {%for j in i.vendordeliverytown.all %} <button>{{j}}</button> {%endfor%}</li>
+            <li> {%for j in i.vendordeliverypostal.all %} <button>{{j}}</button> {%endfor%}</li>
+        </ol>
+    </div>
+    {%endfor%}
+    
+</div>
+
+<h3> Food Available </h3>
+<div style="display:flex; flex-wrap:wrap; justify-content:space-around;">
+{%for i in food_available %}
+    <div>  
+        <ol>
+        <li> {{i}} </li>
+        <li> {{i.description}} </li>
+        <li> {{i.portion}}pax </li>
+        <li> ${{i.price}} </li>
+        <li> {{i.delivery_time}}mins </li>
+        <li> {{i.vendor.name}}</li>
+        <li> {%for j in i.tag.all %} <button> {{j}} </button> {%endfor%} </li> 
+        </ol>
+    </div>
+{%endfor%} 
+</div>
+
+{%endblock%}

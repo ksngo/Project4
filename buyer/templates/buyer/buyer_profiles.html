@@ -4,6 +4,12 @@
 
 {%block content%}
 
+<nav>
+    <ul>
+        <li> <a href="{% url 'index_route' %}"> Go to Index </a> </li>
+    </ul>
+</nav>
+
 <h1> Your Profiles </h1>
 
 <a href="{% url 'create_buyer_profile_route'  %}"> Add new profile </a>

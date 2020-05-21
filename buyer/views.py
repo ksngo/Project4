@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Buyer
 from .forms import BuyerForm
 from vendor.models import Vendor
-
+from food.models import Food
 # Create your views here.
 
 
@@ -76,13 +76,41 @@ def delete_buyer_profile(request, buyer_id):
 @login_required
 def index(request):
 
+    buyer_profiles = Buyer.objects.all().filter(user=request.user)
+    print(buyer_profiles)
+
     # buyer_find = Buyer.objects.get(id=3).town
     # print(buyer_find)
 
     v = Vendor.objects.filter(vendordeliverytown__town="Yishun")
     print(v)
-    
-    vendor_find = v.vendordeliverytown_set.all()
-    print(vendor_find)
 
-    return HttpResponse("success")
+    food = Food.objects.filter(vendor__vendordeliverytown__town="Yishun") 
+    print(food)
+    
+    # vendor_find = v.vendordeliverytown_set.all()
+    # print(vendor_find)
+
+    return render(request, 'buyer/buyer_index_page.html', {
+        "buyer_profiles": buyer_profiles
+    })
+
+@login_required
+def index_by_profile(request, buyer_id):
+
+    buyer_profiles = Buyer.objects.all().filter(user=request.user)
+
+    buyer_town = Buyer.objects.get(id=buyer_id).town
+    print(buyer_town)
+
+    vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town)
+    print(vendor_available)
+
+    food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town) 
+    print(food_available)
+
+    return render(request, 'buyer/buyer_index_page.html', {
+        "buyer_profiles": buyer_profiles,
+        "vendor_available": vendor_available,
+        "food_available": food_available
+    })
