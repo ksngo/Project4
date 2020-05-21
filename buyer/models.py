@@ -1,14 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
-from location.models import Town, Postal
 from food.models import Food
 
 # Create your models here.
 
 
 class Buyer(models.Model):
-    town = models.ForeignKey(Town, null=True, blank=False, on_delete=models.SET_NULL)
+    town = models.CharField(max_length=100, null=True, blank=False)
     postal_code = models.PositiveIntegerField(null=False, blank=False) 
     block = models.PositiveSmallIntegerField( null=False, blank=False)
     street = models.CharField(max_length=254, null=False, blank=False)
