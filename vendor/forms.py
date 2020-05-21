@@ -1,5 +1,5 @@
 from django import forms
-from .models import Vendor, Vendor_Deliver_To_Town, Vendor_Deliver_To_Postal
+from .models import Vendor, VendorDeliveryTown, VendorDeliveryPostal
 
 
 class VendorForm(forms.ModelForm):
@@ -10,11 +10,11 @@ class VendorForm(forms.ModelForm):
 
 class DeliverTownForm(forms.ModelForm):
     class Meta:
-        model = Vendor_Deliver_To_Town
+        model = VendorDeliveryTown
         fields = ('town',)
 
 
 class DeliverPostalForm(forms.ModelForm):
     class Meta:
-        model = Vendor_Deliver_To_Postal
+        model = VendorDeliveryPostal
         fields = ('postal_code',)

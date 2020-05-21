@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import VendorForm, DeliverTownForm, DeliverPostalForm
-from .models import Vendor, Vendor_Deliver_To_Town, Vendor_Deliver_To_Postal
+from .models import Vendor, VendorDeliveryTown, VendorDeliveryPostal
 
 
 # Create your views here.
@@ -99,13 +99,13 @@ def create_delivery_area(request, vendor_profile_id):
 
         if town_form.is_valid():
             form = town_form.save(commit=False)
-            form.vendor = vendor_profile
             form.save()
+            town_form.save_m2m()
         
         if postal_form.is_valid():
             form = postal_form.save(commit=False)
-            form.vendor = vendor_profile
             form.save()
+            postal_form.save_m2m()
 
         return redirect(reverse(create_delivery_area, kwargs={'vendor_profile_id': vendor_profile_id}))
     
@@ -113,9 +113,8 @@ def create_delivery_area(request, vendor_profile_id):
          
         town_form = DeliverTownForm()
         postal_form = DeliverPostalForm()
-
-        towns = Vendor_Deliver_To_Town.objects.filter(vendor__id=vendor_profile_id)
-        postals = Vendor_Deliver_To_Postal.objects.filter(vendor__id=vendor_profile_id)
+        towns = VendorDeliveryTown.objects.all()
+        postals = VendorDeliveryPostal.objects.all()
 
         return render(request, "vendor/vendor_delivery_area.html", {
             "towns": towns,
@@ -128,7 +127,7 @@ def create_delivery_area(request, vendor_profile_id):
 
 def remove_town_vendor(request, vendor_profile_id, town_vendor_id):
 
-    town_vendor = get_object_or_404(Vendor_Deliver_To_Town, pk=town_vendor_id)
+    town_vendor = get_object_or_404(VendorDeliveryTown, pk=town_vendor_id)
     town_vendor.delete()
 
     return redirect(reverse(create_delivery_area, kwargs={'vendor_profile_id': vendor_profile_id}))
@@ -136,7 +135,7 @@ def remove_town_vendor(request, vendor_profile_id, town_vendor_id):
 
 def remove_postal_vendor(request, vendor_profile_id, postal_vendor_id):
 
-    postal_vendor = get_object_or_404(Vendor_Deliver_To_Postal, pk=postal_vendor_id)
+    postal_vendor = get_object_or_404(VendorDeliveryPostal, pk=postal_vendor_id)
     postal_vendor.delete()
 
     return redirect(reverse(create_delivery_area, kwargs={'vendor_profile_id': vendor_profile_id}))

@@ -13,9 +13,25 @@ class Category(models.Model):
         return self.title
 
 
+class VendorDeliveryPostal(models.Model):
+
+    postal_code = models.PositiveIntegerField( null=False, blank=False)
+
+    def __str__(self):
+        return str(self.postal_code)
+
+
+class VendorDeliveryTown(models.Model):
+
+    town = models.CharField( max_length=100, null=False, blank=False) 
+
+    def __str__(self):
+        return str(self.town)
+
+
 class Vendor(models.Model):
     category = models.ManyToManyField(Category)
-    postal_code = models.ForeignKey(Postal, null=True, blank=False, on_delete=models.SET_NULL)
+    postal_code = models.PositiveIntegerField( null=False, blank=False)
     name = models.CharField( max_length=100, null=False, blank=False) 
     block = models.PositiveSmallIntegerField( null=False, blank=False)
     street = models.CharField(max_length=254, null=False, blank=False)
@@ -26,22 +42,11 @@ class Vendor(models.Model):
     license_number = models.CharField(max_length=10, null=False, blank=False)
     license_check = models.BooleanField(default=False)
     photo_url=models.URLField(max_length=1024, null=True, blank=True)
+    vendordeliverytown = models.ManyToManyField(VendorDeliveryTown)
+    vendordeliverypostal = models.ManyToManyField(VendorDeliveryPostal)
 
     def __str__(self):
         return self.name
 
 
-class Vendor_Deliver_To_Town(models.Model):
-    town = models.ForeignKey(Town, null=False, blank=False, on_delete=models.CASCADE)
-    vendor = models.ForeignKey(Vendor, null=False, blank=False, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return '%s delivers to %s' % (self.vendor, self.town)
-
-
-class Vendor_Deliver_To_Postal(models.Model):
-    postal_code = models.ForeignKey(Postal, null=False, blank=False, on_delete=models.CASCADE)
-    vendor = models.ForeignKey(Vendor, null=False, blank=False, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return '%s delivers to %s' % (self.vendor, self.postal_code)

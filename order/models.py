@@ -53,7 +53,7 @@ class Order(models.Model):
         return self.order_number
 
 
-class Order_line_item(models.Model):
+class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE )
     review = models.ForeignKey(Review, null=True, blank=True, on_delete=models.SET_NULL)
     process = models.ForeignKey(Process, null=True, blank=False, on_delete=models.SET_NULL)
@@ -61,10 +61,6 @@ class Order_line_item(models.Model):
     datetime = models.DateTimeField(auto_now_add=True)
     quantity = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(99)], null=False, blank=False)
     cost = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
-
-
-
-
 
 
 

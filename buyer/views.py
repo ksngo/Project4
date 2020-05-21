@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect, reverse, get_object
 from django.contrib.auth.decorators import login_required
 from .models import Buyer
 from .forms import BuyerForm
+from vendor.models import Vendor
 
 # Create your views here.
 
@@ -71,3 +72,17 @@ def delete_buyer_profile(request, buyer_id):
         return render(request, "buyer/delete_buyer_profile.html", {
             "object" : buyer_profile
         })
+
+@login_required
+def index(request):
+
+    buyer_find = Buyer.objects.get(id=3).town
+    print(buyer_find)
+
+
+    v = Vendor.objects.all()[1]
+    print(v)
+    vendor_find = v.vendordeliverytown_set.all()
+    print(vendor_find)
+
+    return HttpResponse("success")

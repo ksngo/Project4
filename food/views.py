@@ -104,3 +104,5 @@ def delete_vendor_food(request, vendor_profile_id, vendor_food_id):
             "food": vendor_food,
             "vendor_profile_id": vendor_profile_id
         })
+
+
