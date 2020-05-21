@@ -76,12 +76,12 @@ def delete_buyer_profile(request, buyer_id):
 @login_required
 def index(request):
 
-    buyer_find = Buyer.objects.get(id=3).town
-    print(buyer_find)
+    # buyer_find = Buyer.objects.get(id=3).town
+    # print(buyer_find)
 
-
-    v = Vendor.objects.all()[1]
+    v = Vendor.objects.filter(vendordeliverytown__town="Yishun")
     print(v)
+    
     vendor_find = v.vendordeliverytown_set.all()
     print(vendor_find)
 

@@ -92,35 +92,30 @@ def create_delivery_area(request, vendor_profile_id):
 
     if request.method == "POST":
 
-        town_form = DeliverTownForm(request.POST)
-        postal_form = DeliverPostalForm(request.POST)
-
-        vendor_profile = get_object_or_404(Vendor, pk=vendor_profile_id )
-
-        if town_form.is_valid():
-            form = town_form.save(commit=False)
-            form.save()
-            town_form.save_m2m()
+        vendor_object = get_object_or_404(Vendor, pk=vendor_profile_id)
+        print(vendor_object)
+        try:
+            ##### adding to manytomany field into vendor_object #####
+            town = request.POST["town"]
+            f = VendorDeliveryTown.objects.create(town=town)  # create a new town object in VendorDeliveryTown table
+            vendor_object.vendordeliverytown.add(f)  # add the town object into Vendor table's town manytomany field
         
-        if postal_form.is_valid():
-            form = postal_form.save(commit=False)
-            form.save()
-            postal_form.save_m2m()
+        except:
+            postal = request.POST["postal"]
+            f = VendorDeliveryPostal.objects.create(postal_code=postal)
+            vendor_object.vendordeliverypostal.add(f)
 
         return redirect(reverse(create_delivery_area, kwargs={'vendor_profile_id': vendor_profile_id}))
-    
+
     else:
-         
-        town_form = DeliverTownForm()
-        postal_form = DeliverPostalForm()
-        towns = VendorDeliveryTown.objects.all()
-        postals = VendorDeliveryPostal.objects.all()
+
+        vendor_object = get_object_or_404(Vendor, pk=vendor_profile_id)
+        towns = VendorDeliveryTown.objects.filter(vendor=vendor_object)
+        postals = VendorDeliveryPostal.objects.filter(vendor=vendor_object)
 
         return render(request, "vendor/vendor_delivery_area.html", {
             "towns": towns,
             "postals": postals,
-            "town_form": town_form,
-            "postal_form": postal_form,
             "vendor_profile_id": vendor_profile_id
         })
 

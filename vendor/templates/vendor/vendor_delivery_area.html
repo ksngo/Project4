@@ -22,14 +22,14 @@
 
 <form method="POST">
     {%csrf_token%}
-    {{ town_form.as_p}}
+    <input type="text" placeholder="town" name="town">
     <input type="submit" value="Add town">
 </form>
 
 
 <form method="POST">
     {%csrf_token%}
-    {{ postal_form.as_p}}
+    <input type="text" placeholder="postal code" name="postal">
     <input type="submit" value="Add postal code">
 </form>
 
