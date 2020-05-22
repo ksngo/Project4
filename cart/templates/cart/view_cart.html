@@ -35,7 +35,17 @@
                     <td> {{forloop.counter}} </td>
                     <td> {{f_value.food_title}} </td>
                     <td> {{f_value.price}} </td>
-                    <td> {{f_value.qty}} </td>
+                    <td style="display:flex; justify-content:space-around;"> 
+                        <p>{{f_value.qty}}</p>
+                        <form method="POST" action="{% url 'add_quantity_route' buyer_id=f_value.buyer.id food_id=f_value.food_id %}">
+                            {%csrf_token%}
+                            <input type="submit" style="font-family:FontAwesome" class="btn" value="&#xf0fe">
+                        </form>
+                        <form method="POST" action="{% url 'subtract_quantity_route' buyer_id=f_value.buyer.id food_id=f_value.food_id %}">
+                            {%csrf_token%}
+                            <input type="submit" style="font-family:FontAwesome" class="btn" value="&#xf146">
+                        </form>
+                    </td>
                     <td> &nbsp; </td>
                     <td> <a href="{% url 'remove_from_cart_route' buyer_id=f_value.buyer.id food_id=f_value.food_id %}"> Remove </a>  </td>
                 </tr>

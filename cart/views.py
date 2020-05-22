@@ -46,7 +46,7 @@ def add_to_cart(request, buyer_id, food_id):
     print(cart)
     request.session['shopping_cart'] = cart
 
-    return redirect(reverse("index_by_profile_route", kwargs={"buyer_id":buyer_id}))
+    return redirect(reverse("index_by_profile_route", kwargs={"buyer_id": buyer_id}))
 
 
 @login_required
@@ -70,5 +70,40 @@ def remove_from_cart(request, buyer_id, food_id):
             del cart[buyer_id][food_id]
 
             request.session["shopping_cart"] = cart
+
+    return redirect(reverse(view_cart))
+
+
+@login_required
+def add_quantity(request, buyer_id, food_id):
+
+    cart = request.session.get("shopping_cart")
+
+    if request.method == "POST":
+        if buyer_id in cart:
+            if food_id in cart[buyer_id]:
+
+                cart[buyer_id][food_id]["qty"] += 1
+                request.session['shopping_cart'] = cart
+
+    return redirect(reverse(view_cart))
+
+
+@login_required
+def subtract_quantity(request, buyer_id, food_id):
+
+    cart = request.session.get("shopping_cart")
+
+    if request.method == "POST":
+        if buyer_id in cart:
+            if food_id in cart[buyer_id]:
+
+                if cart[buyer_id][food_id]["qty"] > 0:
+                    cart[buyer_id][food_id]["qty"] -= 1
+                    request.session['shopping_cart'] = cart
+                else:
+
+                    cart[buyer_id][food_id]["qty"] = 0
+                    request.session['shopping_cart'] = cart
 
     return redirect(reverse(view_cart))
