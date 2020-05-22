@@ -1,0 +1,49 @@
+{% extends "base_template.html" %}
+
+{%block title%} Shopping Cart {%endblock%}
+
+{%block content%}
+{{request.user.username}}
+<h1> Shopping Cart </h1>
+
+    <table class="table table-sm table-borderless">
+        <thead class="text-black">
+            <tr>
+                <th> index </th>
+                <th> Food Name </th>
+                <th> Food Price </th>
+                <th> Qty </th>
+                <th> Subtotal </th>
+            </tr>
+        </thead>
+        {% for b_key,b_value in cart.items %}
+            {% for f_key,f_value in b_value.items %}
+                
+                {% if forloop.first %}
+                <tr>
+                    <td colspan="5"> &nbsp; </td>
+                </tr>
+                <tr>
+                    <td colspan="5"> Delivery Address: Blk {{f_value.buyer.block}}, {{f_value.buyer.street}}, {{f_value.buyer.postal_code}}  </td>
+                </tr>
+                <tr>
+                    <td colspan="5"> Contact: {{f_value.buyer.contact}}   </td>
+                </tr> 
+                {%endif%}
+                <tr>
+                    <td> {{forloop.counter}}
+                    <td> {{f_value.food_title}} </td>
+                    <td> {{f_value.price}} </td>
+                    <td> {{f_value.qty}} </td>
+                    <td> &nbsp; </td>
+                </tr>
+            {%endfor%}
+        {%endfor%}
+
+    </table>
+
+
+
+
+
+{%endblock%}

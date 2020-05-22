@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.forms.models import model_to_dict
+from django.contrib.auth.decorators import login_required
 from food.models import Food
 from buyer.models import Buyer
 
 
 # Create your views here.
 
-
+@login_required
 def add_to_cart(request, buyer_id, food_id):
 
     cart = request.session.get('shopping_cart', {})
@@ -46,4 +47,14 @@ def add_to_cart(request, buyer_id, food_id):
     request.session['shopping_cart'] = cart
 
     return redirect(reverse("index_by_profile_route", kwargs={"buyer_id":buyer_id}))
+
+
+@login_required
+def view_cart(request):
+
+    cart = request.session.get("shopping_cart", {})
+
+    return render(request, "cart/view_cart.html", {
+        "cart": cart
+    })
 
