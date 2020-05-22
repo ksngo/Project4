@@ -91,7 +91,8 @@ def index(request):
     return render(request, 'buyer/buyer_index_page.html', {
         "buyer_profiles": buyer_profiles,
         "vendor_available": vendor_available,
-        "food_available": food_available
+        "food_available": food_available,
+        "buyer_id": default_buyer_id
     })
 
 @login_required
@@ -108,5 +109,6 @@ def index_by_profile(request, buyer_id):
     return render(request, 'buyer/buyer_index_page.html', {
         "buyer_profiles": buyer_profiles,
         "vendor_available": vendor_available,
-        "food_available": food_available
+        "food_available": food_available,
+        "buyer_id": buyer_id
     })
