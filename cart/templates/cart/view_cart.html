@@ -14,6 +14,7 @@
                 <th> Food Price </th>
                 <th> Qty </th>
                 <th> Subtotal </th>
+                <th> &nbsp; </th>
             </tr>
         </thead>
         {% for b_key,b_value in cart.items %}
@@ -21,21 +22,22 @@
                 
                 {% if forloop.first %}
                 <tr>
-                    <td colspan="5"> &nbsp; </td>
+                    <td colspan="6"> &nbsp; </td>
                 </tr>
                 <tr>
-                    <td colspan="5"> Delivery Address: Blk {{f_value.buyer.block}}, {{f_value.buyer.street}}, {{f_value.buyer.postal_code}}  </td>
+                    <td colspan="6"> Delivery Address: Blk {{f_value.buyer.block}}, {{f_value.buyer.street}}, {{f_value.buyer.postal_code}}  </td>
                 </tr>
                 <tr>
-                    <td colspan="5"> Contact: {{f_value.buyer.contact}}   </td>
+                    <td colspan="6"> Contact: {{f_value.buyer.contact}}   </td>
                 </tr> 
                 {%endif%}
                 <tr>
-                    <td> {{forloop.counter}}
+                    <td> {{forloop.counter}} </td>
                     <td> {{f_value.food_title}} </td>
                     <td> {{f_value.price}} </td>
                     <td> {{f_value.qty}} </td>
                     <td> &nbsp; </td>
+                    <td> <a href="{% url 'remove_from_cart_route' buyer_id=f_value.buyer.id food_id=f_value.food_id %}"> Remove </a>  </td>
                 </tr>
             {%endfor%}
         {%endfor%}

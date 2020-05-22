@@ -58,3 +58,17 @@ def view_cart(request):
         "cart": cart
     })
 
+
+@login_required
+def remove_from_cart(request, buyer_id, food_id):
+
+    cart = request.session.get("shopping_cart")
+
+    if buyer_id in cart:
+        if food_id in cart[buyer_id]:
+
+            del cart[buyer_id][food_id]
+
+            request.session["shopping_cart"] = cart
+
+    return redirect(reverse(view_cart))
