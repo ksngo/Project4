@@ -1,4 +1,5 @@
 {% extends 'base_template.html' %}
+{%load crispy_forms_tags %}
 
 {%block title%} Profile Detail {%endblock%}
 
@@ -8,7 +9,7 @@
 
 <form method="POST">
     {%csrf_token%}
-    {{ form.as_p}}
+    {{ form|crispy}}
     <input type="submit"> 
 </form>
 <a href="{% url 'view_vendor_profiles_route' %}"> Back </a>

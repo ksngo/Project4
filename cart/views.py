@@ -22,6 +22,7 @@ def add_to_cart(request, buyer_id, food_id):
         print("buyer not in cart")
         cart[buyer_id] = {food_id: {
             "food_id": food_id,
+            "vendor_name": food.vendor.name,
             "food_title": food.title,
             "price": str(food.price),
             "qty": 1,
@@ -37,6 +38,7 @@ def add_to_cart(request, buyer_id, food_id):
             print("buyer already in cart, but different food")
             cart[buyer_id][food_id] = {
                 "food_id": food_id,
+                "vendor_name": food.vendor.name,
                 "food_title": food.title,
                 "price": str(food.price),
                 "qty": 1,

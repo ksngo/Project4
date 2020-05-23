@@ -1,4 +1,5 @@
 {% extends 'base_template.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %} Edit vendor food {%endblock%}
 
@@ -8,7 +9,7 @@
 
 <form method="POST">
     {%csrf_token%}
-    {{form.as_p}}
+    {{form|crispy}}
     <input type="submit">
     <a href="{% url 'view_vendor_food_gallery_route' vendor_profile_id=vendor_profile_id %}"> back </a>
 </form>
