@@ -98,7 +98,7 @@ def index(request):
 
     if 'category' in request.GET:
         get_category = request.GET['category']
-        print(get_category)
+
         vendor_available = Vendor.objects.filter(
                 vendordeliverytown__town=buyer_town
             ).filter(
@@ -110,6 +110,23 @@ def index(request):
             ).filter(
                 vendor__category__title=get_category
             )
+
+    elif 'tag' in request.GET:
+
+        get_tag = request.GET['tag']
+
+        vendor_available = Vendor.objects.filter(
+                vendordeliverytown__town=buyer_town
+            ).filter(
+                food_set__tag__title=get_tag
+            )
+
+        food_available = Food.objects.filter(
+            vendor__vendordeliverytown__town=buyer_town
+            ).filter(
+                tag__title=get_tag
+            )
+
     else:
 
         vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town)
@@ -146,6 +163,36 @@ def index_by_profile(request, buyer_id):
             ).filter(
                 vendor__category__title=get_category
             )
+
+    elif 'tag' in request.GET:
+
+        get_tag = request.GET['tag']
+
+        # cant reverse in filter() to query on Vendor to Food as vendor is a foreign key in Food table only.
+        # Hence, first filter on Food table to the tags(which is a m2m field in Food table).
+        # Then, find out the vendors id(vendor is foreign key in Food table) by looping through above filter queryset result and save into a list.
+        # Then, filter on Vendor table to the list of vendors id using filter(id__in=[list])
+
+        get_foods_with_tag = Food.objects.filter(tag__title=get_tag)
+        vendors_list = []
+        for i in get_foods_with_tag:
+            vendors_list.append(i.vendor.id)
+
+        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(id__in=vendors_list)
+
+        # this is not possible because Vendor.objects.fitler() returns a queryset; *_set work with Vendor.objects.get() which returns an object
+        # vendor_available = Vendor.objects.filter(
+        #         vendordeliverytown__town=buyer_town
+        #     ).food_set.filter(
+        #         tag__title=get_tag
+        #     )
+
+        food_available = Food.objects.filter(
+            vendor__vendordeliverytown__town=buyer_town
+            ).filter(
+                tag__title=get_tag
+            )
+
     else:
 
         vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town)  # retrieve vendors that deliver to buyer profile's town

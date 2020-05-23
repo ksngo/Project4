@@ -52,14 +52,21 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="FoodDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Vendors
+          Food
         </a>
         <div class="dropdown-menu" aria-labelledby="FoodDropdown">
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=restaurant">Restaurant</a>
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=hawker">Hawker</a>
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?category=caterer">Caterer</a>
+          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=chinese">chinese</a>
+          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=malay">malay</a>
+          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=indian">indian</a>
+          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=western">western</a>
+          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=halal">halal</a>
+          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=non-halal">non-halal</a>
+          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=noodles">noodles</a>
+          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=organic">organic</a>
+          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=vegetarian">vegetarian</a>
+          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=others">others</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}">All Vendors</a>
+          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}">All Food</a>
         </div>
       </li>
     </ul>
