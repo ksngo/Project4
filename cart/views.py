@@ -20,13 +20,15 @@ def add_to_cart(request, buyer_id, food_id):
 
     if buyer_id not in cart:
         print("buyer not in cart")
+
         cart[buyer_id] = {food_id: {
             "food_id": food_id,
             "vendor_name": food.vendor.name,
             "food_title": food.title,
-            "price": str(food.price),
+            "price": float(food.price),
             "qty": 1,
-            "buyer": buyer
+            "buyer": buyer,
+            "sub_total": float(food.price)
         }}
 
         messages.success(request, f" {food.title} from {food.vendor.name} added to cart.")
@@ -35,6 +37,9 @@ def add_to_cart(request, buyer_id, food_id):
         if food_id in cart[buyer_id] :
             print("buyer already in cart, and same food")
             cart[buyer_id][food_id]["qty"] += 1
+            print( cart[buyer_id][food_id]["sub_total"])
+            cart[buyer_id][food_id]["sub_total"] = (cart[buyer_id][food_id]["sub_total"])+ float(food.price)
+            print( cart[buyer_id][food_id]["sub_total"])
 
             messages.success(request, f" {food.title} from {food.vendor.name} added to cart.")
 
@@ -44,9 +49,10 @@ def add_to_cart(request, buyer_id, food_id):
                 "food_id": food_id,
                 "vendor_name": food.vendor.name,
                 "food_title": food.title,
-                "price": str(food.price),
+                "price": float(food.price),
                 "qty": 1,
-                "buyer": buyer
+                "buyer": buyer,
+                "sub_total": float(food.price)
             }
 
             messages.success(request, f" {food.title} from {food.vendor.name} added to cart.")
@@ -61,9 +67,15 @@ def add_to_cart(request, buyer_id, food_id):
 def view_cart(request):
 
     cart = request.session.get("shopping_cart", {})
+    grand_total = 0
+
+    for b_key, b_value in cart.items():
+        for f_key, f_value in b_value.items():
+            grand_total += f_value["sub_total"]
 
     return render(request, "cart/view_cart.html", {
-        "cart": cart
+        "cart": cart,
+        "grand_total": grand_total
     })
 
 
@@ -96,6 +108,7 @@ def add_quantity(request, buyer_id, food_id):
             if food_id in cart[buyer_id]:
 
                 cart[buyer_id][food_id]["qty"] += 1
+                cart[buyer_id][food_id]["sub_total"] = (cart[buyer_id][food_id]["sub_total"]) + (cart[buyer_id][food_id]["price"])
                 request.session['shopping_cart'] = cart
 
     return redirect(reverse(view_cart))
@@ -112,10 +125,12 @@ def subtract_quantity(request, buyer_id, food_id):
 
                 if cart[buyer_id][food_id]["qty"] > 0:
                     cart[buyer_id][food_id]["qty"] -= 1
+                    cart[buyer_id][food_id]["sub_total"] = (cart[buyer_id][food_id]["sub_total"]) - (cart[buyer_id][food_id]["price"])
                     request.session['shopping_cart'] = cart
                 else:
 
                     cart[buyer_id][food_id]["qty"] = 0
+                    cart[buyer_id][food_id]["sub_total"] = 0
                     request.session['shopping_cart'] = cart
 
     return redirect(reverse(view_cart))

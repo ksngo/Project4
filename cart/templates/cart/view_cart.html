@@ -48,13 +48,15 @@
                             <input type="submit" style="font-family:FontAwesome" class="btn" value="&#xf146">
                         </form>
                     </td>
-                    <td> &nbsp; </td>
+                    <td> {{f_value.sub_total}} </td>
                     <td> <a href="{% url 'remove_from_cart_route' buyer_id=f_value.buyer.id food_id=f_value.food_id %}"> Remove </a>  </td>
                 </tr>
             {%endfor%}
         {%endfor%}
 
     </table>
+
+    <p> grand total is {{grand_total}} </p>
 
 
 
