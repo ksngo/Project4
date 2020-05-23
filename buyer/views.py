@@ -90,19 +90,20 @@ def delete_buyer_profile(request, buyer_id):
 def index(request):
 
     buyer_profiles = Buyer.objects.all().filter(user=request.user)
-    print(buyer_profiles)
     default_buyer_object = Buyer.objects.all().filter(user=request.user)[:1]
+
     for i in default_buyer_object:
         default_buyer_id = i.id
 
     buyer_town = Buyer.objects.get(id=default_buyer_id).town
+    buyer_postal = Buyer.objects.get(id=default_buyer_id).postal_code
 
     if 'category' in request.GET:
         get_category = request.GET['category']
 
-        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(category__title=get_category)
+        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(vendordeliverypostal__postal_code__exact=buyer_postal).filter(category__title=get_category)
 
-        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(vendor__category__title=get_category)
+        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(vendor__vendordeliverypostal__postal_code__exact=buyer_postal).filter(vendor__category__title=get_category)
 
     elif 'tag' in request.GET:
 
@@ -113,9 +114,9 @@ def index(request):
         for i in get_foods_with_tag:
             vendors_list.append(i.vendor.id)
 
-        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(id__in=vendors_list)
+        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(vendordeliverypostal__postal_code__exact=buyer_postal).filter(id__in=vendors_list)
 
-        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(tag__title=get_tag)
+        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(vendor__vendordeliverypostal__postal_code__exact=buyer_postal).filter(tag__title=get_tag)
 
     elif 'search' in request.GET:
 
@@ -126,34 +127,33 @@ def index(request):
             return redirect(reverse(index))
 
         vendor_queries = Q(name__icontains=query)
-        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(vendor_queries)
+        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(vendordeliverypostal__postal_code__exact=buyer_postal).filter(vendor_queries)
 
         food_queries = Q(title__icontains=query)|Q(description__icontains=query)
-        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(food_queries)
+        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(vendor__vendordeliverypostal__postal_code__exact=buyer_postal).filter(food_queries)
 
         if vendor_available and not food_available:
-            print("inside vendor queries and not food queries")
-
+            
             vendor_id_list = []
             for i in vendor_available:
                 vendor_id_list.append(i.id)
                 print(vendor_id_list)
             # overide above food_available since it's empty too.
-            food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(vendor__id__in=vendor_id_list)
+            food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(vendor__vendordeliverypostal__postal_code__exact=buyer_postal).filter(vendor__id__in=vendor_id_list)
 
         elif food_available and not vendor_available:
-            print("inside food queries and not vendor queries")
+            
             vendor_id_list = []
             for i in food_available:
                 vendor_id_list.append(i.vendor.id)
 
-            vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(id__in=vendor_id_list)
+            vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(vendordeliverypostal__postal_code__exact=buyer_postal).filter(id__in=vendor_id_list)
 
     else:
 
-        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town)
+        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(vendordeliverypostal__postal_code__exact=buyer_postal)
 
-        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town)
+        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(vendor__vendordeliverypostal__postal_code__exact=buyer_postal)
 
     return render(request, 'buyer/buyer_index_page.html', {
         "buyer_profiles": buyer_profiles,
@@ -169,15 +169,16 @@ def index_by_profile(request, buyer_id):
     buyer_profiles = Buyer.objects.all().filter(user=request.user)  # retrieve all buyer profiles for user
 
     buyer_town = Buyer.objects.get(id=buyer_id).town  # retrieve buyer profile's town
+    buyer_postal = Buyer.objects.get(id=buyer_id).postal_code  # retrieve buyer profile's postal code
 
     if 'category' in request.GET:
 
         get_category = request.GET['category']
         print(get_category)
-        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(category__title=get_category)
+        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(vendordeliverypostal__postal_code__exact=buyer_postal).filter(category__title=get_category)
         print(vendor_available)
 
-        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(vendor__category__title=get_category)
+        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(vendor__vendordeliverypostal__postal_code__exact=buyer_postal).filter(vendor__category__title=get_category)
 
     elif 'tag' in request.GET:
 
@@ -193,7 +194,7 @@ def index_by_profile(request, buyer_id):
         for i in get_foods_with_tag:
             vendors_list.append(i.vendor.id)
 
-        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(id__in=vendors_list)
+        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(vendordeliverypostal__postal_code__exact=buyer_postal).filter(id__in=vendors_list)
 
         # this is not possible because Vendor.objects.fitler() returns a queryset; *_set work with Vendor.objects.get() which returns an object
         # vendor_available = Vendor.objects.filter(
@@ -202,7 +203,7 @@ def index_by_profile(request, buyer_id):
         #         tag__title=get_tag
         #     )
 
-        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(tag__title=get_tag)
+        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(vendor__vendordeliverypostal__postal_code__exact=buyer_postal).filter(tag__title=get_tag)
 
     elif 'search' in request.GET:
 
@@ -213,10 +214,10 @@ def index_by_profile(request, buyer_id):
             return redirect(reverse(index))
 
         vendor_queries = Q(name__icontains=query)
-        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(vendor_queries)
+        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(vendordeliverypostal__postal_code__exact=buyer_postal).filter(vendor_queries)
 
         food_queries = Q(title__icontains=query)|Q(description__icontains=query)
-        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(food_queries)
+        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(vendor__vendordeliverypostal__postal_code__exact=buyer_postal).filter(food_queries)
 
         if vendor_available and not food_available:
             print("inside vendor queries and not food queries")
@@ -226,7 +227,7 @@ def index_by_profile(request, buyer_id):
                 vendor_id_list.append(i.id)
                 print(vendor_id_list)
             # overide above food_available since it's empty too.
-            food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(vendor__id__in=vendor_id_list)
+            food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(vendor__vendordeliverypostal__postal_code__exact=buyer_postal).filter(vendor__id__in=vendor_id_list)
 
         elif food_available and not vendor_available:
             print("inside food queries and not vendor queries")
@@ -234,13 +235,13 @@ def index_by_profile(request, buyer_id):
             for i in food_available:
                 vendor_id_list.append(i.vendor.id)
 
-            vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(id__in=vendor_id_list)
+            vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(vendordeliverypostal__postal_code__exact=buyer_postal).filter(id__in=vendor_id_list)
 
     else:
 
-        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town)  # retrieve vendors that deliver to buyer profile's town
+        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town).filter(vendordeliverypostal__postal_code__exact=buyer_postal)  # retrieve vendors that deliver to buyer profile's town and postal
 
-        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town)  # retrieve foods that can be delivered to buyer profiles town
+        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town).filter(vendor__vendordeliverypostal__postal_code__exact=buyer_postal)  # retrieve foods that can be delivered to buyer profiles town and postal
 
     return render(request, 'buyer/buyer_index_page.html', {
         "buyer_profiles": buyer_profiles,
