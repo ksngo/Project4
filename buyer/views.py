@@ -96,9 +96,25 @@ def index(request):
 
     buyer_town = Buyer.objects.get(id=default_buyer_id).town
 
-    vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town)
+    if 'category' in request.GET:
+        get_category = request.GET['category']
+        print(get_category)
+        vendor_available = Vendor.objects.filter(
+                vendordeliverytown__town=buyer_town
+            ).filter(
+                category__title=get_category
+            )
 
-    food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town)
+        food_available = Food.objects.filter(
+            vendor__vendordeliverytown__town=buyer_town
+            ).filter(
+                vendor__category__title=get_category
+            )
+    else:
+
+        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town)
+
+        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town)
 
     return render(request, 'buyer/buyer_index_page.html', {
         "buyer_profiles": buyer_profiles,
@@ -114,9 +130,27 @@ def index_by_profile(request, buyer_id):
 
     buyer_town = Buyer.objects.get(id=buyer_id).town  # retrieve buyer profile's town
 
-    vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town)  # retrieve vendors that deliver to buyer profile's town
+    if 'category' in request.GET:
 
-    food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town)  # retrieve foods that can be delivered to buyer profiles town
+        get_category = request.GET['category']
+        print(get_category)
+        vendor_available = Vendor.objects.filter(
+                vendordeliverytown__town=buyer_town
+            ).filter(
+                category__title=get_category
+            )
+        print(vendor_available)
+
+        food_available = Food.objects.filter(
+            vendor__vendordeliverytown__town=buyer_town
+            ).filter(
+                vendor__category__title=get_category
+            )
+    else:
+
+        vendor_available = Vendor.objects.filter(vendordeliverytown__town=buyer_town)  # retrieve vendors that deliver to buyer profile's town
+
+        food_available = Food.objects.filter(vendor__vendordeliverytown__town=buyer_town)  # retrieve foods that can be delivered to buyer profiles town
 
     return render(request, 'buyer/buyer_index_page.html', {
         "buyer_profiles": buyer_profiles,
