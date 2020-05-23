@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .forms import VendorForm, DeliverTownForm, DeliverPostalForm
 from .models import Vendor, VendorDeliveryTown, VendorDeliveryPostal
 
@@ -10,7 +11,7 @@ from .models import Vendor, VendorDeliveryTown, VendorDeliveryPostal
 def view_vendor_profiles(request):
     vendor_profiles = Vendor.objects.filter(user=request.user)
     username = request.user.username
-    
+
     return render(request, "vendor/vendor_profiles.html", {
             "vendor_profiles": vendor_profiles,
             "username": username
@@ -22,19 +23,21 @@ def view_vendor_profiles(request):
 def create_vendor(request):
 
     vendor_form = VendorForm()
-    
+
     if request.method == 'POST':
         create_form = VendorForm(request.POST)
 
         if create_form.is_valid():
-        
+
             form = create_form.save(commit=False)
             form.user = request.user
             form.save()
-            
+            messages.success(request, "New vendor added." )
+
             return redirect(reverse(view_vendor_profiles))
-            
+
         else:
+            messages.warning(request, "Contact number must be 8 digits numbers.")
             return render(request, "vendor/vendor_form.html", {
                 'form':  vendor_form
             })
@@ -59,15 +62,15 @@ def edit_vendor_profile(request, vendor_profile_id):
         if create_form.is_valid():
 
             create_form.save()
-
+            messages.success(request, f" '{profile}'' successfully updated.")
             return redirect(reverse(view_vendor_profiles))
-        
-        else:
 
+        else:
+            messages.warning(request, "Contact number must be 8 digits numbers.")
             return redirect(reverse(edit_vendor_profile, kwargs={'vendor_profile_id': vendor_profile_id}))
 
     else:
-        
+
         return render(request, "vendor/vendor_profile_detail.html", {
             "form": profile_form,
             "vendor_profile_id": vendor_profile_id
@@ -80,11 +83,11 @@ def delete_vendor_profile(request, vendor_profile_id):
 
         vendor_profile = get_object_or_404(Vendor, pk=vendor_profile_id)
         vendor_profile.delete()
-
+        messages.success(request, f" {vendor_profile} removed.")
         return redirect(reverse(view_vendor_profiles))
 
     else:
-        
+
         return render(request, "vendor/vendor_delete_profile.html")
 
 
@@ -99,7 +102,7 @@ def create_delivery_area(request, vendor_profile_id):
             town = request.POST["town"]
             f = VendorDeliveryTown.objects.create(town=town)  # create a new town object in VendorDeliveryTown table
             vendor_object.vendordeliverytown.add(f)  # add the town object into Vendor table's town manytomany field
-        
+
         except:
             postal = request.POST["postal"]
             f = VendorDeliveryPostal.objects.create(postal_code=postal)

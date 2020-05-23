@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import Buyer
 from .forms import BuyerForm
 from vendor.models import Vendor
@@ -18,8 +19,10 @@ def create_buyer_profile(request):
             form = buyer_form.save(commit=False)
             form.user = request.user
             form.save()
+            messages.success(request, "New Profile added.")
             return redirect(reverse(show_buyer_profiles))
         else:
+            messages.warning(request, "Contact field must be 8 digits number.")
             return redirect(reverse(create_buyer_profile))
 
     else:
@@ -36,9 +39,17 @@ def edit_buyer_profile(request, buyer_id):
 
     if request.method == "POST":
         buyer_form = BuyerForm(request.POST, instance=buyer_profile)
-        buyer_form.save()  # does not require to commit False form to save user as request.user; user still intact in database after the save
 
-        return redirect(reverse(show_buyer_profiles))
+        if buyer_form.is_valid():
+
+            buyer_form.save()  # does not require to commit False form to save user as request.user; user still intact in database after the save
+
+            messages.success(request, "Profile successfully updated.")
+            return redirect(reverse(show_buyer_profiles))
+
+        else:
+            messages.warning(request, "Contact field must be 8 digits number.")
+            return redirect(reverse(edit_buyer_profile, kwargs={"buyer_id": buyer_id}))
 
     else:
 
@@ -64,6 +75,7 @@ def delete_buyer_profile(request, buyer_id):
     buyer_profile = get_object_or_404(Buyer, pk=buyer_id)
 
     if request.method == "POST":
+        messages.success(request, f" Profile '{buyer_profile}' deleted ")
         buyer_profile.delete()
         return redirect(reverse(show_buyer_profiles))
 

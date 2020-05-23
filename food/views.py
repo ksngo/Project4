@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from datetime import datetime
 from .models import Food
 from .forms import FoodForm
@@ -43,9 +44,12 @@ def add_vendor_food(request, vendor_profile_id):
             form.save()
             food_form.save_m2m()
 
+            messages.success(request, "New item added.")
+
             return redirect(reverse(view_vendor_food_gallery, kwargs={"vendor_profile_id": vendor_profile_id}))
         else:
 
+            messages.warning(request, "Something wrong here.")
             return render(request, "food/add_vendor_food.html", {
                 "form": form,
                 "vendor_profile_id": vendor_profile_id
@@ -74,10 +78,13 @@ def edit_vendor_food(request, vendor_profile_id, vendor_food_id):
             form.save()
             food_form.save_m2m()
 
+            messages.success(request, f" {vendor_food} is successfully updated.")
+
             return redirect(reverse(view_vendor_food_gallery, kwargs={"vendor_profile_id": vendor_profile_id}))
 
         else:
 
+            messages.success(request, f" Something Wrong. {vendor_food} can't be updated.")
             return redirect(reverse(edit_vendor_food, kwargs={"vendor_profile_id":vendor_profile_id, "vendor_food_id": vendor_food_id}))
 
     else:
@@ -96,6 +103,7 @@ def delete_vendor_food(request, vendor_profile_id, vendor_food_id):
 
     if request.method == "POST":
         vendor_food.delete()
+        messages.success(request, f" {vendor_food} removed.")
         return redirect(reverse(view_vendor_food_gallery, kwargs={"vendor_profile_id": vendor_profile_id}))
 
     else:
