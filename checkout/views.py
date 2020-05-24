@@ -41,12 +41,13 @@ def checkout(request):
     )
 
     return render(request, "checkout/checkout.html", {
-        "session_id" : session.id,
-        "public_key" : settings.STRIPE_PUBLISHABLE_KEY
+        "session_id": session.id,
+        "public_key": settings.STRIPE_PUBLISHABLE_KEY
     })
 
 
 def checkout_success(request):
+    request.session['shopping_cart'] = {}
     return HttpResponse("checkout success")
 
 
