@@ -34,7 +34,7 @@
         <div>
             
          {%if request.user.is_authenticated %}
-            <a href="{% url 'index_route' %}" >My Profile |</a>
+            <a href="{% url 'index_route' %}" >My Home |</a>
             <a href="{% url 'view_vendor_profiles_route' %}"> Vendor access |</a>
             <a href="{% url 'account_logout' %}" > Logout</a>
          {%else%}

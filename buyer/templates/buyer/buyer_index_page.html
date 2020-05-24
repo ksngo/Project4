@@ -5,8 +5,14 @@
 {%block content%}
 
 <nav style="display:flex; justify-content: flex-end;">
+     <ul>
+        <li> <a href="{% url 'index_route' %}"> My Home </a> </li>
+    </ul>
     <ul>
-        <li> <a href="{% url 'show_buyer_profiles_route' %}"> Go to Profiles </a> </li>
+        <li> <a href="{% url 'show_buyer_profiles_route' %}"> My Profiles </a> </li>
+    </ul>
+    <ul>
+        <li> <a href="{% url 'view_order_history_route' %}"> My Orders </a> </li>
     </ul>
     <ul>
         <li> <a href="{% url 'view_cart_route' %}" target="_blank"> Go to Shopping Cart </a> </li>

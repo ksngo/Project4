@@ -90,6 +90,7 @@ def payment_completed(request):
 
 def handle_checkout_session(session):
 
+    #  to retrieve the user and create an Order model(order_id)
     for i in session.display_items:
         buyer_id = i.custom.description.split(",")[0].replace("Id", "")
         buyer = get_object_or_404(Buyer, pk=buyer_id)
@@ -100,14 +101,17 @@ def handle_checkout_session(session):
 
         break
 
+    #  retrieve each line items with same order_id and store in an OrderLineItem model
     for i in session.display_items:
+        buyer_id = i.custom.description.split(",")[0].replace("Id", "")
+        buyer = get_object_or_404(Buyer, pk=buyer_id)
+
         order = get_object_or_404(Order, order_number=session.id)
-        process = get_object_or_404(Process, title="delivered")
+        process = get_object_or_404(Process, title="undelivered")
         food_id = i.custom.name.split(",")[1].replace("Id","")
         food = get_object_or_404(Food, pk=food_id)
         quantity = i.quantity
-        cost = (i.amount)*quantity
-        buyer = buyer
+        cost = (i.amount)*quantity/100
 
         order_line_item = OrderLineItem(order=order, process=process, food=food, quantity=quantity, cost=cost, buyer=buyer)
         order_line_item.save()

@@ -1,11 +1,11 @@
 {% extends 'base_template.html' %}
 
-{%block title%} Your Profiles {%endblock%}
+{%block title%} Your Orders {%endblock%}
 
 {%block content%}
 
 <nav style="display:flex; justify-content: flex-end;">
-    <ul>
+     <ul>
         <li> <a href="{% url 'index_route' %}"> My Home </a> </li>
     </ul>
     <ul>
@@ -19,26 +19,30 @@
     </ul>
 </nav>
 
-<h1> Your Profiles </h1>
-
-<a href="{% url 'create_buyer_profile_route'  %}"> Add new profile </a>
+<h1> My Orders </h1>
 
 <table class="table">
     <thead>
+        <th> Index </th>
+        <th> Order Id </th>
+        <th> Date </th>
         <th> Profile </th>
-        <th> user display </th>
-        <th> contact </th>
-        <th> date joined </th>
+        <th> Food </th>
+        <th> Quantity </th>
+        <th> Sub-total </th>
         <th> &nbsp; </th>
     </thead>
-    {%for i in objects%}
+    {%for i in orders%}
     <tr>
         <td> {{forloop.counter}} </td>
-        <td> {{i}} </td>
-        <td> {{i.contact}} </td>
-        <td> {{i.date_joined}} </td>
-        <td> <a href="{% url 'edit_buyer_profile_route' buyer_id=i.id %}">Edit</a> 
-            <a href="{% url 'delete_buyer_profile_route' buyer_id=i.id %}"> Delete </a>
+        <td style="font-size:10px;"> {{i.order.order_number}} </td>
+        <td> {{i.datetime}} </td>
+        <td> {{i.buyer}} </td>
+        <td> {{i.food}} </td>
+        <td> {{i.quantity}} </td>
+        <td> {{i.cost}} </td>
+        <td> <a href="#">Review</a> 
+            <a href="#"> Report </a>
         </td>
     </tr>
     {%endfor%}

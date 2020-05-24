@@ -6,6 +6,7 @@ from .models import Buyer
 from .forms import BuyerForm
 from vendor.models import Vendor
 from food.models import Food
+from order.models import OrderLineItem
 # Create your views here.
 
 
@@ -248,4 +249,14 @@ def index_by_profile(request, buyer_id):
         "vendor_available": vendor_available,
         "food_available": food_available,
         "buyer_id": buyer_id
+    })
+
+
+@login_required
+def view_order_history(request):
+
+    orders = OrderLineItem.objects.all().filter(order__user=request.user)
+
+    return render(request, "buyer/buyer_order_history.html", {
+        "orders": orders
     })
