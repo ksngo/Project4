@@ -4,6 +4,7 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
 from food.models import Food
+from buyer.models import Buyer
 
 # Create your models here.
 
@@ -30,7 +31,7 @@ class Process(models.Model):
 
 
 class Order(models.Model):
-    order_number = models.CharField(max_length=32, null=False, editable=False)
+    order_number = models.CharField(max_length=200, null=False, editable=False)
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     datetime = models.DateTimeField(auto_now_add=True)
     alternative_delivery_address = models.TextField(null=True, blank=True)
@@ -38,17 +39,17 @@ class Order(models.Model):
 
     # using UUID example is referencing to codeInstitute boutique_ado example
 
-    def _generate_order_number(self):
-        return uuid.uuid4().hex.upper() 
+    # def _generate_order_number(self):
+    #     return uuid.uuid4().hex.upper() 
 
-    def save(self, *args, **kwargs):
+    # def save(self, *args, **kwargs):
 
-        if not self.order_number:
-            self.order_number = self._generate_order_number()
-        super().save(*args, **kwargs)
+    #     if not self.order_number:
+    #         self.order_number = self._generate_order_number()
+    #     super().save(*args, **kwargs)
 
     # end of reference
-    
+
     def __str__(self):
         return self.order_number
 
@@ -61,6 +62,7 @@ class OrderLineItem(models.Model):
     datetime = models.DateTimeField(auto_now_add=True)
     quantity = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(99)], null=False, blank=False)
     cost = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    buyer = models.ForeignKey(Buyer, null=True, blank=False, on_delete=models.SET_NULL)
 
 
 

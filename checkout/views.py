@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 import stripe
 from food.models import Food
+from order.models import Order, OrderLineItem, Process
+from buyer.models import Buyer
 
 # Create your views here.
 
@@ -24,11 +26,11 @@ def checkout(request):
         for f_key, f_value in b_value.items():
             food_object = get_object_or_404(Food, pk=f_value["food_id"])
             line_items.append({
-                'name': f"{food_object.title},{f_value['food_id']}",
+                'name': f"{food_object.title},Id{f_value['food_id']}",
                 'amount': int(food_object.price*100),
                 'currency': 'sgd',
                 'quantity': f_value["qty"],
-                'description': f"{f_value['buyer']['id']},{f_value['buyer']['town']},{f_value['buyer']['postal_code']}"
+                'description': f"Id{f_value['buyer']['id']},{f_value['buyer']['town']},{f_value['buyer']['postal_code']}"
             })
 
     current_site = Site.objects.get_current()
@@ -88,4 +90,31 @@ def payment_completed(request):
 
 def handle_checkout_session(session):
 
-    print(session)
+    for i in session.display_items:
+        buyer_id = i.custom.description.split(",")[0].replace("Id", "")
+        buyer = get_object_or_404(Buyer, pk=buyer_id)
+        user_object = buyer.user
+
+        order = Order(order_number=session.id, user=user_object)
+        order.save()
+
+        break
+
+    for i in session.display_items:
+        order = get_object_or_404(Order, order_number=session.id)
+        process = get_object_or_404(Process, title="delivered")
+        food_id = i.custom.name.split(",")[1].replace("Id","")
+        food = get_object_or_404(Food, pk=food_id)
+        quantity = i.quantity
+        cost = (i.amount)*quantity
+        buyer = buyer
+
+        order_line_item = OrderLineItem(order=order, process=process, food=food, quantity=quantity, cost=cost, buyer=buyer)
+        order_line_item.save()
+
+
+
+
+
+
+
