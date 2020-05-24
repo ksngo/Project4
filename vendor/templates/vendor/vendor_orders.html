@@ -1,0 +1,89 @@
+{% extends 'base_template.html' %}
+{% load static %}
+
+
+{%block title%} Vendor Orders {%endblock%}
+
+{%block content%}
+
+<h1> Vendor Orders</h1>
+<a href="{% url 'view_vendor_profiles_route' %}"> Back </a>
+
+<p> {{username}} | {{vendor}} </p>
+
+    <h2> Outstanding orders </h2>
+    <table class="table">
+        <tr>
+            <thead>
+                <th>Index</th>   
+                <th>datetime</th>
+                <th>Food</th>
+                <th>quantity</th>
+                <th> sub-total </th>
+                <th> buyer </th>
+                <th> contact </th>
+                <th> Delivered </th>
+            </thead>
+        </tr>
+       <form method="POST" id="delivery-status" actions="{% url 'view_vendor_orders_route' vendor_profile_id=vendor_profile_id%}">
+       {%csrf_token%} 
+
+        {%for j in orders %}
+            {% if j.process.title == "undelivered" %}
+            <tr>
+                <td> {{forloop.counter}} </td>
+                <td> {{j.datetime}} </td>
+                <td> {{j.food}} </td>
+                <td> {{j.quantity}} </td>
+                <td> {{j.cost}} </td>
+                <td> {{j.buyer}} </td>
+                <td> {{j.buyer.contact}} </td>
+                <td> 
+                    <input type="checkbox" class="checkbox" >
+                    <input type="text" style="display:none;" value="{{j.id}}">
+                    {{j.id}} {{j.process}}
+                </td>
+            </tr>
+            {%endif%}
+        {%endfor%}
+        </form>
+    </table>
+
+    <h2> Completed orders </h2>
+    <table class="table">
+        <tr>
+            <thead>
+                <th>Index</th>   
+                <th>datetime</th>
+                <th>Food</th>
+                <th>quantity</th>
+                <th> sub-total </th>
+                <th> buyer </th>
+                <th> contact </th>
+            </thead>
+        </tr>
+       
+        {%for j in orders %}
+            {% if j.process.title == "delivered" %}
+            <tr>
+                <td> {{forloop.counter}} </td>
+                <td> {{j.datetime}} </td>
+                <td> {{j.food}} </td>
+                <td> {{j.quantity}} </td>
+                <td> {{j.cost}} </td>
+                <td> {{j.buyer}} </td>
+                <td> {{j.buyer.contact}} </td>
+            </tr>
+            {%endif%}
+        {%endfor%}
+        
+    </table>
+
+
+{%endblock%}
+
+{%block postjs %}
+
+<script src="{% static 'vendor_orders.js' %}"></script>
+
+{%endblock%}

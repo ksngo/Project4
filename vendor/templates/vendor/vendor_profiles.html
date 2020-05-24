@@ -23,6 +23,7 @@
                 <th> &nbsp; </th>
                 <th> &nbsp; </th>
                 <th> &nbsp; </th>
+                <th> &nbsp; </th>
             </thead>
         </tr>
        
@@ -43,6 +44,7 @@
                 </td>
                 <td> <a href="{% url 'view_vendor_food_gallery_route' vendor_profile_id=j.id %}"> View Food Gallery </a> </td>
                 <td> <a href="{% url 'create_delivery_area_route' vendor_profile_id=j.id %}"> Customise Delivery Area </a> </td>
+                <td> <a href="{% url 'view_vendor_orders_route' vendor_profile_id=j.id%}"> Orders </td>
             </tr>
         {%endfor%}
         

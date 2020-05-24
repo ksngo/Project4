@@ -13,6 +13,7 @@ urlpatterns = [
     path('profiles/<vendor_profile_id>/food_gallery', food.views.view_vendor_food_gallery, name='view_vendor_food_gallery_route'),
     path('profiles/<vendor_profile_id>/food_gallery/add_food', food.views.add_vendor_food, name='add_vendor_food_route'),
     path('profiles/<vendor_profile_id>/food_gallery/edit/<vendor_food_id>', food.views.edit_vendor_food, name='edit_vendor_food_route'),
-    path('profiles/<vendor_profile_id>/food_gallery/delete/<vendor_food_id>', food.views.delete_vendor_food, name='delete_vendor_food_route')
+    path('profiles/<vendor_profile_id>/food_gallery/delete/<vendor_food_id>', food.views.delete_vendor_food, name='delete_vendor_food_route'),
+    path('profiles/<vendor_profile_id>/orders', vendor.views.view_vendor_orders, name='view_vendor_orders_route')
 
 ]

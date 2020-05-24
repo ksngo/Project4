@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import VendorForm, DeliverTownForm, DeliverPostalForm
 from .models import Vendor, VendorDeliveryTown, VendorDeliveryPostal
+from order.models import OrderLineItem
 
 
 # Create your views here.
@@ -16,7 +17,6 @@ def view_vendor_profiles(request):
             "vendor_profiles": vendor_profiles,
             "username": username
     })
-
 
 
 @login_required
@@ -47,7 +47,6 @@ def create_vendor(request):
         return render(request, "vendor/vendor_form.html", {
             'form':  vendor_form
         })
-
 
 
 @login_required
@@ -137,3 +136,26 @@ def remove_postal_vendor(request, vendor_profile_id, postal_vendor_id):
     postal_vendor.delete()
 
     return redirect(reverse(create_delivery_area, kwargs={'vendor_profile_id': vendor_profile_id}))
+
+
+def view_vendor_orders(request, vendor_profile_id):
+    username = request.user.username
+    vendor = Vendor.objects.get(id=vendor_profile_id)
+
+    if request.method == "POST":
+
+        orderlineitem_id = request.POST["special"]
+
+        # o = get_object_or_404(OrderLineItem, pk=orderlineitem_id)
+        orderobject = OrderLineItem.objects.get(id=orderlineitem_id)
+        order = OrderLineItem(order=orderobject, order__process__title="delivered")
+        order.save()
+
+    orders = OrderLineItem.objects.all().filter(food__vendor__id=vendor_profile_id)
+
+    return render(request, "vendor/vendor_orders.html", {
+        "orders": orders,
+        "vendor": vendor,
+        "username": username,
+        "vendor_profile_id": vendor_profile_id
+    })
