@@ -8,6 +8,8 @@ from food.models import Food
 
 # Create your views here.
 
+endpoint_secret = settings.SIGNING_SECRET
+
 
 def checkout(request):
 
@@ -50,9 +52,6 @@ def checkout_success(request):
 
 def checkout_cancelled(request):
     return HttpResponse("checkout cancelled")
-
-
-endpoint_secret = settings.SIGNING_SECRET
 
 
 @csrf_exempt
