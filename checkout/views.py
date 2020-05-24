@@ -1,7 +1,7 @@
 from django.shortcuts import render, reverse, get_object_or_404, HttpResponse
 from django.conf import settings
 from django.contrib.sites.models import Site
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 import stripe
 from food.models import Food
@@ -11,6 +11,7 @@ from food.models import Food
 endpoint_secret = settings.SIGNING_SECRET
 
 
+@login_required
 def checkout(request):
 
     stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -23,11 +24,11 @@ def checkout(request):
         for f_key, f_value in b_value.items():
             food_object = get_object_or_404(Food, pk=f_value["food_id"])
             line_items.append({
-                'name': food_object.title,
+                'name': f"{food_object.title},{f_value['food_id']}",
                 'amount': int(food_object.price*100),
                 'currency': 'sgd',
                 'quantity': f_value["qty"],
-                'description': f"id{f_value['buyer']['id']}, {f_value['buyer']['town']} , {f_value['buyer']['postal_code']} "
+                'description': f"{f_value['buyer']['id']},{f_value['buyer']['town']},{f_value['buyer']['postal_code']}"
             })
 
     current_site = Site.objects.get_current()
@@ -45,12 +46,12 @@ def checkout(request):
         "public_key": settings.STRIPE_PUBLISHABLE_KEY
     })
 
-
+@login_required
 def checkout_success(request):
     request.session['shopping_cart'] = {}
     return HttpResponse("checkout success")
 
-
+@login_required
 def checkout_cancelled(request):
     return HttpResponse("checkout cancelled")
 
