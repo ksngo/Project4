@@ -28,6 +28,7 @@
         <th> Date </th>
         <th> Profile </th>
         <th> Food </th>
+        <th> Vendor </th>
         <th> Quantity </th>
         <th> Sub-total </th>
         <th> &nbsp; </th>
@@ -35,10 +36,11 @@
     {%for i in orders%}
     <tr>
         <td> {{forloop.counter}} </td>
-        <td style="font-size:10px;"> {{i.order.order_number}} </td>
+        <td style="font-size:8px; overflow-wrap:break-word;"> {{i.order.order_number}} </td>
         <td> {{i.datetime}} </td>
         <td> {{i.buyer}} </td>
         <td> {{i.food}} </td>
+        <td> {{i.food.vendor}}
         <td> {{i.quantity}} </td>
         <td> {{i.cost}} </td>
         <td> <a href="#">Review</a> 
