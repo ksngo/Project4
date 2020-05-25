@@ -9,18 +9,67 @@ from food.models import Food
 from order.models import OrderLineItem
 # Create your views here.
 
+
 def view_home(request):
 
     no_of_vendors = Vendor.objects.count()
-    no_of_vendors_yishun = Vendor.objects.filter(vendordeliverytown__town="Yishun")
-    no_of_vendors_amk = Vendor.objects.filter(vendordeliverytown__town="ang mo kio")
-    no_of_vendors_bedok = Vendor.objects.filter(vendordeliverytown__town="bedok")
 
-    return render(request, "home.html", {
-        "no_of_vendors" : no_of_vendors,
-        "no_of_vendors_yishun " : no_of_vendors_yishun,
-        "no_of_vendors_amk" : no_of_vendors_amk,
-        "no_of_vendors_bedok" : no_of_vendors_bedok
+    no_of_vendors_amk = Vendor.objects.filter(vendordeliverytown__town="ANG MO KIO").count()
+    no_of_vendors_bedok = Vendor.objects.filter(vendordeliverytown__town="BEDOK").count()
+    no_of_vendors_bishan = Vendor.objects.filter(vendordeliverytown__town="BISHAN").count()
+    no_of_vendors_batok = Vendor.objects.filter(vendordeliverytown__town="BUKIT BATOK").count()
+    no_of_vendors_merah = Vendor.objects.filter(vendordeliverytown__town="BUKIT MERAH").count()
+    no_of_vendors_panjang = Vendor.objects.filter(vendordeliverytown__town="BUKIT PANJANG").count()
+    no_of_vendors_timah = Vendor.objects.filter(vendordeliverytown__town="BUKIT TIMAH").count()
+    no_of_vendors_central = Vendor.objects.filter(vendordeliverytown__town="CENTRAL AREA").count()
+    no_of_vendors_cck = Vendor.objects.filter(vendordeliverytown__town="CHOA CHU KANG").count()
+    no_of_vendors_clementi = Vendor.objects.filter(vendordeliverytown__town="CLEMENTI").count()
+    no_of_vendors_geylang = Vendor.objects.filter(vendordeliverytown__town="GEYLANG").count()
+    no_of_vendors_hougang = Vendor.objects.filter(vendordeliverytown__town="HOUGANG").count()
+    no_of_vendors_jurongeast = Vendor.objects.filter(vendordeliverytown__town="JURONG EAST").count()
+    no_of_vendors_jurongwest = Vendor.objects.filter(vendordeliverytown__town="JURONG WEST").count()
+    no_of_vendors_kw = Vendor.objects.filter(vendordeliverytown__town="KALLANG/WHAMPOA").count()
+    no_of_vendors_mp = Vendor.objects.filter(vendordeliverytown__town="MARINE PARADE").count()
+    no_of_vendors_pasir = Vendor.objects.filter(vendordeliverytown__town="PASIR RIS").count()
+    no_of_vendors_punggol = Vendor.objects.filter(vendordeliverytown__town="PUNGGOL").count()
+    no_of_vendors_qt = Vendor.objects.filter(vendordeliverytown__town="QUEENSTOWN").count()
+    no_of_vendors_sembawang = Vendor.objects.filter(vendordeliverytown__town="SEMBAWANG").count()
+    no_of_vendors_sengkang = Vendor.objects.filter(vendordeliverytown__town="SENGKANG").count()
+    no_of_vendors_serangoon = Vendor.objects.filter(vendordeliverytown__town="SERANGOON").count()
+    no_of_vendors_tampines = Vendor.objects.filter(vendordeliverytown__town="TAMPINES").count()
+    no_of_vendors_toapayoh = Vendor.objects.filter(vendordeliverytown__town="TOA PAYOH").count()
+    no_of_vendors_woodlands = Vendor.objects.filter(vendordeliverytown__town="WOODLANDS").count()
+    no_of_vendors_yishun = Vendor.objects.filter(vendordeliverytown__town="YISHUN").count()
+
+    return render(request, "buyer/home.html", {
+        "no_of_vendors": no_of_vendors,
+        "no_of_vendors_amk": no_of_vendors_amk,
+        "no_of_vendors_bedok": no_of_vendors_bedok,
+        "no_of_vendors_bishan": no_of_vendors_bishan,
+        "no_of_vendors_batok": no_of_vendors_batok,
+        "no_of_vendors_merah": no_of_vendors_merah,
+        "no_of_vendors_panjang": no_of_vendors_panjang,
+        "no_of_vendors_timah": no_of_vendors_timah,
+        "no_of_vendors_central": no_of_vendors_central,
+        "no_of_vendors_cck": no_of_vendors_cck,
+        "no_of_vendors_clementi": no_of_vendors_clementi,
+        "no_of_vendors_geylang": no_of_vendors_geylang,
+        "no_of_vendors_hougang": no_of_vendors_hougang,
+        "no_of_vendors_jurongeast": no_of_vendors_jurongeast,
+        "no_of_vendors_jurongwest": no_of_vendors_jurongwest,
+        "no_of_vendors_kw": no_of_vendors_kw,
+        "no_of_vendors_mp": no_of_vendors_mp,
+        "no_of_vendors_pasir": no_of_vendors_pasir,
+        "no_of_vendors_punggol": no_of_vendors_punggol,
+        "no_of_vendors_qt": no_of_vendors_qt,
+        "no_of_vendors_sembawang": no_of_vendors_sembawang,
+        "no_of_vendors_sengkang": no_of_vendors_sengkang,
+        "no_of_vendors_serangoon": no_of_vendors_serangoon,
+        "no_of_vendors_tampines": no_of_vendors_tampines,
+        "no_of_vendors_toapayoh": no_of_vendors_toapayoh,
+        "no_of_vendors_woodlands": no_of_vendors_woodlands,
+        "no_of_vendors_yishun": no_of_vendors_yishun,
+
     })
 
 
