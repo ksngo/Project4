@@ -1,13 +1,12 @@
 
 
 
-
 .tier {
-    height: 400px;
+    min-height: 400px;
 }
 
 .tier-one {
-    background-color: pink;
+    
     display: flex;
     flex-direction: row;
     flex-wrap:wrap;
@@ -16,59 +15,88 @@
 
 .tier-one div {
     flex:1;
-    height: 100%;
-    
-    
+
 }
 
-.tier-one div div{
-    margin-right:100px;
-    margin-left: 100px;
+.tier-one div section{
+    padding-left:5%;
     margin-top:100px;
-    padding-top:50px;
-    height:200px;
+    margin-left: 20%;
+    padding-top:7%;
+    min-height:200px;
     width:50%;
     vertical-align: center;
     
 }
 
 .tier-two {
-    background-color: yellowgreen;
-    text-align: center;
-    line-height:400px;
+    
+    background-color:rgba(188,234,50,.3);
+    
 }
 
 .tier-three {
-    background-color:rgba(188,234,50,.2);
+    background-color: rgba(173, 216, 230, .3);
+    text-align: center;
+    font-size:20px;
+    
+}
+
+.tier-three section {
+    background-color:white;
+    height: 100px;
+    width :200px;
+    position:relative;
+    top:0px;
+    left:50%;
+    transform: translate(-50%,-50%);
+    line-height:10px;
+    padding: 40px;
 }
 
 .tier-four {
-    background-color: blueviolet;
+    background-color:rgb(223, 238, 243);
     display:flex;
     flex-direction: row;
-    height:600px !important;
+    flex-wrap:wrap;
+    min-height:600px !important;
 }
 
 
 .tier-four-left {
-    flex:1;
-    text-align: center;
-    line-height: 400px;
+    flex:50%;
+    min-height:400px;
+    /* text-align: center; */
+    /* line-height: 400px; */
+}
+
+.tier-four-left section {
+    background-color:white;
+    height: 150px;
+    width :300px;
+    position:relative;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    line-height:50px;
+    padding: 40px;
+    text-align:center;
 }
 
 .tier-four-right {
-    flex:1;
+    flex:50%;
     padding-top:100px;
-    padding-left:50px;
+    padding-left:15%;
 
 }
 
 .inner-border {
     overflow-y:scroll;
-    background-color:whitesmoke;
+    background-color:rgba(173, 216, 230, .3);
     width: 400px;
     height: 400px;
     border-radius : 50%;
+    box-shadow: 10px 10px 5px #aaaaaaa2;
     
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
@@ -83,5 +111,20 @@
 
 .inner-border div{
     padding-left:150px;
+}
+
+.background {
+
+    background-image: url(images/merlion.jpg);
+    background-size:cover;
+    background-repeat:no-repeat;
+    height:100vh;
+    width:98%;
+    margin-right:10px;
+    z-index: -99;
+    position:fixed;
+    top:0;
+    
+    
 }
 

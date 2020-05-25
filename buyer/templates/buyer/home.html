@@ -9,26 +9,31 @@
 
 {%block content%}
 
+
 <div class="tier tier-one">
-    <div style="background-color:pink;">
-        <div> For patron, order your food from vendors that can deliver to you. Accept only online payment. </div>
+    <div style="background-color:white;">
+        <section class="alert alert-light"> For patron, order your food from vendors who can deliver to you. Accept online payment only. </section>
     </div>
-    <div style="background-color: lightgrey;">
-        <div> For Food Vendors, setup the food online and choose where you can deliver to.  </div>
+    <div style="background-color: rgb(200, 200, 243);">
+        <section class="text-muted"> For Food Vendors, setup the food online and choose where you can deliver to.  </section>
     </div>
 </div>
 
 <div class="tier tier-two">
-    number of vendors : {{no_of_vendors}}
+    &nbsp;
 </div>
 
 <div class="tier tier-three">
-&nbsp;
+    <section class="alert alert-light" > {{no_of_vendors}} vendors </section>
 </div>
 
 <div class="tier tier-four">
-    <div class="tier-four-left">Available Vendors that deliver to respective towns</div>
-    <div class="tier-four-right" style="background-color: red;">
+    <div class="tier-four-left">
+        <section class="alert alert-light">
+            Available Vendors by Towns
+        </section>
+    </div>
+    <div class="tier-four-right" style="background-color: white;">
         <div class="inner-border">
                     <div> Ang Mo Kio: {{no_of_vendors_amk}} </div>
                     <div> Bedok : {{no_of_vendors_bedok}} </div>
@@ -59,6 +64,27 @@
         </div>
                 
     </div>
+</div>
+<div class="tier tier-one">
+    <div style="background-color:white;">
+        <section class="alert alert-light"> 
+            For patron, How to get started?. 
+            <li> Register for an account. </li>
+            <li> Login to my Home Page. </li>
+            <li> Your Home Page will show you the vendors and foods available for you to order. </li>
+        </section>
+    </div>
+    <div style="background-color: rgb(200, 200, 243);">
+        <section class="text-muted"> 
+            For Food Vendors, How to get started?
+            <li> Register for an account. </li>
+            <li> Login to my Home Page. </li>
+            <li> Create your Vendor Profile. </li>
+        </section>
+    </div>
+</div>
+<div class="background">
+&nbsp;
 </div>
 
 
