@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.db.models import Q
 from .forms import VendorForm, DeliverTownForm, DeliverPostalForm
 from .models import Vendor, VendorDeliveryTown, VendorDeliveryPostal
-from order.models import OrderLineItem
+from order.models import OrderLineItem, Process
 
 
 # Create your views here.
@@ -146,15 +147,39 @@ def view_vendor_orders(request, vendor_profile_id):
 
         orderlineitem_id = request.POST["special"]
 
-        # o = get_object_or_404(OrderLineItem, pk=orderlineitem_id)
-        orderobject = OrderLineItem.objects.get(id=orderlineitem_id)
-        order = OrderLineItem(order=orderobject, order__process__title="delivered")
-        order.save()
+        process = get_object_or_404(Process, title="delivered")
+        OrderLineItem.objects.filter(id=orderlineitem_id).update(process=process)
 
-    orders = OrderLineItem.objects.all().filter(food__vendor__id=vendor_profile_id)
+        orders_outstanding = OrderLineItem.objects.all().filter(food__vendor__id=vendor_profile_id).filter(process__title="undelivered")
+        orders_completed = OrderLineItem.objects.all().filter(food__vendor__id=vendor_profile_id).filter(process__title="delivered")
+
+
+    if "search" in request.GET:
+
+        query = request.GET["search"]
+
+        if not query:
+            messages.error(request, "You have not enter a search term.")
+            return redirect(reverse(view_vendor_orders, kwargs={"vendor_profile_id": vendor_profile_id}))
+
+        if query.isnumeric():
+            queries = Q(datetime__year=query)|Q(datetime__day=query)|Q(datetime__month=query)
+            orders_outstanding = OrderLineItem.objects.all().filter(food__vendor__id=vendor_profile_id).filter(process__title="undelivered")
+            orders_completed = OrderLineItem.objects.all().filter(queries).filter(food__vendor__id=vendor_profile_id).filter(process__title="delivered")
+
+        else:
+            queries = Q(food__title__icontains=query)|Q(buyer__user__username__icontains=query)
+            orders_outstanding = OrderLineItem.objects.all().filter(food__vendor__id=vendor_profile_id).filter(process__title="undelivered")
+            orders_completed = OrderLineItem.objects.all().filter(queries).filter(food__vendor__id=vendor_profile_id).filter(process__title="delivered")
+
+    else:
+
+        orders_outstanding = OrderLineItem.objects.all().filter(food__vendor__id=vendor_profile_id).filter(process__title="undelivered")
+        orders_completed = OrderLineItem.objects.all().filter(food__vendor__id=vendor_profile_id).filter(process__title="delivered")
 
     return render(request, "vendor/vendor_orders.html", {
-        "orders": orders,
+        "orders_outstanding": orders_outstanding,
+        "orders_completed": orders_completed,
         "vendor": vendor,
         "username": username,
         "vendor_profile_id": vendor_profile_id

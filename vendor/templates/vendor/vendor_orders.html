@@ -28,7 +28,7 @@
        <form method="POST" id="delivery-status" actions="{% url 'view_vendor_orders_route' vendor_profile_id=vendor_profile_id%}">
        {%csrf_token%} 
 
-        {%for j in orders %}
+        {%for j in orders_outstanding %}
             {% if j.process.title == "undelivered" %}
             <tr>
                 <td> {{forloop.counter}} </td>
@@ -41,7 +41,6 @@
                 <td> 
                     <input type="checkbox" class="checkbox" >
                     <input type="text" style="display:none;" value="{{j.id}}">
-                    {{j.id}} {{j.process}}
                 </td>
             </tr>
             {%endif%}
@@ -50,6 +49,15 @@
     </table>
 
     <h2> Completed orders </h2>
+    <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'view_vendor_orders_route' vendor_profile_id=vendor_profile_id %}">
+      <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+        <i class="fa fa-search"></i>
+      </button>
+      <p><small> Search by food or buyer's name or date.</small></p>
+    </form>
+    
+
     <table class="table">
         <tr>
             <thead>
@@ -63,7 +71,7 @@
             </thead>
         </tr>
        
-        {%for j in orders %}
+        {%for j in orders_completed %}
             {% if j.process.title == "delivered" %}
             <tr>
                 <td> {{forloop.counter}} </td>
