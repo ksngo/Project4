@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'cart',
     'crispy_forms',
     'checkout',
+    'pyuploadcare.dj',
 
 ]
 
@@ -166,3 +167,8 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 SIGNING_SECRET = os.environ.get('SIGNING_SECRET')
+
+UPLOADCARE = {
+    'pub_key': os.environ.get('UPLOADCARE_PUBLIC_KEY'),
+    'secret': os.environ.get('UPLOADCARE_SECRET_KEY'),
+}

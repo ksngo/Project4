@@ -1,6 +1,10 @@
 {% extends 'base_template.html' %}
 {% load crispy_forms_tags %}
 
+{%block uploadcare %}
+{{form.media}}
+{%endblock%}
+
 {% block title %} Edit vendor food {%endblock%}
 
 {%block content%}

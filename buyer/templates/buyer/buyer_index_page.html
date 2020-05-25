@@ -102,6 +102,9 @@
 {%for i in food_available %}
     <div>  
         <ol>
+        {% if i.image %}
+            <img src="{{i.image.cdn_url}}"/>
+        {% endif %}
         <li> {{i}} </li>
         <li> {{i.description}} </li>
         <li> {{i.portion}}pax </li>
