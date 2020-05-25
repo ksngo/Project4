@@ -96,17 +96,44 @@ def create_delivery_area(request, vendor_profile_id):
     if request.method == "POST":
 
         vendor_object = get_object_or_404(Vendor, pk=vendor_profile_id)
-        print(vendor_object)
+
         try:
             ##### adding to manytomany field into vendor_object #####
-            town = request.POST["town"]
-            f = VendorDeliveryTown.objects.create(town=town)  # create a new town object in VendorDeliveryTown table
-            vendor_object.vendordeliverytown.add(f)  # add the town object into Vendor table's town manytomany field
+            town = request.POST["town"].upper()
+            existing_town_number = VendorDeliveryTown.objects.filter(town=town).count()  # check if town already exist in VendorDeliveryTown table(0 means not exist yet)
+            if existing_town_number == 0:
+
+                f = VendorDeliveryTown.objects.create(town=town)  # create a new town object in VendorDeliveryTown table
+                vendor_object.vendordeliverytown.add(f)  # add the town object into Vendor table's town manytomany field
+
+            else:
+
+                vendor_filter_by_town = Vendor.objects.filter(id=vendor_profile_id).filter(vendordeliverytown__town=town)
+
+                if vendor_filter_by_town:
+                    messages.warning(request, "Town already exists.")
+                else:
+                    existing_town_object = get_object_or_404(VendorDeliveryTown, town=town)
+                    vendor_object.vendordeliverytown.add(existing_town_object)
 
         except:
             postal = request.POST["postal"]
-            f = VendorDeliveryPostal.objects.create(postal_code=postal)
-            vendor_object.vendordeliverypostal.add(f)
+            existing_postal = VendorDeliveryPostal.objects.filter(postal_code=postal).count()
+            if existing_postal == 0:
+
+                f = VendorDeliveryPostal.objects.create(postal_code=postal)
+                vendor_object.vendordeliverypostal.add(f)
+
+            else:
+
+                vendor_filter_by_postal = Vendor.objects.filter(id=vendor_profile_id).filter(vendordeliverypostal__postal_code=postal)
+
+                if vendor_filter_by_postal:
+                    messages.warning(request, "Postal code already exists.")
+                else:
+                    existing_postal_object = get_object_or_404(VendorDeliveryPostal, postal_code=postal)
+                    vendor_object.vendordeliverypostal.add(existing_postal_object)
+
 
         return redirect(reverse(create_delivery_area, kwargs={'vendor_profile_id': vendor_profile_id}))
 
@@ -125,16 +152,18 @@ def create_delivery_area(request, vendor_profile_id):
 
 def remove_town_vendor(request, vendor_profile_id, town_vendor_id):
 
-    town_vendor = get_object_or_404(VendorDeliveryTown, pk=town_vendor_id)
-    town_vendor.delete()
+    town_object = get_object_or_404(VendorDeliveryTown, pk=town_vendor_id)
+    vendor_object = get_object_or_404(Vendor, pk=vendor_profile_id)
+    vendor_object.vendordeliverytown.remove(town_object)
 
     return redirect(reverse(create_delivery_area, kwargs={'vendor_profile_id': vendor_profile_id}))
 
 
 def remove_postal_vendor(request, vendor_profile_id, postal_vendor_id):
 
-    postal_vendor = get_object_or_404(VendorDeliveryPostal, pk=postal_vendor_id)
-    postal_vendor.delete()
+    postal_object = get_object_or_404(VendorDeliveryPostal, pk=postal_vendor_id)
+    vendor_object = get_object_or_404(Vendor, pk=vendor_profile_id)
+    vendor_object.vendordeliverypostal.remove(postal_object)
 
     return redirect(reverse(create_delivery_area, kwargs={'vendor_profile_id': vendor_profile_id}))
 

@@ -9,6 +9,22 @@ from food.models import Food
 from order.models import OrderLineItem
 # Create your views here.
 
+def view_home(request):
+
+    no_of_vendors = Vendor.objects.count()
+    no_of_vendors_yishun = Vendor.objects.filter(vendordeliverytown__town="Yishun")
+    no_of_vendors_amk = Vendor.objects.filter(vendordeliverytown__town="ang mo kio")
+    no_of_vendors_bedok = Vendor.objects.filter(vendordeliverytown__town="bedok")
+
+    return render(request, "home.html", {
+        "no_of_vendors" : no_of_vendors,
+        "no_of_vendors_yishun " : no_of_vendors_yishun,
+        "no_of_vendors_amk" : no_of_vendors_amk,
+        "no_of_vendors_bedok" : no_of_vendors_bedok
+    })
+
+
+
 
 @login_required
 def create_buyer_profile(request):
