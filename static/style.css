@@ -1,3 +1,12 @@
 body {
     background-color:white;
 }
+
+a {
+    text-decoration:none !important;
+}
+
+a:hover {
+    color:purple;
+}
+

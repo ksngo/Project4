@@ -1,16 +1,60 @@
 {% extends "base_template.html" %}
 
+
+{% block css %}
+
+<style>
+    .account-profile {
+        margin-bottom:30px;
+        border:1px solid rgba(170, 170, 170, 0.635);
+        padding-left:50px;
+        padding-right: 50px;
+        padding-top : 30px;
+        padding-bottom :30px;
+        min-width:33%;
+        line-height:30px;
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        background-color:white;
+    
+    }
+
+    body {
+        background-color: rgba(173, 216, 230, .3);
+    }
+
+
+    .account-divone {
+        float:right;
+    }
+
+    .account-divtwo, hr {
+        clear:both;
+    }
+
+</style>
+
+{%endblock%}
+
 {% block content %}
-<h1> My Account </h1>
 
-<div>
-    <li> Username : {{user_name}} </li>
-    <li> Email : {{user_email}} </li>
+<div class="account-profile">
+    <div class="account-divone"><em>My Account</em></div><br>
+    <hr>
+    <div class="account-divtwo"> 
+        <section> Username : <strong> {{user_name}} </strong> </section>
+        <section>
+            <span> Email : {{user_email}}</span>
+        </section>
+    </div>
+    <br>
+    <div> <a href="{% url 'account_change_password' %}">Change Password</a></div>
+    <div> <a href="{% url 'account_email' %}"> Update Email </a> </div>
 
 </div>
-<div>
-    <li> <a href="{% url 'account_change_password' %}">Change Password</a> </li>
-    <li> <a href="{% url 'account_email' %}"> Update Email </a> </li>
-</div>
+
+
 
 {%endblock%}

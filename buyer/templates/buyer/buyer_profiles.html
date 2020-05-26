@@ -1,31 +1,56 @@
 {% extends 'base_template.html' %}
 
-{%block title%} Your Profiles {%endblock%}
+{%block css%}
+<style>
+    h3 {
+        margin-bottom: 50px;
+        margin-top:20px;
+    }
+
+    .right-nav-parent {
+        float:right;
+        margin-bottom:20px;
+        vertical-align:top;
+    }
+
+    
+    .right-nav ul{
+        list-style:none;
+    }
+
+</style>
+
+{%endblock%}
+
+
+{%block title%} My Profiles {%endblock%}
 
 {%block content%}
 
-<nav style="display:flex; justify-content: flex-end;">
-    <ul>
-        <li> <a href="{% url 'show_buyer_profiles_route' %}"> My Profiles </a> </li>
-    </ul>
-    <ul>
-        <li> <a href="{% url 'view_order_history_route' %}"> My Orders </a> </li>
-    </ul>
-    <ul>
-        <li> <a href="{% url 'view_cart_route' %}" target="_blank"> Go to Shopping Cart </a> </li>
-    </ul>
-</nav>
+<div class="right-nav-parent">
+    <nav class="right-nav" style="display:flex;">
+        <ul>
+            <li> <a href="{% url 'show_buyer_profiles_route' %}"> My Profiles </a> </li>
+        </ul>
+        <ul>
+            <li> <a href="{% url 'view_order_history_route' %}"> My Orders </a> </li>
+        </ul>
+        <ul>
+            <li> <a href="{% url 'view_cart_route' %}" target="_blank"> Go to Shopping Cart </a> </li>
+        </ul>
+    </nav>
+</div>
 
-<h1> Your Profiles </h1>
+<h3> My Profiles </h3>
 
-<a href="{% url 'create_buyer_profile_route'  %}"> Add new profile </a>
+<div> <a href="{% url 'create_buyer_profile_route'  %}"> Add new profile </a> </div>
 
-<table class="table">
-    <thead>
+<table class="table table-hover table-responsive-lg">
+    <thead class="thead-light">
         <th> Profile </th>
-        <th> user display </th>
-        <th> contact </th>
-        <th> date joined </th>
+        <th> User </th>
+        <th> Contact </th>
+        <th> Date joined </th>
         <th> &nbsp; </th>
     </thead>
     {%for i in objects%}
@@ -34,7 +59,7 @@
         <td> {{i}} </td>
         <td> {{i.contact}} </td>
         <td> {{i.date_joined}} </td>
-        <td> <a href="{% url 'edit_buyer_profile_route' buyer_id=i.id %}">Edit</a> 
+        <td> <a href="{% url 'edit_buyer_profile_route' buyer_id=i.id %}">Edit |</a> 
             <a href="{% url 'delete_buyer_profile_route' buyer_id=i.id %}"> Delete </a>
         </td>
     </tr>
@@ -43,5 +68,3 @@
     
 
 {%endblock%}
-
-<!-- <a href="{% url '' %}"> Back </a> -->
