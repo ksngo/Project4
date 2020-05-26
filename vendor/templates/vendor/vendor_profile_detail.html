@@ -8,9 +8,9 @@
 <h1> Vendor Profile Detail </h1>
 
 {% if validation_status %}
-    <div style="float:right">This vendor account is pending validation.</div>
-{%else%}
     <div style="float:right">Validation passed.</div>
+{%else%}
+    <div style="float:right">This vendor account is pending validation.</div>
 {%endif%}
 
 <form method="POST">

@@ -55,6 +55,8 @@ def edit_vendor_profile(request, vendor_profile_id):
 
     profile = get_object_or_404(Vendor, pk=vendor_profile_id)
     validation_status = profile.license_check
+    print(validation_status)
+    print("xxxxxxxxxxxxxxxxxxxxxxxxxx")
     profile_form = VendorForm(instance=profile)
 
     if request.method == "POST":
@@ -63,8 +65,9 @@ def edit_vendor_profile(request, vendor_profile_id):
         if create_form.is_valid():
 
             create_form.save()
-            messages.success(request, f" '{profile}'' successfully updated.")
-            
+            Vendor.objects.filter(id=vendor_profile_id).update(license_check=False)
+            messages.success(request, f" '{profile}'' successfully updated. Vendor Profile is pending validation.")
+
             return redirect(reverse(view_vendor_profiles))
 
         else:
@@ -76,8 +79,7 @@ def edit_vendor_profile(request, vendor_profile_id):
         return render(request, "vendor/vendor_profile_detail.html", {
             "form": profile_form,
             "vendor_profile_id": vendor_profile_id,
-            "validation_satus": validation_status
-
+            "validation_status": validation_status
         })
 
 

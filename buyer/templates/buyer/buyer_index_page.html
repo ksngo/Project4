@@ -109,7 +109,11 @@
         <li> {{i.delivery_time}}mins </li>
         <li> {{i.vendor.name}}</li>
         <li> {%for j in i.tag.all %} <button> {{j}} </button> {%endfor%} </li> 
+        {% if i.vendor.license_check %}
         <li> <a href="{% url 'add_to_cart_route' buyer_id=buyer_id food_id=i.id %}"> Add to cart</a>
+        {% else %}
+        <li> Vendor is pending validation. </li>
+        {%endif%}
         </ol>
     </div>
 {%endfor%} 
