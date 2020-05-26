@@ -157,11 +157,14 @@ def index(request):
 
     buyer_profiles = Buyer.objects.all().filter(user=request.user)
     default_buyer_object = Buyer.objects.all().filter(user=request.user)[:1]
+    
 
     for i in default_buyer_object:
         default_buyer_id = i.id
 
     if buyer_profiles:
+        
+        current_buyer_profile = Buyer.objects.get(id=default_buyer_id)
 
         buyer_town = Buyer.objects.get(id=default_buyer_id).town.upper()
         buyer_postal = Buyer.objects.get(id=default_buyer_id).postal_code
@@ -179,12 +182,14 @@ def index(request):
         vendor_available = False
         food_available = False
         default_buyer_id = False
+        current_buyer_profile = False
 
     return render(request, 'buyer/buyer_index_page.html', {
         "buyer_profiles": buyer_profiles,
         "vendor_available": vendor_available,
         "food_available": food_available,
-        "buyer_id": default_buyer_id
+        "buyer_id": default_buyer_id,
+        "current_buyer_profile": current_buyer_profile
     })
 
 
@@ -192,6 +197,7 @@ def index(request):
 def index_by_profile(request, buyer_id):
 
     buyer_profiles = Buyer.objects.all().filter(user=request.user)  # retrieve all buyer profiles for user
+    current_buyer_profile = Buyer.objects.get(id=buyer_id)
 
     buyer_town = Buyer.objects.get(id=buyer_id).town.upper()  # retrieve buyer profile's town
     buyer_postal = Buyer.objects.get(id=buyer_id).postal_code  # retrieve buyer profile's postal code
@@ -274,7 +280,8 @@ def index_by_profile(request, buyer_id):
         "buyer_profiles": buyer_profiles,
         "vendor_available": vendor_available,
         "food_available": food_available,
-        "buyer_id": buyer_id
+        "buyer_id": buyer_id,
+        "current_buyer_profile": current_buyer_profile
     })
 
 

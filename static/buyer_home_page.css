@@ -1,29 +1,76 @@
 
+.right-nav {
+    margin-top:20px;
+}
+
+.right-nav ul{
+    list-style:none;
+}
+
+
+.profile-section-one {
+    float:right;
+    margin-bottom:30px;
+    border:1px solid rgba(170, 170, 170, 0.635);
+    padding:20px;
+    
+}
+
+.psone-divone{
+    float:right;
+}
+
+.psone-divtwo{
+    clear:both;
+}
+
+.profile-section-two {
+    margin-bottom: 30px;
+}
+
+.profile-section-two ul {
+    list-style: none;
+}
+
+.profile-section-two h4 {
+    margin-bottom: 20px;
+}
+
+
 .vendor-display {
     display:flex; 
     flex-wrap:wrap; 
-    padding: 0 4px;
+    margin-top:20px;
+    margin-bottom:20px;
 
 }
 
 .vendor-display div {
     flex:25%;
     max-width:25%;
-    padding: 0 4px;
+    border: 1px solid rgba(170, 170, 170, 0.635);
+    margin-left:20px;
+    margin-right:20px;
+    padding:20px;
+    
 }
 
 .food-display {
     
     display:flex; 
     flex-wrap:wrap; 
-    padding: 0 4px;
+    margin-top:20px;
+    margin-bottom:20px;
     
 }
 
 .food-display div {
     flex:25%;
     max-width:25%;
-    padding: 0 4px;
+    border: 1px solid rgba(170, 170, 170, 0.635);
+    margin-left:20px;
+    margin-right:20px;
+    padding:50px;
 }
 
 .food-display div img {
