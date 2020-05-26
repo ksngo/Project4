@@ -4,14 +4,13 @@
 
 {%block content%}
 
-<h1> Delete Vendor Profile </h1>
+<h3> Delete Vendor Profile </h3>
 
 <p> Are you sure? </p>
 <form method="POST">
     {%csrf_token%}
-    <input type="submit" value="Yes">
-    <a href="{% url 'view_vendor_profiles_route' %}">No</a>
+    <input type="submit" value="Yes" class="btn btn-primary" >
 </form>
-
-
+<br>
+    <button class="btn btn-primary" ><a href="{% url 'view_vendor_profiles_route' %}" style="text-decoration:none; color:white;"> No </a></button>
 {%endblock%}

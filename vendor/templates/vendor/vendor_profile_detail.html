@@ -5,12 +5,15 @@
 
 {%block content%}
 
-<h1> Vendor Profile Detail </h1>
+<br>
+<h3> Vendor Profile Detail </h3>
+<a href="{% url 'view_vendor_profiles_route' %}"> Back </a>
+<br><br>
 
 {% if validation_status %}
-    <div style="float:right">Validation passed.</div>
+    <div style="float:right" class="text-success">Validation Pass</div>
 {%else%}
-    <div style="float:right">This vendor account is pending validation.</div>
+    <div style="float:right" class="text-primary">This vendor account is pending validation.</div>
 {%endif%}
 
 <form method="POST">
@@ -18,7 +21,7 @@
     {{ form|crispy}}
     <input type="submit"> 
 </form>
-<a href="{% url 'view_vendor_profiles_route' %}"> Back </a>
+
 
 {%endblock%}
 

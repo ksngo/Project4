@@ -5,7 +5,11 @@
 
 {%block content%}
 
-<h1> Vendor Profile apply form </h1>
+<br>
+<h3> Add Vendor Profile </h3>
+<a href="{% url 'view_vendor_profiles_route' %}"> Back </a>
+<br>
+<br>
 
 <form method="POST">
     {%csrf_token%}
@@ -13,7 +17,7 @@
     <input type="submit">
 </form>
 
-<a href="{% url 'view_vendor_profiles_route' %}"> Back </a>
+
 
 {%endblock%}
 

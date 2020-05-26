@@ -51,6 +51,9 @@
                 </ul>
             </div>
         </nav>
+        {%if request.user.is_authenticated %} 
+        <div id="show-username" class="bg-info"> <i class="fa fa-user-o" aria-hidden="true"></i> {{request.user.username}}  </div>
+        {%endif%}
 
     </header>
 

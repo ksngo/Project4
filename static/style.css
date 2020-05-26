@@ -10,3 +10,11 @@ a:hover {
     color:purple;
 }
 
+#show-username {
+    min-width:80px;
+    position:absolute;
+    top:0;
+    right:5%;
+    padding: 10px;
+    color: white;
+}
