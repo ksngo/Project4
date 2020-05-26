@@ -161,15 +161,24 @@ def index(request):
     for i in default_buyer_object:
         default_buyer_id = i.id
 
-    buyer_town = Buyer.objects.get(id=default_buyer_id).town
-    buyer_postal = Buyer.objects.get(id=default_buyer_id).postal_code
+    if buyer_profiles:
 
-    vendor_available_base_queries = Q(vendordeliverytown__town=buyer_town) | Q(vendordeliverypostal__postal_code__exact=buyer_postal)
-    food_available_base_queries = Q(vendor__vendordeliverytown__town=buyer_town) | Q(vendor__vendordeliverypostal__postal_code__exact=buyer_postal)
+        buyer_town = Buyer.objects.get(id=default_buyer_id).town.upper()
+        buyer_postal = Buyer.objects.get(id=default_buyer_id).postal_code
 
-    vendor_available = Vendor.objects.filter(vendor_available_base_queries).distinct()
+        vendor_available_base_queries = Q(vendordeliverytown__town=buyer_town) | Q(vendordeliverypostal__postal_code__exact=buyer_postal)
+        food_available_base_queries = Q(vendor__vendordeliverytown__town=buyer_town) | Q(vendor__vendordeliverypostal__postal_code__exact=buyer_postal)
 
-    food_available = Food.objects.filter(food_available_base_queries).distinct()
+        vendor_available = Vendor.objects.filter(vendor_available_base_queries).distinct()
+
+        food_available = Food.objects.filter(food_available_base_queries).distinct()
+
+    else:
+
+        buyer_profiles = False
+        vendor_available = False
+        food_available = False
+        default_buyer_id = False
 
     return render(request, 'buyer/buyer_index_page.html', {
         "buyer_profiles": buyer_profiles,
@@ -184,7 +193,7 @@ def index_by_profile(request, buyer_id):
 
     buyer_profiles = Buyer.objects.all().filter(user=request.user)  # retrieve all buyer profiles for user
 
-    buyer_town = Buyer.objects.get(id=buyer_id).town  # retrieve buyer profile's town
+    buyer_town = Buyer.objects.get(id=buyer_id).town.upper()  # retrieve buyer profile's town
     buyer_postal = Buyer.objects.get(id=buyer_id).postal_code  # retrieve buyer profile's postal code
 
     vendor_available_base_queries = Q(vendordeliverytown__town=buyer_town)|Q(vendordeliverypostal__postal_code__exact=buyer_postal)

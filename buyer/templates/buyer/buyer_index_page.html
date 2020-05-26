@@ -26,9 +26,13 @@
 
 <div>
     <ul>
+        {% if buyer_profiles %}
         {%for i in buyer_profiles %}
         <li> {{i}} <a href="{% url 'index_by_profile_route' buyer_id=i.id %}"> Use </a> </li>
         {%endfor%}
+        {%else%}
+        No profile yet. Create a profile first to see any vendors that can deliver to you.
+        {% endif %}
     </ul>
 </div>
 
@@ -37,91 +41,96 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link" href="#" id="VendorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Vendors
-        </a>
-        <div class="dropdown-menu" aria-labelledby="VendorDropdown">
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?category=restaurant">Restaurant</a>
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?category=hawker">Hawker</a>
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?category=caterer">Caterer</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}">All Vendors</a>
+    {%if buyer_id %}
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="VendorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Vendors
+                </a>
+                <div class="dropdown-menu" aria-labelledby="VendorDropdown">
+                <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?category=restaurant">Restaurant</a>
+                <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?category=hawker">Hawker</a>
+                <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?category=caterer">Caterer</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}">All Vendors</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="FoodDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Food
+                </a>
+                <div class="dropdown-menu" aria-labelledby="FoodDropdown">
+                <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=chinese">chinese</a>
+                <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=malay">malay</a>
+                <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=indian">indian</a>
+                <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=western">western</a>
+                <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=halal">halal</a>
+                <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=non-halal">non-halal</a>
+                <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=noodles">noodles</a>
+                <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=organic">organic</a>
+                <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=vegetarian">vegetarian</a>
+                <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=others">others</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}">All Food</a>
+                </div>
+            </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'index_by_profile_route' buyer_id=buyer_id %}">
+            <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+            </form>
         </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link" href="#" id="FoodDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Food
-        </a>
-        <div class="dropdown-menu" aria-labelledby="FoodDropdown">
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=chinese">chinese</a>
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=malay">malay</a>
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=indian">indian</a>
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=western">western</a>
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=halal">halal</a>
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=non-halal">non-halal</a>
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=noodles">noodles</a>
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=organic">organic</a>
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=vegetarian">vegetarian</a>
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}?tag=others">others</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}">All Food</a>
-        </div>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'index_by_profile_route' buyer_id=buyer_id %}">
-      <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
-        <i class="fa fa-search"></i>
-      </button>
-    </form>
-  </div>
+    {%endif%}
 </nav>
 
 <h3> Vendor Available </h3>
 <div class="vendor-display">
     
-    {%for i in vendor_available %}
-    <div>
-        <ol>
-            <li> {{i}} </li>
-            <li> {{i.block}} {{i.street}} {{i.postal_code}} </li>
-            <li> {{i.contact}} </li>
-            <li> {%for j in i.category.all %} <button>{{j}}</button> {%endfor%}</li>
-            <li> {%for j in i.vendordeliverytown.all %} <button>{{j}}</button> {%endfor%}</li>
-            <li> {%for j in i.vendordeliverypostal.all %} <button>{{j}}</button> {%endfor%}</li>
-        </ol>
-    </div>
-    {%endfor%}
+    {%if vendor_available %}
+        {%for i in vendor_available %}
+        <div>
+            <ol>
+                <li> {{i}} </li>
+                <li> {{i.block}} {{i.street}} {{i.postal_code}} </li>
+                <li> {{i.contact}} </li>
+                <li> {%for j in i.category.all %} <button>{{j}}</button> {%endfor%}</li>
+                <li> {%for j in i.vendordeliverytown.all %} <button>{{j}}</button> {%endfor%}</li>
+                <li> {%for j in i.vendordeliverypostal.all %} <button>{{j}}</button> {%endfor%}</li>
+            </ol>
+        </div>
+        {%endfor%}
+    {%endif%}
     
 </div>
 
 <h3> Food Available </h3>
 <div class="food-display">
-{%for i in food_available %}
-    <div>  
-        <ol>
-        {% if i.image %}
-            <img src="{{i.image.cdn_url}}"/>
-        {% endif %}
-        <li> {{i}} </li>
-        <li> {{i.description}} </li>
-        <li> {{i.portion}}pax </li>
-        <li> ${{i.price}} </li>
-        <li> {{i.delivery_time}}mins </li>
-        <li> {{i.vendor.name}}</li>
-        <li> {%for j in i.tag.all %} <button> {{j}} </button> {%endfor%} </li> 
-        {% if i.vendor.license_check %}
-        <li> <a href="{% url 'add_to_cart_route' buyer_id=buyer_id food_id=i.id %}"> Add to cart</a>
-        {% else %}
-        <li> Vendor is pending validation. </li>
-        {%endif%}
-        </ol>
-    </div>
-{%endfor%} 
+{%if food_available %}
+    {%for i in food_available %}
+        <div>  
+            <ol>
+            {% if i.image %}
+                <img src="{{i.image.cdn_url}}"/>
+            {% endif %}
+            <li> {{i}} </li>
+            <li> {{i.description}} </li>
+            <li> {{i.portion}}pax </li>
+            <li> ${{i.price}} </li>
+            <li> {{i.delivery_time}}mins </li>
+            <li> {{i.vendor.name}}</li>
+            <li> {%for j in i.tag.all %} <button> {{j}} </button> {%endfor%} </li> 
+            {% if i.vendor.license_check %}
+            <li> <a href="{% url 'add_to_cart_route' buyer_id=buyer_id food_id=i.id %}"> Add to cart</a>
+            {% else %}
+            <li> Vendor is pending validation. </li>
+            {%endif%}
+            </ol>
+        </div>
+    {%endfor%} 
+{%endif%}
 </div>
 
 {%endblock%}
