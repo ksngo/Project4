@@ -1,0 +1,16 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+<h1> My Account </h1>
+
+<div>
+    <li> Username : {{user_name}} </li>
+    <li> Email : {{user_email}} </li>
+
+</div>
+<div>
+    <li> <a href="{% url 'account_change_password' %}">Change Password</a> </li>
+    <li> <a href="{% url 'account_email' %}"> Update Email </a> </li>
+</div>
+
+{%endblock%}

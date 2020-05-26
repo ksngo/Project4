@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'checkout',
     'pyuploadcare.dj',
+    'accounts',
 
 ]
 
