@@ -1,4 +1,6 @@
-
+body {
+    height:100%;
+}
 
 
 .tier {
@@ -14,9 +16,16 @@
 }
 
 .tier-one div {
-    flex:1;
+    flex:50%;
 
 }
+
+@media only screen and (max-width: 600px) {
+  .tier-one div {
+      flex:100%;
+  }
+}
+
 
 .tier-one div section{
     padding-left:5%;
@@ -60,6 +69,7 @@
     flex-direction: row;
     flex-wrap:wrap;
     min-height:600px !important;
+    width:100%;
 }
 
 
@@ -85,22 +95,22 @@
 
 .tier-four-right {
     flex:50%;
-    padding-top:100px;
-    padding-left:15%;
-
+    display:flex;
+    width:100%;
 }
 
 .inner-border {
+    margin:auto;
     overflow-y:scroll;
-    background-color:rgba(173, 216, 230, .3);
-    width: 400px;
-    height: 400px;
-    border-radius : 50%;
+    background-color:white;
+    min-width: 40%;
+    height: 60%;
+
     box-shadow: 10px 10px 5px #aaaaaaa2;
-    
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
-
+    text-align: center;
+    
 }
 
 .inner-border::-webkit-scrollbar {
@@ -109,9 +119,6 @@
     height: 0;
 }
 
-.inner-border div{
-    padding-left:150px;
-}
 
 .background {
 
@@ -128,3 +135,25 @@
     
 }
 
+.tier-five {
+    background-color:rgb(247, 247, 247);
+    height:400px;
+    display:flex;
+}
+
+.tier-five div {
+
+    background-color: rgb(234, 242, 245);
+    position:relative;
+    margin:auto;
+    min-height:100%;
+    min-width:33%;
+    padding-left:10%;
+    padding-right:10%;
+    display:flex;
+    
+}
+
+.tier-five div section {
+    margin:auto;
+}
