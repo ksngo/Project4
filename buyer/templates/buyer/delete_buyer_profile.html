@@ -1,17 +1,31 @@
 {% extends 'base_template.html' %}
 
+{%block css%}
+
+<style>
+    button {
+        position:relative;
+        top: -38px;
+        left: 60px;
+
+    }
+</style>
+
+{%endblock%}
+
 {%block title%} Delete profile {%endblock%}
 
 {%block content%}
 
-<h1> Deleting {{object}} </h1>
-
+<br>
+<h3> Deleting Profile </h3>
+<span> "{{object}}" </span>
+<br><br>
 <p> Are you sure? </p>
 <form method="POST">
     {%csrf_token%}
-    <input type="submit" value="Yes">
-    <a href="{% url 'show_buyer_profiles_route' %}">No</a>
+    <input type="submit" value="Yes" class="btn btn-primary">
 </form>
-
+    <button class="btn btn-primary" ><a href="{% url 'show_buyer_profiles_route' %}" style="text-decoration:none; color:white;">No</a></button>
 
 {%endblock%}

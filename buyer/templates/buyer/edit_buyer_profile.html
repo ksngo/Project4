@@ -4,15 +4,15 @@
 {%block title%} Edit Profile {%endblock%}
 
 {%block content%}
-
-<h1> Edit Profile </h1>
-
+<br>
+<h3> Edit Profile </h3>
 <a href="{% url 'show_buyer_profiles_route' %}"> Back </a>
+<br><br>
 
 <form method="POST">
     {%csrf_token%}
     {{ form|crispy}}
-    <input type="submit">
+    <input type="submit" class="btn btn-primary">
 </form>
 
 
