@@ -5,14 +5,15 @@
 
 {%block content%}
 
-<h1> Create Profile </h1>
-
+<br>
+<h3> Create Profile </h3>
 <a href="{% url 'show_buyer_profiles_route' %}"> Back </a>
+<br><br>
 
 <form method="POST">
     {%csrf_token%}
     {{ form|crispy}}
-    <input type="submit">
+    <input class="btn btn-primary" type="submit">
     
 </form>
 

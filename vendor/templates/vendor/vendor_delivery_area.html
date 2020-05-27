@@ -1,63 +1,106 @@
 {% extends 'base_template.html' %}
 
+{%block css %}
+
+<style>
+
+    .town-and-postal {
+        display: flex;
+        flex-wrap: wrap;
+    
+    }
+
+    .add-town, .add-postal {
+        min-width:33%;
+        margin:10px;
+        padding:10px;
+    }
+    
+
+    section {
+
+        border: 1px solid rgba(170, 170, 170, 0.635);
+        padding:20px;
+        margin-top:10px;
+        margin-right:20px;
+        width:90%;
+        border-radius:5px;
+        background-color: rgba(173, 216, 230, .3);
+    }
+
+    
+</style>
+
+
+{%endblock%}
 {%block title%} Delivery area {%endblock%}
 
 {%block content%}
-
-<h1> Add delivery area </h1>
-
+<br>
+<h3> Add delivery area </h3>
 <a href="{% url 'view_vendor_profiles_route' %}"> Back </a>
+<br><br>
 
-<ol>
-{%for i in towns %}
- <li>{{i}} <a href="{% url 'remove_town_vendor_route' town_vendor_id=i.id vendor_profile_id=vendor_profile_id %}">Remove</a> </li>
-{%endfor%}
-</ol>
-
-<ol>
-{%for i in postals %}
- <li>{{i}} <a href="{% url 'remove_postal_vendor_route' postal_vendor_id=i.id vendor_profile_id=vendor_profile_id %}">Remove</a></li>
-{%endfor%}
-</ol>
-
-<form method="POST">
-    {%csrf_token%}
-    <select name="town">
-        <option value="ANG MO KIO">Ang Mo Kio</option>
-        <option value="BEDOK"> Bedok</option>
-        <option value="BISHAN"> Bishan</option>
-        <option value="BUKIT BATOK"> Bukit Batok</option>
-        <option value="BUKIT MERAH"> Bukit Merah </option>
-        <option value="BUKIT PANJANG"> Bukit Panjang</option>
-        <option value="BUKIT TIMAH"> Bukit Timah</option>
-        <option value="CENTRAL AREA"> Central Area</option>
-        <option value="CHOA CHU KANG"> Choa Chu Kang</option>
-        <option value="CLEMENTI"> Clementi </option>
-        <option value="GEYLANG"> Geylang</option>
-        <option value="HOUGANG"> Hougang</option>
-        <option value="JURONG EAST"> Jurong East</option>
-        <option value="JURONG WEST"> Jurong West</option>
-        <option value="KALLANG/WHAMPOA"> Kallang/Whampoa</option>
-        <option value="MARINE PARADE"> Marine Parade</option>
-        <option value="PASIR RIS"> Pasir Ris</option>
-        <option value="PUNGGOL"> Punggol</option>
-        <option value="QUEENSTOWN"> Queenstown</option>
-        <option value="SEMBAWANG"> Sembawang</option>
-        <option value="SENGKANG"> Sengkang</option>
-        <option value="SERANGOON"> Serangoon</option>
-        <option value="TAMPINES"> Tampines</option>
-        <option value="TOA PAYOH"> Toa Payoh</option>
-        <option value="WOODLANDS"> Woodlands</option>
-        <option value="YISHUN"> Yishun</option>
-    </select>
-    <input type="submit" value="Add town">
-</form>
+<div class="town-and-postal">
+    <div class="add-town">
+        <form method="POST">
+            {%csrf_token%}
+            <select name="town">
+                <option value="ANG MO KIO">Ang Mo Kio</option>
+                <option value="BEDOK"> Bedok</option>
+                <option value="BISHAN"> Bishan</option>
+                <option value="BUKIT BATOK"> Bukit Batok</option>
+                <option value="BUKIT MERAH"> Bukit Merah </option>
+                <option value="BUKIT PANJANG"> Bukit Panjang</option>
+                <option value="BUKIT TIMAH"> Bukit Timah</option>
+                <option value="CENTRAL AREA"> Central Area</option>
+                <option value="CHOA CHU KANG"> Choa Chu Kang</option>
+                <option value="CLEMENTI"> Clementi </option>
+                <option value="GEYLANG"> Geylang</option>
+                <option value="HOUGANG"> Hougang</option>
+                <option value="JURONG EAST"> Jurong East</option>
+                <option value="JURONG WEST"> Jurong West</option>
+                <option value="KALLANG/WHAMPOA"> Kallang/Whampoa</option>
+                <option value="MARINE PARADE"> Marine Parade</option>
+                <option value="PASIR RIS"> Pasir Ris</option>
+                <option value="PUNGGOL"> Punggol</option>
+                <option value="QUEENSTOWN"> Queenstown</option>
+                <option value="SEMBAWANG"> Sembawang</option>
+                <option value="SENGKANG"> Sengkang</option>
+                <option value="SERANGOON"> Serangoon</option>
+                <option value="TAMPINES"> Tampines</option>
+                <option value="TOA PAYOH"> Toa Payoh</option>
+                <option value="WOODLANDS"> Woodlands</option>
+                <option value="YISHUN"> Yishun</option>
+            </select>
+            <input type="submit" value="Add town" class="btn btn-primary">
+        </form>
+        <section>
+            <ol>
+            {%for i in towns %}
+                <li>{{i}} <a href="{% url 'remove_town_vendor_route' town_vendor_id=i.id vendor_profile_id=vendor_profile_id %}">Remove</a> </li>
+            {%endfor%}
+            </ol>
+        </section>
+    </div>
 
 
-<form method="POST">
-    {%csrf_token%}
-    <input type="text" placeholder="postal code" name="postal">
-    <input type="submit" value="Add postal code">
-</form>
+    <div class="add-postal">
+        <form method="POST">
+            {%csrf_token%}
+            <input type="text" placeholder="postal code" name="postal">
+            <input type="submit" value="Add postal code" class="btn btn-primary">
+        </form>
+        <section>
+            <ol>
+            {%for i in postals %}
+                <li>{{i}} <a href="{% url 'remove_postal_vendor_route' postal_vendor_id=i.id vendor_profile_id=vendor_profile_id %}">Remove</a></li>
+            {%endfor%}
+            </ol>
+        </section>
+    </div>
+<div>
+
+
 
 {%endblock%}

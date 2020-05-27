@@ -1,6 +1,8 @@
 
 .right-nav {
-    margin-top:20px;
+    vertical-align: top;
+    display:flex;
+    float:right;
 }
 
 .right-nav ul{
@@ -13,6 +15,7 @@
     margin-bottom:30px;
     border:1px solid rgba(170, 170, 170, 0.635);
     padding:20px;
+    clear:both;
     
 }
 
