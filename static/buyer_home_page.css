@@ -1,22 +1,10 @@
 
-.right-nav {
-    vertical-align: top;
-    display:flex;
-    float:right;
-}
-
-.right-nav ul{
-    list-style:none;
-}
-
-
 .profile-section-one {
     float:right;
     margin-bottom:30px;
     border:1px solid rgba(170, 170, 170, 0.635);
     padding:20px;
     clear:both;
-    
 }
 
 .psone-divone{

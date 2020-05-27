@@ -1,24 +1,8 @@
 {% extends 'base_template.html' %}
+{% load static %}
 
 {%block css%}
-<style>
-    h3 {
-        clear:left;
-    }
-
-    .right-nav-parent {
-        float:right;
-        margin-bottom:20px;
-        vertical-align:top;
-    }
-
-    
-    .right-nav ul{
-        list-style:none;
-    }
-
-</style>
-
+<link rel="stylesheet" href="{% static 'buyer_nav_bar.css' %}">
 {%endblock%}
 
 {%block title%} Your Orders {%endblock%}
@@ -26,7 +10,10 @@
 {%block content%}
 
 <div class="right-nav-parent">
-    <nav class="right-nav" style="display:flex; justify-content: flex-end;">
+    <nav class="right-nav">
+        <ul>
+            <li><a href="{% url 'index_route' %}"> Back to Home </a></li>
+        </ul>
         <ul>
             <li> <a href="{% url 'show_buyer_profiles_route' %}"> My Profiles </a> </li>
         </ul>
@@ -39,38 +26,38 @@
     </nav>
 </div>
 
-<h3> My Orders </h3>
-<a href="{% url 'index_route' %}"> Back to Home </a>
-<br><br>
+<h3 style="color:brown;"> My Orders </h3><br>
 
-<table class="table table-hover table-responsive-md">
-    <thead class="thead-light">
-        <th> Index </th>
-        <th> Order Id </th>
-        <th> Date </th>
-        <th> Profile </th>
-        <th> Food </th>
-        <th> Vendor </th>
-        <th> Quantity </th>
-        <th> Sub-total </th>
-        <th> &nbsp; </th>
-    </thead>
-    {%for i in orders%}
-    <tr>
-        <td> {{forloop.counter}} </td>
-        <td style="font-size:8px; overflow-wrap:break-word;"> {{i.order.order_number}} </td>
-        <td> {{i.datetime}} </td>
-        <td> {{i.buyer}} </td>
-        <td> {{i.food}} </td>
-        <td> {{i.food.vendor}}
-        <td> {{i.quantity}} </td>
-        <td> {{i.cost}} </td>
-        <td> <a href="#">Review |</a> 
-            <a href="#"> Report </a>
-        </td>
-    </tr>
-    {%endfor%}
-</table>
+<div class="my-table">
+    <table class="table table-light table-hover table-responsive-lg">
+        <thead class="thead-light">
+            <th> Index </th>
+            <th> Order Id </th>
+            <th> Date </th>
+            <th> Profile </th>
+            <th> Food </th>
+            <th> Vendor </th>
+            <th> Quantity </th>
+            <th> Sub-total </th>
+            <th> &nbsp; </th>
+        </thead>
+        {%for i in orders%}
+        <tr>
+            <td> {{forloop.counter}} </td>
+            <td style="font-size:8px; overflow-wrap:break-word;"> {{i.order.order_number}} </td>
+            <td> {{i.datetime}} </td>
+            <td> {{i.buyer}} </td>
+            <td> {{i.food}} </td>
+            <td> {{i.food.vendor}}
+            <td> {{i.quantity}} </td>
+            <td> {{i.cost}} </td>
+            <td> <button class="buyer-buttons"><a href="#">Review</a></button> 
+                <button class="buyer-buttons"><a href="#">Report</a></button>
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+</div>
     
 
 {%endblock%}

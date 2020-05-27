@@ -2,25 +2,28 @@
 {% load static %}
 
 {%block css%}
-
+<link rel="stylesheet" href="{% static 'buyer_nav_bar.css' %}">
 <link rel="stylesheet" href="{% static 'buyer_home_page.css' %}">
+
 {%endblock%}
 
 {%block title%} Your Profiles {%endblock%}
 
 {%block content%}
 
-<nav class="right-nav">
-    <ul>
-        <li> <a href="{% url 'show_buyer_profiles_route' %}"> My Profiles </a> </li>
-    </ul>
-    <ul>
-        <li> <a href="{% url 'view_order_history_route' %}"> My Orders </a> </li>
-    </ul>
-    <ul>
-        <li> <a href="{% url 'view_cart_route' %}" target="_blank"> Go to Shopping Cart </a> </li>
-    </ul>
-</nav>
+<div class="right-nav-parent">
+    <nav class="right-nav">
+        <ul>
+            <li> <a href="{% url 'show_buyer_profiles_route' %}"> My Profiles </a> </li>
+        </ul>
+        <ul>
+            <li> <a href="{% url 'view_order_history_route' %}"> My Orders </a> </li>
+        </ul>
+        <ul>
+            <li> <a href="{% url 'view_cart_route' %}" target="_blank"> Go to Shopping Cart </a> </li>
+        </ul>
+    </nav>
+</div>
 
 <div class="profile-section-one">
     <div class="psone-divone"><em>Current Profile</em></div>
@@ -47,7 +50,11 @@
         <ul>
             {% if buyer_profiles %}
             {%for i in buyer_profiles %}
-            <li> {{i}} <a href="{% url 'index_by_profile_route' buyer_id=i.id %}"> Use </a> </li>
+                    <li> {{i}}  
+                    {% if i.id == buyer_id %} <strong class="text-success"> Current</strong> 
+                    {%else%} <a href="{% url 'index_by_profile_route' buyer_id=i.id %}">  Use </a> 
+                    {%endif%}
+                    </li>
             {%endfor%}
             {%else%}
             No profile yet. <a href="{% url 'create_buyer_profile_route' %}"> Create a profile</a> first to see any vendors that can deliver to you.

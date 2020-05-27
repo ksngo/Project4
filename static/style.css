@@ -8,6 +8,8 @@ a {
 
 a:hover {
     color:purple;
+    
+    
 }
 
 #show-username {
@@ -30,5 +32,35 @@ footer {
 
 footer div {
     text-align: center;
+    
+}
+
+.my-table {
+
+    width:80%;
+    margin:auto;
+    min-height: 70vh;
+    
+}
+
+.buyer-buttons {
+    
+    border:1px solid coral;
+    padding:5px;
+    padding-left:10px;
+    padding-right:10px;
+    border-radius:5px;
+    background-color: coral;
+    margin:5px;
+    
+}
+
+.buyer-buttons a{ 
+    color:white;
+}
+
+.buyer-buttons:hover {
+    background-color: violet;
+    border:1px solid violet;
     
 }

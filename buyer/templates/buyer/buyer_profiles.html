@@ -1,24 +1,8 @@
 {% extends 'base_template.html' %}
+{% load static %}
 
 {%block css%}
-<style>
-    h3 {
-        clear:left;
-    }
-
-    .right-nav-parent {
-        float:right;
-        margin-bottom:20px;
-        vertical-align:top;
-    }
-
-    
-    .right-nav ul{
-        list-style:none;
-    }
-
-</style>
-
+<link rel="stylesheet" href="{% static 'buyer_nav_bar.css' %}">
 {%endblock%}
 
 
@@ -27,7 +11,10 @@
 {%block content%}
 
 <div class="right-nav-parent">
-    <nav class="right-nav" style="display:flex;">
+    <nav class="right-nav">
+        <ul>
+            <li><a href="{% url 'index_route' %}"> Back to Home </a> </li>
+        </ul>
         <ul>
             <li> <a href="{% url 'show_buyer_profiles_route' %}"> My Profiles </a> </li>
         </ul>
@@ -41,32 +28,33 @@
 </div>
 
 
-<h3> My Profiles </h3>
-<a href="{% url 'index_route' %}"> Back to Home </a>
-<br><br>
 
-<div> <a href="{% url 'create_buyer_profile_route'  %}"> Add new profile </a> </div>
-
-<table class="table table-hover table-responsive-lg">
-    <thead class="thead-light">
-        <th> Profile </th>
-        <th> User </th>
-        <th> Contact </th>
-        <th> Date joined </th>
-        <th> &nbsp; </th>
-    </thead>
-    {%for i in objects%}
-    <tr>
-        <td> {{forloop.counter}} </td>
-        <td> {{i}} </td>
-        <td> {{i.contact}} </td>
-        <td> {{i.date_joined}} </td>
-        <td> <a href="{% url 'edit_buyer_profile_route' buyer_id=i.id %}">Edit |</a> 
-            <a href="{% url 'delete_buyer_profile_route' buyer_id=i.id %}"> Delete </a>
-        </td>
-    </tr>
-    {%endfor%}
-</table>
+<div><h3 style="color:brown;"> My Profiles </h3></div><br>
+ 
+<div class="my-table">
+    <div> <button class="buyer-buttons"> <a href="{% url 'create_buyer_profile_route'  %}"> Add new profile </a> </button> </div>
+    
+    <table class="table table-light table-hover table-responsive-lg">
+        <thead class="thead-light">
+            <th> Profile </th>
+            <th> User </th>
+            <th> Contact </th>
+            <th> Date joined </th>
+            <th> &nbsp; </th>
+        </thead>
+        {%for i in objects%}
+        <tr>
+            <td> {{forloop.counter}} </td>
+            <td> {{i}} </td>
+            <td> {{i.contact}} </td>
+            <td> {{i.date_joined}} </td>
+            <td> <button class="buyer-buttons"><a href="{% url 'edit_buyer_profile_route' buyer_id=i.id %}">Edit</a></button> 
+                <button class="buyer-buttons"><a href="{% url 'delete_buyer_profile_route' buyer_id=i.id %}"> Delete</a></button>
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+</div>
     
 
 {%endblock%}

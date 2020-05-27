@@ -280,7 +280,7 @@ def index_by_profile(request, buyer_id):
         "buyer_profiles": buyer_profiles,
         "vendor_available": vendor_available,
         "food_available": food_available,
-        "buyer_id": buyer_id,
+        "buyer_id": int(buyer_id),
         "current_buyer_profile": current_buyer_profile
     })
 
