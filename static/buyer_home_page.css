@@ -5,6 +5,7 @@
     border:1px solid rgba(170, 170, 170, 0.635);
     padding:20px;
     clear:both;
+    background-color:white;
 }
 
 .psone-divone{
@@ -28,6 +29,25 @@
 }
 
 
+#filter-search-bar {
+    background-color:saddlebrown;
+    
+}
+
+.filter-dropdown:hover {
+    background-color: darkturquoise;
+    font-weight:bold;
+}
+
+#VendorDropdown:hover {
+    color:brown !important;
+}
+
+#FoodDropdown:hover{
+    color:brown !important;
+}
+
+
 .vendor-display {
     display:flex; 
     flex-wrap:wrap; 
@@ -44,6 +64,7 @@
     margin-left:20px;
     margin-right:20px;
     padding:20px;
+    background-color: white;
     
 }
 
@@ -64,6 +85,7 @@
     margin-right:10px;
     padding:50px;
     margin-bottom:10px;
+    background-color:white;
 }
 
 .food-display div img {

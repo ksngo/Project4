@@ -1,5 +1,16 @@
 {% extends "base_template.html" %}
 
+{%block css%}
+
+<style>
+    body {
+        background-color:rgb(248, 240, 240);
+    }
+</style>
+
+{%endblock%}
+
+
 {%block title%} Shopping Cart {%endblock%}
 
 {%block content%}
@@ -7,7 +18,8 @@
 <h3> My Shopping Cart </h3>
 <br>
 
-    <table class="table table-sm table-borderless">
+<div class="my-table">
+    <table class="table table-light table-sm table-borderless">
         <thead class="thead-light">
             <tr>
                 <th> Index </th>
@@ -37,7 +49,7 @@
                     <td> {{forloop.counter}} </td>
                     <td> {{f_value.food_title}} </td>
                     <td> {{f_value.vendor_name}}
-                    <td> {{f_value.price}} </td>
+                    <td> ${{f_value.price|floatformat:2}} </td>
                     <td style="display:flex; justify-content:space-around;"> 
                         <p>{{f_value.qty}}</p>
                         <form method="POST" action="{% url 'add_quantity_route' buyer_id=f_value.buyer.id food_id=f_value.food_id %}">
@@ -49,21 +61,25 @@
                             <input type="submit" style="font-family:FontAwesome;" class="btn text-primary" value="&#xf146">
                         </form>
                     </td>
-                    <td> {{f_value.sub_total}} </td>
+                    <td> {{f_value.sub_total|floatformat:2}} </td>
                     <td> <a href="{% url 'remove_from_cart_route' buyer_id=f_value.buyer.id food_id=f_value.food_id %}"> Remove </a>  </td>
                 </tr>
             {%endfor%}
         {%endfor%}
+        <tfoot>
+            <td colspan="5"> </td>
+            <td colspan="1">
+                {% if cart %}
+                <div> Grand total is ${{grand_total|floatformat:2}} </div>
+                <a href="{% url 'checkout_route' %}" target="_blank">Check Out </a>
+                {% endif %}
+            </td>
+        </tfoot>
 
     </table>
+</div>
 
-    {% if cart %}
-    <div> Grand total is ${{grand_total}} </div>
-    <a href="{% url 'checkout_route' %}" target="_blank">Check Out </a>
-    {% endif %}
-
-
-
+    
 
 
 {%endblock%}

@@ -33,8 +33,8 @@
             <section>
                 <span> {{current_buyer_profile.block}}, </span>
                 <span> {{current_buyer_profile.street}}, </span>
-                <span> {{current_buyer_profile.postal_code}} </span>
-                <span> {{current_buyer_profile.town}} </span>
+                <span> {{current_buyer_profile.postal_code}}, </span>
+                <span> {{current_buyer_profile.town}}, </span>
             </section>
             <section> {{current_buyer_profile.contact}} </section>
         </div>
@@ -51,8 +51,11 @@
             {% if buyer_profiles %}
             {%for i in buyer_profiles %}
                     <li> {{i}}  
-                    {% if i.id == buyer_id %} <strong class="text-success"> Current</strong> 
-                    {%else%} <a href="{% url 'index_by_profile_route' buyer_id=i.id %}">  Use </a> 
+                    {% if i.id == buyer_id %} 
+                    <span class="text-success"> 
+                     Current
+                    </span> 
+                    {%else%} <a href="{% url 'index_by_profile_route' buyer_id=i.id %}"> Use  </a> 
                     {%endif%}
                     </li>
             {%endfor%}
@@ -63,15 +66,15 @@
     </section>
 </div>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center" style="clear:both;">
+<nav class="navbar navbar-expand-lg justify-content-center" id="filter-search-bar" style="clear:both;">
   
     {%if buyer_id %}
         <div class="w-50">
         </div>
         <div class="w-50">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown mx-2">
-                    <a class="nav-link" href="#" id="VendorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item dropdown mx-2 filter-dropdown">
+                    <a class="nav-link text-white" href="#" id="VendorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Vendors
                     </a>
                     <div class="dropdown-menu" aria-labelledby="VendorDropdown">
@@ -82,8 +85,8 @@
                     <a class="dropdown-item" href="{% url 'index_by_profile_route' buyer_id=buyer_id%}">All Vendors</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown mx-2">
-                    <a class="nav-link" href="#" id="FoodDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item dropdown mx-2 filter-dropdown">
+                    <a class="nav-link text-white" href="#" id="FoodDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Food
                     </a>
                     <div class="dropdown-menu" aria-labelledby="FoodDropdown">
@@ -106,7 +109,7 @@
         <div class="flex-shrink-1">
             <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'index_by_profile_route' buyer_id=buyer_id %}" style="flex-wrap:nowrap;">
                 <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search vendor/food" aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
                 <i class="fa fa-search"></i>
                 </button>
             </form>
@@ -114,7 +117,7 @@
     {%endif%}
 </nav>
 
-<h4> Vendors </h4>
+<h4 style="color:saddlebrown;"> Vendors </h4>
 <div class="vendor-display">
     
     {%if vendor_available %}
@@ -137,7 +140,7 @@
 </div>
 <hr>
 
-<h4> Food </h4>
+<h4 style="color:saddlebrown;"> Food </h4>
 <div class="food-display">
 {%if food_available %}
     {%for i in food_available %}
