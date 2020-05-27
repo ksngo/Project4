@@ -30,7 +30,7 @@
 
 
 #filter-search-bar {
-    background-color:saddlebrown;
+    background-color:aquamarine;
     
 }
 
@@ -40,11 +40,11 @@
 }
 
 #VendorDropdown:hover {
-    color:brown !important;
+    color:aquamarine !important;
 }
 
 #FoodDropdown:hover{
-    color:brown !important;
+    color:aquamarine !important;
 }
 
 

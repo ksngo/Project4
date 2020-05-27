@@ -1,13 +1,21 @@
 {% extends 'base_template.html' %}
+{%load static %}
+
+{%block css%}
+
+<link rel="stylesheet" href="{% static 'vendor_pages.css' %}">
+
+{%endblock%}
+
 
 {%block title%} Vendor Profile {%endblock%}
-
 {%block content%}
 <br>
 <h3> Vendor Profiles </h3>
 <br>
 
-    <table class="table table-hover table-responsive-lg">
+<div class="my-table">
+    <table class="table table-light table-hover table-responsive-lg">
         <tr>
             <thead class="thead-light">
                 <th>Name</th>   
@@ -49,8 +57,10 @@
         {%endfor%}
         
     </table>
+    <button class="vendor-buttons"><a href="{% url 'create_vendor_route' %}"> Add New Profile </a> </button>
+</div>
 
-    <a href="{% url 'create_vendor_route' %}"> Add New Profile </a> 
+    
 
 
 

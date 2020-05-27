@@ -36,11 +36,16 @@ footer div {
 }
 
 .my-table {
-
     width:80%;
     margin:auto;
     min-height: 70vh;
-    
+}
+
+
+.buyer-form {
+    width:80%;
+    margin:auto;
+    min-height: 70vh;
 }
 
 .buyer-buttons {
@@ -52,6 +57,7 @@ footer div {
     border-radius:5px;
     background-color: coral;
     margin:5px;
+    color:white;
     
 }
 
@@ -63,4 +69,31 @@ footer div {
     background-color: violet;
     border:1px solid violet;
     
+}
+
+.vendor-buttons {
+    
+    border:1px solid deeppink;
+    padding:5px;
+    padding-left:10px;
+    padding-right:10px;
+    border-radius:5px;
+    background-color: deeppink;
+    margin:5px;
+    color:white;
+    
+}
+
+.vendor-buttons a{ 
+    color:white;
+}
+
+.vendor-buttons:hover {
+    background-color: gold;
+    border:1px solid gold;
+    
+}
+
+h3 {
+    color:brown;
 }

@@ -69,10 +69,15 @@
         <tfoot>
             <td colspan="5"> </td>
             <td colspan="1">
+            
                 {% if cart %}
-                <div> Grand total is ${{grand_total|floatformat:2}} </div>
-                <a href="{% url 'checkout_route' %}" target="_blank">Check Out </a>
-                {% endif %}
+                    {%if grand_total != 0 %}
+                    <div> Grand total is ${{grand_total|floatformat:2}} </div>
+                    <a href="{% url 'checkout_route' %}" target="_blank">Check Out </a>
+                    {%else%}
+                    Your shopping cart is empty.
+                    {% endif %}
+                {%endif%}
             </td>
         </tfoot>
 

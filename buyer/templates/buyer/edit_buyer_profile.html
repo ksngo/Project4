@@ -1,5 +1,12 @@
 {% extends 'base_template.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
+
+{%block css%}
+
+<link rel="stylesheet" href="{% static 'buyer_pages.css' %}">
+
+{%endblock%}
 
 {%block title%} Edit Profile {%endblock%}
 
@@ -9,11 +16,13 @@
 <a href="{% url 'show_buyer_profiles_route' %}"> Back </a>
 <br><br>
 
-<form method="POST">
-    {%csrf_token%}
-    {{ form|crispy}}
-    <input type="submit" class="btn btn-primary">
-</form>
+<div class="buyer-form">
+    <form method="POST">
+        {%csrf_token%}
+        {{ form|crispy}}
+        <input type="submit" class="buyer-buttons">
+    </form>
+</div>
 
 
 
