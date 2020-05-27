@@ -19,10 +19,12 @@ def index(request):
 def view_vendor_food_gallery(request, vendor_profile_id):
 
     vendor_food_gallery = Food.objects.filter(vendor__id=vendor_profile_id)
+    vendor_name = Vendor.objects.get(id=vendor_profile_id).name
 
     return render(request, "food/vendor_food_gallery.html", {
         "foods": vendor_food_gallery,
-        "vendor_profile_id": vendor_profile_id
+        "vendor_profile_id": vendor_profile_id,
+        "vendor_name" : vendor_name
 
     })
 

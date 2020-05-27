@@ -1,21 +1,43 @@
 {% extends "account/base.html" %}
+{% load static %}
+
+{%block css%}
+
+<style>
+    #No-button {
+        position:relative;
+        top: -38px;
+        left: 100px;
+
+    }
+</style>
+
+<link rel="stylesheet" href="{% static 'accounts.css' %}">
+
+{%endblock%}
+
 
 {% load i18n %}
 
 {% block head_title %}{% trans "Sign Out" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Out" %}</h1>
+<div class="account-profile">
+    <div class="account-divone"><em>{% trans "Sign Out" %}</em></div><br>
+    <hr>
+    <div class="account-divtwo"> 
+        <p>{% trans 'Are you sure you want to sign out?' %}</p>
 
-<p>{% trans 'Are you sure you want to sign out?' %}</p>
-
-<form method="post" action="{% url 'account_logout' %}">
-  {% csrf_token %}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-  {% endif %}
-  <button type="submit">{% trans 'Sign Out' %}</button>
-</form>
+        <form method="post" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+        <button class="btn btn-primary" type="submit">{% trans 'Sign Out' %}</button>
+        </form>
+        <button class="btn btn-primary" id="No-button" ><a href="{% url 'index_route' %}" style="text-decoration:none; color:white;">No</a></button>
+    </div>
+</div>
 
 
 {% endblock %}

@@ -45,12 +45,13 @@
     flex-wrap:wrap; 
     margin-top:20px;
     margin-bottom:20px;
+    
 
 }
 
 .vendor-display div {
-    flex:25%;
-    max-width:25%;
+    flex:20%;
+    max-width:20%;
     border: 1px solid rgba(170, 170, 170, 0.635);
     margin-left:20px;
     margin-right:20px;
@@ -68,12 +69,13 @@
 }
 
 .food-display div {
-    flex:25%;
-    max-width:25%;
+    flex:20%;
+    max-width:20%;
     border: 1px solid rgba(170, 170, 170, 0.635);
-    margin-left:20px;
-    margin-right:20px;
+    margin-left:10px;
+    margin-right:10px;
     padding:50px;
+    margin-bottom:10px;
 }
 
 .food-display div img {
@@ -83,37 +85,37 @@
 
 @media screen and (max-width:1440px) {
     .food-display div{
-        flex: 33%;
-        max-width: 33%;
+        flex: 30%;
+        max-width: 30%;
     }
 
     .vendor-display div{
-        flex: 33%;
-        max-width: 33%;
+        flex: 30%;
+        max-width: 30%;
     }
 }
 
 @media screen and (max-width:800px) {
     .food-display div{
-        flex: 50%;
-        max-width: 50%;
+        flex: 40%;
+        max-width: 40%;
     }
 
     .vendor-display div{
-        flex: 50%;
-        max-width: 50%;
+        flex: 40%;
+        max-width: 40%;
     }
 }
 
 @media screen and (max-width:600px) {
     .food-display div{
-        flex: 100%;
-        max-width: 100%;
+        flex: 90%;
+        max-width: 90%;
     }
 
     .vendor-display div{
-        flex: 100%;
-        max-width: 100%;
+        flex: 90%;
+        max-width: 90%;
     }
 }
 

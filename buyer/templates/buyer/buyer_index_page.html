@@ -36,7 +36,7 @@
             <section> {{current_buyer_profile.contact}} </section>
         </div>
     {%else%}
-        <div> You have no profiles. </div>
+        <div> Nil </div>
     {%endif%}
 </div>
 
@@ -50,7 +50,7 @@
             <li> {{i}} <a href="{% url 'index_by_profile_route' buyer_id=i.id %}"> Use </a> </li>
             {%endfor%}
             {%else%}
-            No profile yet. Create a profile first to see any vendors that can deliver to you.
+            No profile yet. <a href="{% url 'create_buyer_profile_route' %}"> Create a profile</a> first to see any vendors that can deliver to you.
             {% endif %}
         </ul>
     </section>
@@ -98,7 +98,7 @@
         </div>
         <div class="flex-shrink-1">
             <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'index_by_profile_route' buyer_id=buyer_id %}" style="flex-wrap:nowrap;">
-                <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search" aria-label="Search">
+                <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search vendor/food" aria-label="Search">
                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
                 <i class="fa fa-search"></i>
                 </button>
@@ -150,13 +150,15 @@
                     <span> <i class="fa fa-money" aria-hidden="true"></i> ${{i.price}} &nbsp;&nbsp; |</span>&nbsp;&nbsp;
                     <span> <i class="fa fa-clock-o" aria-hidden="true"></i> {{i.delivery_time}}mins <small><em> delivery time </em></small>  </span>&nbsp;&nbsp;&nbsp;&nbsp;
                 
-                {% if i.vendor.license_check %}
-                <span> <a href="{% url 'add_to_cart_route' buyer_id=buyer_id food_id=i.id %}"> Add to cart </a></span>
-                {% else %}
-                <span class="alert alert-warning"> Vendor is pending validation. </span>
+                    {% if i.vendor.license_check %}
+                    <span> <a href="{% url 'add_to_cart_route' buyer_id=buyer_id food_id=i.id %}"> Add to cart </a></span>
+                    {% else %}
+                    <br><br>
+                    <section class="alert alert-warning"> Vendor pending verification. </section>
+                    {%endif%}
                 </section>
-            {%endif%}
-            </ol>
+                
+            
         </div>
     {%endfor%} 
 {%endif%}

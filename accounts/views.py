@@ -8,7 +8,6 @@ def view_account(request):
 
     user_email = request.user.email
     user_name = request.user.username
-    
 
     return render(request, "accounts/account.html", {
         "user_email":user_email,

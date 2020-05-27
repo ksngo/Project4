@@ -54,9 +54,9 @@ def create_vendor(request):
 def edit_vendor_profile(request, vendor_profile_id):
 
     profile = get_object_or_404(Vendor, pk=vendor_profile_id)
+    vendor_name = profile.name
+
     validation_status = profile.license_check
-    print(validation_status)
-    print("xxxxxxxxxxxxxxxxxxxxxxxxxx")
     profile_form = VendorForm(instance=profile)
 
     if request.method == "POST":
@@ -79,11 +79,15 @@ def edit_vendor_profile(request, vendor_profile_id):
         return render(request, "vendor/vendor_profile_detail.html", {
             "form": profile_form,
             "vendor_profile_id": vendor_profile_id,
-            "validation_status": validation_status
+            "validation_status": validation_status,
+            "vendor_name": vendor_name
         })
 
 
 def delete_vendor_profile(request, vendor_profile_id):
+
+    profile = get_object_or_404(Vendor, pk=vendor_profile_id)
+    vendor_name = profile.name
 
     if request.method == "POST":
 
@@ -94,7 +98,10 @@ def delete_vendor_profile(request, vendor_profile_id):
 
     else:
 
-        return render(request, "vendor/vendor_delete_profile.html")
+
+        return render(request, "vendor/vendor_delete_profile.html", {
+            "vendor_name" : vendor_name
+        })
 
 
 def create_delivery_area(request, vendor_profile_id):
@@ -140,7 +147,6 @@ def create_delivery_area(request, vendor_profile_id):
                     existing_postal_object = get_object_or_404(VendorDeliveryPostal, postal_code=postal)
                     vendor_object.vendordeliverypostal.add(existing_postal_object)
 
-
         return redirect(reverse(create_delivery_area, kwargs={'vendor_profile_id': vendor_profile_id}))
 
     else:
@@ -149,10 +155,13 @@ def create_delivery_area(request, vendor_profile_id):
         towns = VendorDeliveryTown.objects.filter(vendor=vendor_object)
         postals = VendorDeliveryPostal.objects.filter(vendor=vendor_object)
 
+        vendor_name = vendor_object.name
+
         return render(request, "vendor/vendor_delivery_area.html", {
             "towns": towns,
             "postals": postals,
-            "vendor_profile_id": vendor_profile_id
+            "vendor_profile_id": vendor_profile_id,
+            "vendor_name": vendor_name
         })
 
 
