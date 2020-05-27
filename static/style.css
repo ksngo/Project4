@@ -18,3 +18,17 @@ a:hover {
     padding: 10px;
     color: white;
 }
+
+footer {
+    height:100px;
+    background-color: rgb(247, 247, 247);
+    padding-top:50px;
+    padding-bottom:100px;
+    color: rgb(206, 197, 197);
+    
+}
+
+footer div {
+    text-align: center;
+    
+}
