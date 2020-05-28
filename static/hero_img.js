@@ -51,7 +51,7 @@ function toggleLogo(){
 
     if (topOne < 300 && topTwo > 400 ) {
         document.querySelector("#fixed-logo").style.display = "block"
-    } else if (topThree <360) {
+    } else if (topThree <0) {
         document.querySelector("#fixed-logo").style.display = "block"
     } else {
         document.querySelector("#fixed-logo").style.display = "none"
