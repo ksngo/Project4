@@ -5,16 +5,17 @@ $(function(){
     window.addEventListener("scroll", toggleBrand)
     window.addEventListener("scroll", toggleLogo)
     
+    
 
 })
 
-const scrollAmount = 10
+
 
 function changeImage() {
 
     let top = document.querySelector(".tier-hero").getBoundingClientRect().top
     
-    if (top < scrollAmount) {
+    if (top < 20) {
         document.querySelector(".tier-hero").style.backgroundImage =  "url(/static/images/maxwell.jpg)"
     } else {
         document.querySelector(".tier-hero").style.backgroundImage =  "url(/static/images/merlion.jpg)"
@@ -22,14 +23,13 @@ function changeImage() {
 
 }
 
-const scrollBrand = 300
 
 function toggleBrand() {
 
     
     let topLocation = document.querySelector(".tier-zero").getBoundingClientRect().top
 
-    if (topLocation < scrollBrand) {
+    if (topLocation < 300) {
         document.querySelector(".tier-minus-two").style.display = "none"
     } else {
         document.querySelector(".tier-minus-two").style.display = "block"
@@ -37,16 +37,26 @@ function toggleBrand() {
 
 }
 
+
+
+// topOne refers to the distance from top to 2nd box(below hero image box)
+// topTwo refers to distance from top to box(middle of 2nd image)
+// topThree refers to distance from top to box(last box above footer)
+
 function toggleLogo(){
 
-    let topLocation = document.querySelector(".tier-zero").getBoundingClientRect().top
+    let topOne = document.querySelector(".tier-zero").getBoundingClientRect().top
+    let topTwo = document.querySelector(".tier-three").getBoundingClientRect().top
+    let topThree = document.querySelector(".tier-six").getBoundingClientRect().top
 
-    if (topLocation < scrollBrand) {
+    if (topOne < 300 && topTwo > 400 ) {
+        document.querySelector("#fixed-logo").style.display = "block"
+    } else if (topThree <360) {
         document.querySelector("#fixed-logo").style.display = "block"
     } else {
         document.querySelector("#fixed-logo").style.display = "none"
     }
 
-
-
 }
+
+
