@@ -16,9 +16,9 @@ function changeImage() {
     let top = document.querySelector(".tier-hero").getBoundingClientRect().top
     
     if (top < 20) {
-        document.querySelector(".tier-hero").style.backgroundImage =  "url(/static/images/maxwell.jpg)"
+        document.querySelector(".tier-hero").style.backgroundImage =  "url(/static/images/coffeeshop.jpg)"
     } else {
-        document.querySelector(".tier-hero").style.backgroundImage =  "url(/static/images/merlion.jpg)"
+        document.querySelector(".tier-hero").style.backgroundImage =  "url(/static/images/singapore-blocks.jpg) "
     }
 
 }
