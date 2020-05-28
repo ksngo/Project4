@@ -2,12 +2,19 @@ body {
     background-color:white;
 }
 
+main {
+    width: 100%;
+}
+
+
 a {
     text-decoration:none !important;
+    color:black;
+    
 }
 
 a:hover {
-    color:purple;
+    color:rgb(0,125,255);
     
     
 }
@@ -18,7 +25,12 @@ a:hover {
     top:0;
     right:5%;
     padding: 10px;
-    color: white;
+    
+}
+
+#show-user-font {
+    padding:5px;
+    border-radius:50%;
 }
 
 footer {

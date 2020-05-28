@@ -18,7 +18,7 @@
     <title>{%block title%} {%endblock%}</title>
   </head>
   <body>
-    <header class="container-fluid">
+    <header>
         {% if messages %}
             {% for message in messages %} 
                 {% if message.level == 40 %}
@@ -33,41 +33,48 @@
             {% endfor %} 
         {% endif %}
         <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+            <img src="static/images/8bearlogo.png" alt="8bear brand" width="80px" height="80px"> 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>      
+            </button>
+                 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
+                
             {%if request.user.is_authenticated %}
-                <li class="nav-item mr-5 my-3 "> <a href="{% url 'view_home_route' %}" >Main</a> </li>
+                <li class="nav-item mr-5 my-3 "> <a href="{% url 'view_home_route' %}" >8Bear</a> </li>
+                <li class="nav-item mr-5 my-3 "> <a href="{% url 'index_route' %}">My Home</a> </li>
+                <li class="nav-item mr-5 my-3"> <a href="{% url 'view_vendor_profiles_route' %}"> Vendor Access</a> </li>
                 <li class="nav-item mr-5 my-3 "> <a href="{% url 'view_account_route' %}" >My Account</a> </li>
-                <li class="nav-item mr-5 my-3 "> <a href="{% url 'index_route' %}"> My Home</a> </li>
-                <li class="nav-item mr-5 my-3"> <a href="{% url 'view_vendor_profiles_route' %}"> Vendor access</a> </li>
-                <li class="nav-item mr-5 my-3"> <a href="{% url 'account_logout' %}" > Logout</a> </li>
+                
             {%else%}
-                <li class="nav-item mr-5 my-3"> <a href="{% url 'account_signup' %}">Register</a> </li>
-                <li class="nav-item mr-5 my-3"> <a href="{% url 'account_login' %}" >Login</a> </li>
+                <li class="nav-item mr-5 my-3"> <a href="{% url 'account_signup' %}">Create an account</a> </li>
+                
             {%endif%}
                 </ul>
             </div>
         </nav>
+        
+        <div id="show-username"> 
         {%if request.user.is_authenticated %} 
-        <div id="show-username" class="bg-info"> <i class="fa fa-user-o" aria-hidden="true"></i> {{request.user.username}}  </div>
+        <i class="fa fa-user-o bg-info text-light" id="show-user-font" aria-hidden="true"></i> {{request.user.username}},&nbsp;
+        <span class="nav-item mr-5 my-3"> <a href="{% url 'account_logout' %}" > <i class="fa fa-sign-out" aria-hidden="true"></i> </a> </span>
+        {%else%}
+            <span class="nav-item mr-5 my-3"> <a href="{% url 'account_login' %}" >Login <i class="fa fa-sign-in" aria-hidden="true"></i></a> </span>
         {%endif%}
+        </div>
 
     </header>
 
-    <div class="container-fluid">
+    <main>
 
-    
     {%block content%} {%endblock%}
 
-
-    </div>
+    </main>
 
     <footer>
         <div>
-            <section> <small> 8bears . Created by <a href="https://github.com/ksngo" style="color:rgb(206, 197, 197);">Ngo Kee Siang</a> </small> </section>
+            <section> <small> 8bear . Created by <a href="https://github.com/ksngo" style="color:rgb(206, 197, 197);">Ngo Kee Siang</a> </small> </section>
             <section><i class="fa fa-copyright" aria-hidden="true"></i><em><small>All rights reserved</small></em> </section>
             <section><small> Updated on 29 May 2020</small> </section>
         </div>

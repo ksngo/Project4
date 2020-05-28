@@ -2,9 +2,97 @@ body {
     height:100%;
 }
 
-
 .tier {
-    min-height: 400px;
+    height: 300px;
+    width:100%;
+}
+
+
+.tier-minus-two {
+    background-color:rgba(255,255,255,0);
+    height: 480px;
+    position:fixed;
+    top:70px;
+    
+}
+
+.tier-minus-two div {
+    
+    position: relative;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width:150px;
+    text-align:center;
+    height:80px;
+    display:flex;
+    background-color:rgba(10,10,10,.8);
+    border-bottom: 5px solid white;
+    border-top:5px solid white;
+}
+
+
+.tier-minus-two div section {
+    margin:auto;
+    font-size: 30px;
+    color:white;
+}
+
+.tier-minus-one {
+    background-color:rgba(255,255,255,0);
+    height: 480px !important;
+}
+
+
+.tier-zero {
+    background-color: rgb(240, 248, 255);
+    display:flex;
+    
+}
+
+
+.tier-zero div{
+    margin:auto;
+    max-width:80%;
+}
+
+
+.tier-hero {
+    position:relative;
+    height:500px;
+    background-image: url(images/merlion.jpg);
+    background-size:cover;
+    background-repeat:no-repeat;
+    
+}
+
+
+
+#fixed-hero {
+    background-image: url(images/singapore.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    height:600px;
+    width:100%;
+    position:fixed;
+    z-index:-99;
+    top:0;
+}
+
+#fixed-logo {
+    background-image: url(images/8bearlogo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100px;
+    width:100px;
+    border-radius:50%;
+    background-color:rgba(255,255,255,0.5);
+    position:fixed;
+    left:50%;
+    top: 350px;
+    transform: translate(-50%,-50%);
+    display: none;
+    
 }
 
 .tier-one {
@@ -38,6 +126,8 @@ body {
     
 }
 
+
+
 .tier-two {
     
     background-color:rgba(173, 216, 230, .5);
@@ -64,11 +154,12 @@ body {
 }
 
 .tier-four {
+    position:relative;
     background-color:rgb(223, 238, 243);
     display:flex;
     flex-direction: row;
     flex-wrap:wrap;
-    min-height:600px !important;
+    height: 100%;
     width:100%;
 }
 
@@ -76,8 +167,7 @@ body {
 .tier-four-left {
     flex:50%;
     min-height:400px;
-    /* text-align: center; */
-    /* line-height: 400px; */
+
 }
 
 .tier-four-left section {
@@ -97,6 +187,7 @@ body {
     flex:50%;
     display:flex;
     width:100%;
+    
 }
 
 .inner-border {
@@ -105,7 +196,7 @@ body {
     background-color:white;
     min-width: 40%;
     height: 60%;
-
+    
     box-shadow: 10px 10px 5px #aaaaaaa2;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
@@ -115,36 +206,19 @@ body {
 
 .inner-border::-webkit-scrollbar {
     display:none;
-    width: 0;
-    height: 0;
 }
 
-
-.background {
-
-    background-image: url(images/merlion.jpg);
-    background-size:cover;
-    background-repeat:no-repeat;
-    height:100vh;
-    width:98%;
-    margin-right:10px;
-    z-index: -99;
-    position:fixed;
-    top:0;
-    
-    
-}
 
 .tier-five {
+    position:relative;
     background-color:rgb(247, 247, 247);
     height:400px;
     display:flex;
 }
 
 .tier-five div {
-
-    background-color: rgb(234, 242, 245);
     position:relative;
+    background-color: rgb(234, 242, 245);
     margin:auto;
     min-height:100%;
     min-width:33%;
@@ -157,3 +231,55 @@ body {
 .tier-five div section {
     margin:auto;
 }
+
+
+.tier-six {
+    position:relative;
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    
+}
+
+.tier-six div {
+    
+    flex:50%;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .tier-six div {
+      flex:100%;
+  }
+}
+
+
+.tier-six div section{
+
+    margin-top:100px;
+    margin-bottom:100px;
+    margin-left:20%;
+    margin-right:20%;
+    min-height:200px;
+    width:60%;
+    vertical-align: center;
+
+}
+
+.tier-six div section div {
+    border:1px solid white;
+    padding:20px;
+    margin:10px;
+    background-color:white;
+    text-align: center;
+}
+
+.tier-six div section h1 {
+    width:100%;
+    text-align: center;
+    color:white;
+
+}
+   

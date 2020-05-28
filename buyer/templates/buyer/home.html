@@ -6,26 +6,51 @@
 {%endblock%}
 
 {%block title%} Your Profiles {%endblock%}
-
+    
 {%block content%}
+
+<div class="tier tier-minus-two">
+    <div>
+        <section> 8Bear </section> 
+    </div>
+</div>
+
+<div class="tier tier-minus-one">
+
+</div>
+
+<div class="tier tier-zero">
+    <div>
+        <section class="text-muted"> 
+        8bear is food ordering platform for food vendors to enable their customers to order via online and the vendors will commit to deliver the foods to customers doorstep. 
+        </section>
+    </div>
+</div>
+
 
 
 <div class="tier tier-one">
-    <div style="background-color:rgb(248, 240, 240);">
-        <section class="text-muted"> For patron, order your food from vendors who can deliver to you. Accept online payment only. </section>
-    </div>
     <div style="background-color: rgb(200, 200, 243);">
-        <section class="text-muted"> For Food Vendors, setup the food online and choose where you can deliver to.  </section>
+        <section class="text-muted"> As Food Vendor, setup the food online and choose where you can deliver to.  </section>
+    </div>
+    <div style="background-color:rgb(248, 240, 240);">
+        <section class="text-muted"> As Food customers, find out the food you can order that food vendors can deliver to you. </section>
     </div>
 </div>
 
-<div class="tier tier-two">
+<div class="tier-hero">
+
+    <div class="tier tier-two">
     &nbsp;
+    </div>
+
+    <div class="tier tier-three">
+        <section class="alert alert-light" > {{no_of_vendors}} vendors</section>
+    </div>
+
+
 </div>
 
-<div class="tier tier-three">
-    <section class="alert alert-light" > {{no_of_vendors}} vendors </section>
-</div>
 
 <div class="tier tier-four">
     <div class="tier-four-left">
@@ -65,32 +90,54 @@
                 
     </div>
 </div>
+
 <div class="tier tier-five">
-    <div> <section class="text-muted"> We verify vendors food shop license before you can order from them. </section> </div>
-</div>
-<div class="tier tier-one">
-    <div style="background-color:rgb(248, 240, 240);">
-        <section class="text-muted"> 
-            For patron, how to get started? 
-            <li> Register for an account. </li>
-            <li> Login to My Home Page. </li>
-            <li> Create a profile with your address. </li>
-            <li> Your home page will show the vendors and foods that can deliver to your address. </li>
-        </section>
+    <div> 
+    <section class="text-muted"> 
+    Vendors' food license will undergo verification process after they sign up and it may take a while.<br><br> 
+    Bear with us , once it is verified, your food can then be ordered online. <br><br>
+    Share with your customers so that they can order online and you deliver to them !
+    </section> 
     </div>
-    <div style="background-color: rgb(200, 200, 243);">
-        <section class="text-muted"> 
-            For Food Vendors, How to get started?
-            <li> Register for an account. </li>
-            <li> Login to my Home Page. </li>
-            <li> Go to Vendor Access and add in your vendor profile. </li>
-            <li> Note that your profile will undergo verification before your foods can be ordered.</li>
-        </section>
-    </div>
-</div>
-<div class="background">
-&nbsp;
 </div>
 
+<div class="tier tier-six">
+    <div style="background-color: rgb(200, 200, 243);">
+        
+        <section class="text-muted">
+            <h6> For Food Vendors, how to get started? </h6> 
+            <div> Create an account. </div>
+            <h1> <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i></h1>
+            <div> Go to Vendor Access and add in your vendor profile. <br>Vendor profile will be pending verification after added.</div>
+            <h1> <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i></h1>
+            <div> Start adding foods to the vendor profile and customise your delivery reach based on postal codes or towns. </div>
+            <h1> <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i></h1>
+            <div> Once the vendor profile is verified by us, your customers can see and order your food in their home page.</div>
+        </section>
+    </div>
+    <div style="background-color:rgb(248, 240, 240);">
+        <section class="text-muted"> 
+            <h6> For Food customers, how to get started? </h6>
+            <div> Create an account. </div>
+            <h1> <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i></h1>
+            <div> Go to Home Page and create a profile. </div>
+            <h1> <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i></h1>
+            <div> Vendors and foods show according to you profile in home page. </div>
+            <h1> <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i></h1>
+            <div> Order your food </div>
+        </section>
+    </div>
+</div>
+
+<div id="fixed-hero">
+</div>
+<div id="fixed-logo">
+</div>
+
+{%endblock%}
+
+{%block postjs%} 
+
+<script src="{% static 'hero_img.js' %}"></script>
 
 {%endblock%}
