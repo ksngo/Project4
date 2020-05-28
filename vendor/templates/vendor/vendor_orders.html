@@ -1,6 +1,9 @@
 {% extends 'base_template.html' %}
 {% load static %}
 
+{%block css %}
+<link rel="stylesheet" href="{% static 'vendor_pages.css' %}">
+{%endblock%}
 
 {%block title%} Vendor Orders {%endblock%}
 
@@ -8,90 +11,96 @@
 <div style="float:right;"><strong> {{vendor}} </strong></div>
 <br>
 <h3> Vendor Orders</h3>
-<a href="{% url 'view_vendor_profiles_route' %}"> Back </a>
+    <button class="vendor-buttons"><i class="fa fa-chevron-left" aria-hidden="true"></i><a href="{% url 'view_vendor_profiles_route' %}"> Back </a></button>
 <br><br>
 
-    <h5 > Outstanding orders </h5>
-    <table class="table table-hover table-responsive-lg">
-        <tr>
-            <thead class="thead-light">
-                <th>Index</th>   
-                <th>Datetime</th>
-                <th>Food</th>
-                <th>Quantity</th>
-                <th> Sub-total </th>
-                <th> Buyer </th>
-                <th> Contact </th>
-                <th> Delivered </th>
-            </thead>
-        </tr>
-       <form method="POST" id="delivery-status" actions="{% url 'view_vendor_orders_route' vendor_profile_id=vendor_profile_id%}">
-       {%csrf_token%} 
-
-        {%for j in orders_outstanding %}
-            {% if j.process.title == "undelivered" %}
+    <div class="my-table">
+        <h5 > Outstanding orders </h5>
+        <table class="table table-light table-hover table-responsive-lg">
             <tr>
-                <td> {{forloop.counter}} </td>
-                <td> {{j.datetime}} </td>
-                <td> {{j.food}} </td>
-                <td> {{j.quantity}} </td>
-                <td> {{j.cost}} </td>
-                <td> {{j.buyer}} </td>
-                <td> {{j.buyer.contact}} </td>
-                <td> 
-                    <input type="checkbox" class="checkbox" >
-                    <input type="text" style="display:none;" value="{{j.id}}">
-                </td>
+                <thead class="thead-light">
+                    <th>Index</th>   
+                    <th>Datetime</th>
+                    <th>Food</th>
+                    <th>Quantity</th>
+                    <th> Sub-total </th>
+                    <th> Buyer </th>
+                    <th> Contact </th>
+                    <th> Delivered </th>
+                </thead>
             </tr>
+        <form method="POST" id="delivery-status" actions="{% url 'view_vendor_orders_route' vendor_profile_id=vendor_profile_id%}">
+        {%csrf_token%} 
+            {% if orders_outstanding %}
+            {%for j in orders_outstanding %}
+                {% if j.process.title == "undelivered" %}
+                <tr>
+                    <td> {{forloop.counter}} </td>
+                    <td> {{j.datetime}} </td>
+                    <td> {{j.food}} </td>
+                    <td> {{j.quantity}} </td>
+                    <td> {{j.cost}} </td>
+                    <td> {{j.buyer}} </td>
+                    <td> {{j.buyer.contact}} </td>
+                    <td> 
+                        <input type="checkbox" class="checkbox" >
+                        <input type="text" style="display:none;" value="{{j.id}}">
+                    </td>
+                </tr>
+                {%endif%}
+            {%endfor%}
+            {%else%}
+            <tr><td colspan="8"> No Outstanding Orders.</td></tr>
             {%endif%}
-        {%endfor%}
-        </form>
-    </table>
-    <br>
+            </form>
+        </table>
+        <br>
     
-    <div style="float:right;">
-        <div style="display:flex; flex-wrap:wrap;">
-            <section><em> Search by food or buyer's name or date.</em></section> &nbsp;&nbsp;
-            <section>
-                <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'view_vendor_orders_route' vendor_profile_id=vendor_profile_id %}">
-                <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
-                    <i class="fa fa-search"></i>
-                </button> 
-                </form>
-            </section>
+        <div style="float:right;">
+            <div style="display:flex; flex-wrap:wrap;">
+                <section><em> Search by food or buyer's name or date.</em></section> &nbsp;&nbsp;
+                <section>
+                    <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'view_vendor_orders_route' vendor_profile_id=vendor_profile_id %}">
+                    <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search" aria-label="Search">
+                    <button class="vendor-buttons my-2 my-sm-0" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button> 
+                    </form>
+                </section>
+            </div>
         </div>
-    </div>
-    <h5> Completed orders </h5>
 
-    <table class="table table-hover table-responsive-lg">
-        <tr>
-            <thead class="thead-light">
-                <th>Index</th>   
-                <th>Datetime</th>
-                <th>Food</th>
-                <th>Quantity</th>
-                <th> Sub-total </th>
-                <th> Buyer </th>
-                <th> Contact </th>
-            </thead>
-        </tr>
-       
-        {%for j in orders_completed %}
-            {% if j.process.title == "delivered" %}
+    
+        <h5> Completed orders </h5>
+        <table class="table table-light table-hover table-responsive-lg">
             <tr>
-                <td> {{forloop.counter}} </td>
-                <td> {{j.datetime}} </td>
-                <td> {{j.food}} </td>
-                <td> {{j.quantity}} </td>
-                <td> {{j.cost}} </td>
-                <td> {{j.buyer}} </td>
-                <td> {{j.buyer.contact}} </td>
+                <thead class="thead-light">
+                    <th>Index</th>   
+                    <th>Datetime</th>
+                    <th>Food</th>
+                    <th>Quantity</th>
+                    <th> Sub-total </th>
+                    <th> Buyer </th>
+                    <th> Contact </th>
+                </thead>
             </tr>
-            {%endif%}
-        {%endfor%}
         
-    </table>
+            {%for j in orders_completed %}
+                {% if j.process.title == "delivered" %}
+                <tr>
+                    <td> {{forloop.counter}} </td>
+                    <td> {{j.datetime}} </td>
+                    <td> {{j.food}} </td>
+                    <td> {{j.quantity}} </td>
+                    <td> {{j.cost}} </td>
+                    <td> {{j.buyer}} </td>
+                    <td> {{j.buyer.contact}} </td>
+                </tr>
+                {%endif%}
+            {%endfor%}
+            
+        </table>
+    </div>
 
 
 {%endblock%}

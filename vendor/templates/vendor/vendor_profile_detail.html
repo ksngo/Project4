@@ -1,27 +1,34 @@
 {% extends 'base_template.html' %}
+
+{%load static %}
 {%load crispy_forms_tags %}
 
+{%block css %}
+<link rel="stylesheet" href="{% static 'vendor_pages.css' %}">
+{%endblock%}
 {%block title%} Profile Detail {%endblock%}
 
 {%block content%}
 <div style="float:right;"><strong> {{vendor_name}} </strong></div>
 <br>
 <h3> Vendor Profile Detail </h3>
-<a href="{% url 'view_vendor_profiles_route' %}"> Back </a>
+    <button class="vendor-buttons"><i class="fa fa-chevron-left" aria-hidden="true"></i><a href="{% url 'view_vendor_profiles_route' %}"> Back </a></button>
 <br><br>
 
-{% if validation_status %}
-    <div style="float:right" class="text-success">Validation Pass</div>
-{%else%}
-    <div style="float:right" class="text-primary">This vendor account is pending validation.</div>
-{%endif%}
+<div class="vendor-form">
+    {% if validation_status %}
+        <div style="float:right" class="text-success">Validation Pass</div>
+    {%else%}
+        <div style="float:right" class="text-primary">This vendor account is pending validation.</div>
+    {%endif%}
 
-<form method="POST">
-    {%csrf_token%}
-    {{ form|crispy}}
-    <input type="submit"> 
-</form>
-
+    <form method="POST">
+        {%csrf_token%}
+        {{ form|crispy}}
+        <input class="vendor-buttons" type="submit"> 
+    </form>
+</div>
+<br>
 
 {%endblock%}
 

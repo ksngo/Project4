@@ -1,4 +1,5 @@
 {% extends 'base_template.html' %}
+{%load static%}
 
 {%block css %}
 
@@ -7,6 +8,7 @@
     .town-and-postal {
         display: flex;
         flex-wrap: wrap;
+        min-height:70vh;
     
     }
 
@@ -17,7 +19,7 @@
     }
     
 
-    section {
+    .town-postal-section {
 
         border: 1px solid rgba(170, 170, 170, 0.635);
         padding:20px;
@@ -25,13 +27,13 @@
         margin-right:20px;
         width:90%;
         border-radius:5px;
-        background-color: rgba(173, 216, 230, .3);
+        background-color: white;
     }
 
     
 </style>
 
-
+<link rel="stylesheet" href="{% static 'vendor_pages.css' %}">
 {%endblock%}
 {%block title%} Delivery area {%endblock%}
 
@@ -39,7 +41,7 @@
 <div style="float:right;"><strong> {{vendor_name}} </strong></div>
 <br>
 <h3> Add delivery area </h3>
-<a href="{% url 'view_vendor_profiles_route' %}"> Back </a>
+<button class="vendor-buttons"><i class="fa fa-chevron-left" aria-hidden="true"></i><a href="{% url 'view_vendor_profiles_route' %}"> Back </a></button>
 <br><br>
 
 <div class="town-and-postal">
@@ -74,9 +76,9 @@
                 <option value="WOODLANDS"> Woodlands</option>
                 <option value="YISHUN"> Yishun</option>
             </select>
-            <input type="submit" value="Add town" class="btn btn-primary">
+            <input type="submit" value="Add town" class="vendor-buttons">
         </form>
-        <section>
+        <section class="town-postal-section">
             <ol>
             {%for i in towns %}
                 <li>{{i}} <a href="{% url 'remove_town_vendor_route' town_vendor_id=i.id vendor_profile_id=vendor_profile_id %}">Remove</a> </li>
@@ -90,9 +92,9 @@
         <form method="POST">
             {%csrf_token%}
             <input type="text" placeholder="postal code" name="postal">
-            <input type="submit" value="Add postal code" class="btn btn-primary">
+            <input type="submit" value="Add postal code" class="vendor-buttons">
         </form>
-        <section>
+        <section class="town-postal-section">
             <ol>
             {%for i in postals %}
                 <li>{{i}} <a href="{% url 'remove_postal_vendor_route' postal_vendor_id=i.id vendor_profile_id=vendor_profile_id %}">Remove</a></li>
@@ -100,8 +102,6 @@
             </ol>
         </section>
     </div>
-<div>
-
-
+</div>
 
 {%endblock%}

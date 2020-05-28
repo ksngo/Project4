@@ -1,16 +1,16 @@
 {% extends 'base_template.html' %}
-
+{%load static %}
 {%block css%}
 
 <style>
     button {
         position:relative;
-        top: -62px;
+        top: -46px;
         left: 60px;
 
     }
 </style>
-
+<link rel="stylesheet" href="{% static 'vendor_pages.css' %}">
 {%endblock%}
 
 {%block title%} Delete profile {%endblock%}
@@ -18,13 +18,15 @@
 {%block content%}
 <div style="float:right;"><strong> {{vendor_name}} </strong></div>
 <br>
-<h3> Delete Vendor Profile </h3>
+<div style="height:100vh; width:100%;"> &nbsp;</div>
 
+<div class="vendor-dialog">
+<h3> Delete Vendor Profile </h3>
 <p> Are you sure? </p>
 <form method="POST">
     {%csrf_token%}
-    <input type="submit" value="Yes" class="btn btn-primary" >
+    <input type="submit" value="Yes" class="vendor-buttons" >
 </form>
-<br>
-    <button class="btn btn-primary" ><a href="{% url 'view_vendor_profiles_route' %}" style="text-decoration:none; color:white;"> No </a></button>
+    <button class="vendor-buttons" ><a href="{% url 'view_vendor_profiles_route' %}" style="text-decoration:none; color:white;"> No </a></button>
+</div>
 {%endblock%}

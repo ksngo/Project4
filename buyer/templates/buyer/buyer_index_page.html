@@ -74,7 +74,7 @@
         <div class="w-50">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown mx-2 filter-dropdown">
-                    <a class="nav-link text-dark" href="#" id="VendorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link text-light" href="#" id="VendorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Vendors
                     </a>
                     <div class="dropdown-menu" aria-labelledby="VendorDropdown">
@@ -86,7 +86,7 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown mx-2 filter-dropdown">
-                    <a class="nav-link text-dark" href="#" id="FoodDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link text-light" href="#" id="FoodDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Food
                     </a>
                     <div class="dropdown-menu" aria-labelledby="FoodDropdown">
@@ -109,7 +109,7 @@
         <div class="flex-shrink-1">
             <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'index_by_profile_route' buyer_id=buyer_id %}" style="flex-wrap:nowrap;">
                 <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search vendor/food" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
+                <button class="buyer-buttons my-2 my-sm-0" type="submit">
                 <i class="fa fa-search"></i>
                 </button>
             </form>

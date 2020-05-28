@@ -34,9 +34,13 @@
     
 }
 
+.filter-dropdown{
+    background-color: coral;
+}
+
+
 .filter-dropdown:hover {
-    background-color: darkturquoise;
-    font-weight:bold;
+    background-color: violet;
 }
 
 #VendorDropdown:hover {

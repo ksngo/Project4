@@ -1,16 +1,21 @@
 {% extends 'base_template.html' %}
 
-
+{%load static %}
 {% block title %} Food Gallery {%endblock%}
+
+{%block css %}
+<link rel="stylesheet" href="{% static 'vendor_pages.css' %}">
+{%endblock%}
 
 {%block content%}
 <div style="float:right;"><strong> {{vendor_name}} </strong></div>
 <br>
 <h3> Vendor Food Gallery </h3>
-<a href="{% url 'view_vendor_profiles_route' %}"> Back </a>
+<button class="vendor-buttons"><i class="fa fa-chevron-left" aria-hidden="true"></i><a href="{% url 'view_vendor_profiles_route' %}"> Back </a></button>
 <br><br>
 
-<table class="table table-hover table-responsive-lg">
+<div class="my-table">
+<table class="table table-light table-hover table-responsive-lg">
     <thead class="thead-light">
         <th> Index </th>
         <th> Title </th>
@@ -36,14 +41,15 @@
         <td> {% if i.image%} Posted {%else%} None{%endif%} </td>
         <td> {{i.delivery_time}} </td>
         <td> {%for j in i.tag.all%} {{j}} {%endfor%} </td>
-        <td> <a href="{%url 'edit_vendor_food_route' vendor_profile_id=vendor_profile_id vendor_food_id=i.id %}" > Edit | </a> 
-            <a href="{%url 'delete_vendor_food_route' vendor_profile_id=vendor_profile_id vendor_food_id=i.id %}"> Delete </a> </td>
+        <td> <button class="vendor-buttons"><a href="{%url 'edit_vendor_food_route' vendor_profile_id=vendor_profile_id vendor_food_id=i.id %}" > Edit </a></button>
+            <button class="vendor-buttons"><a href="{%url 'delete_vendor_food_route' vendor_profile_id=vendor_profile_id vendor_food_id=i.id %}"> Delete </a></button> </td>
         
     </tr>
     {%endfor%}
 
 </table>
-<a href="{%url 'add_vendor_food_route' vendor_profile_id=vendor_profile_id %}"> Add </a>
+<button class="vendor-buttons"><a href="{%url 'add_vendor_food_route' vendor_profile_id=vendor_profile_id %}"> Add </a></button>
+</div>
 
 {%endblock%}
 

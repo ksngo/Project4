@@ -1,9 +1,15 @@
 {% extends 'base_template.html' %}
+{%load static %}
 {% load crispy_forms_tags %}
 
 {%block uploadcare %}
 {{form.media}}
 {%endblock%}
+
+{%block css %}
+<link rel="stylesheet" href="{% static 'vendor_pages.css' %}">
+{%endblock%}
+
 
 {% block title %} Add vendor food {%endblock%}
 
@@ -11,15 +17,17 @@
 
 <br>
 <h3> Add vendor food </h3>
-<a href="{% url 'view_vendor_food_gallery_route' vendor_profile_id=vendor_profile_id %}"> Back </a>
+<button class="vendor-buttons"><i class="fa fa-chevron-left" aria-hidden="true"></i><a href="{% url 'view_vendor_food_gallery_route' vendor_profile_id=vendor_profile_id %}"> Back </a></button>
 <br><br>
 
-<form method="POST">
-    {%csrf_token%}
-    {{form|crispy}}
-    <input type="submit">
-    
-</form>
+<div class="vendor-form">
+    <form method="POST">
+        {%csrf_token%}
+        {{form|crispy}}
+        <input class="vendor-buttons" type="submit">
+        
+    </form>
+</div>
 <br>
 
 {%endblock%}
