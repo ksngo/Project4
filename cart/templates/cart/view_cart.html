@@ -1,12 +1,8 @@
 {% extends "base_template.html" %}
-
+{%load static%}
 {%block css%}
 
-<style>
-    body {
-        background-color:rgb(248, 240, 240);
-    }
-</style>
+<link rel="stylesheet" href="{% static 'buyer_pages.css' %}">
 
 {%endblock%}
 
@@ -25,9 +21,9 @@
                 <th> Index </th>
                 <th> Food </th>
                 <th> Vendor </th>
-                <th> Food Price </th>
+                <th> Food Price ($) </th>
                 <th> Qty </th>
-                <th> Subtotal </th>
+                <th> Subtotal ($) </th>
                 <th> &nbsp; </th>
             </tr>
         </thead>
@@ -49,20 +45,20 @@
                     <td> {{forloop.counter}} </td>
                     <td> {{f_value.food_title}} </td>
                     <td> {{f_value.vendor_name}}
-                    <td> ${{f_value.price|floatformat:2}} </td>
+                    <td> {{f_value.price|floatformat:2}} </td>
                     <td style="display:flex; justify-content:space-around;"> 
                         <p>{{f_value.qty}}</p>
                         <form method="POST" action="{% url 'add_quantity_route' buyer_id=f_value.buyer.id food_id=f_value.food_id %}">
                             {%csrf_token%}
-                            <input type="submit" style="font-family:FontAwesome;" class="btn text-primary" value="&#xf0fe">
+                            <input type="submit" style="font-family:FontAwesome; font-size:20px; color:coral;" class="btn cart-add" value="&#xf0fe">
                         </form>
                         <form method="POST" action="{% url 'subtract_quantity_route' buyer_id=f_value.buyer.id food_id=f_value.food_id %}">
                             {%csrf_token%}
-                            <input type="submit" style="font-family:FontAwesome;" class="btn text-primary" value="&#xf146">
+                            <input type="submit" style="font-family:FontAwesome; font-size:20px; color:coral;" class="btn cart-substract" value="&#xf146">
                         </form>
                     </td>
                     <td> {{f_value.sub_total|floatformat:2}} </td>
-                    <td> <a href="{% url 'remove_from_cart_route' buyer_id=f_value.buyer.id food_id=f_value.food_id %}"> Remove </a>  </td>
+                    <td> <button class="buyer-buttons"><a href="{% url 'remove_from_cart_route' buyer_id=f_value.buyer.id food_id=f_value.food_id %}"> Remove </a></button>  </td>
                 </tr>
             {%endfor%}
         {%endfor%}
@@ -72,8 +68,8 @@
             
                 {% if cart %}
                     {%if grand_total != 0 %}
-                    <div> Grand total is ${{grand_total|floatformat:2}} </div>
-                    <a href="{% url 'checkout_route' %}" target="_blank">Check Out </a>
+                    <div> <strong> Grand total: ${{grand_total|floatformat:2}} </strong></div>
+                    <button class="buyer-buttons"><a href="{% url 'checkout_route' %}" target="_blank">Check Out </a></button>
                     {%else%}
                     Your shopping cart is empty.
                     {% endif %}

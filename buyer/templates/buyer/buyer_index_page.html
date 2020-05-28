@@ -144,7 +144,7 @@
 <div class="food-display">
 {%if food_available %}
     {%for i in food_available %}
-        <div>  
+        <div class="food-box">  
             {% if i.image %}
               <img src="{{i.image.cdn_url}}"/> 
             {% endif %}
@@ -158,13 +158,14 @@
                 <section> 
                     <span> <i class="fa fa-user-o" aria-hidden="true"></i> {{i.portion}}pax &nbsp;&nbsp; | </span>&nbsp;&nbsp;
                     <span> <i class="fa fa-money" aria-hidden="true"></i> ${{i.price}} &nbsp;&nbsp; |</span>&nbsp;&nbsp;
-                    <span> <i class="fa fa-clock-o" aria-hidden="true"></i> {{i.delivery_time}}mins <small><em> delivery time </em></small>  </span>&nbsp;&nbsp;&nbsp;&nbsp;
-                
+                    <span> <i class="fa fa-clock-o" aria-hidden="true"></i> {{i.delivery_time}}mins  </span>&nbsp;&nbsp;&nbsp;&nbsp;
+                </section>
+                <section>
                     {% if i.vendor.license_check %}
                     <span> <a href="{% url 'add_to_cart_route' buyer_id=buyer_id food_id=i.id %}"> Add to cart </a></span>
                     {% else %}
                     <br><br>
-                    <section class="alert alert-warning"> Vendor pending verification. </section>
+                    <span class="alert alert-warning"> Vendor pending verification. </span>
                     {%endif%}
                 </section>
                 

@@ -69,6 +69,7 @@
     margin-right:20px;
     padding:20px;
     background-color: white;
+    margin-bottom:10px;
     
 }
 
@@ -81,13 +82,13 @@
     
 }
 
-.food-display div {
+.food-box {
     flex:20%;
     max-width:20%;
     border: 1px solid rgba(170, 170, 170, 0.635);
     margin-left:10px;
     margin-right:10px;
-    padding:50px;
+    padding:40px;
     margin-bottom:10px;
     background-color:white;
 }
@@ -95,6 +96,11 @@
 .food-display div img {
     width:100%;
     
+}
+
+.food-box:hover {
+    border: 2px solid coral;
+    padding:20px;
 }
 
 @media screen and (max-width:1440px) {
