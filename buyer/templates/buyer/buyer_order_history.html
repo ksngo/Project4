@@ -39,7 +39,7 @@
             <th> Vendor </th>
             <th> Quantity </th>
             <th> Sub-total </th>
-            <th> &nbsp; </th>
+            <!-- <th> &nbsp; </th> -->
         </thead>
         {%for i in orders%}
         <tr>
@@ -51,9 +51,9 @@
             <td> {{i.food.vendor}}
             <td> {{i.quantity}} </td>
             <td> {{i.cost}} </td>
-            <td> <button class="buyer-buttons"><a href="#">Review</a></button> 
+            <!-- <td> <button class="buyer-buttons"><a href="#">Review</a></button> 
                 <button class="buyer-buttons"><a href="#">Report</a></button>
-            </td>
+            </td> -->
         </tr>
         {%endfor%}
     </table>

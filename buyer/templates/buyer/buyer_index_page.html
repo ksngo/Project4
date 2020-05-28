@@ -69,9 +69,8 @@
 <nav class="navbar navbar-expand-lg justify-content-center" id="filter-search-bar" style="clear:both;">
   
     {%if buyer_id %}
-        <div class="w-50">
-        </div>
-        <div class="w-50">
+        
+        <div>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown mx-2 filter-dropdown">
                     <a class="nav-link text-light" href="#" id="VendorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -162,7 +161,7 @@
                 </section>
                 <section>
                     {% if i.vendor.license_check %}
-                    <span> <a href="{% url 'add_to_cart_route' buyer_id=buyer_id food_id=i.id %}"> Add to cart </a></span>
+                    <span> <button class="buyer-buttons"><a href="{% url 'add_to_cart_route' buyer_id=buyer_id food_id=i.id %}"> Add to cart </a></button></span>
                     {% else %}
                     <br><br>
                     <span class="alert alert-warning"> Vendor pending verification. </span>
