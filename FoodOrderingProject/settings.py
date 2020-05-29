@@ -25,7 +25,7 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = '(-x0riz2=^)ew=gytm2(onf@1-091hed6ppr9^%&-z2x169w73'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["nks-8bear.herokuapp.com/", "*"]
 

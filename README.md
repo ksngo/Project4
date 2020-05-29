@@ -19,7 +19,7 @@ User Stories
 6. As buyer, I want to view orders history.
 7. As buyer, I want to create/view/update/delete orders in shopping cart
 8. As buyer, I want to view foods info and vendors info by filtering by categories and search box.
-9. As user, I want to create/view/update/delete user account. (Delete user is not created in this project.)
+9. As user, I want to create/view/update/delete user account. (Delete profile html or route to delete_profile/<buyer_id> [name='delete_buyer_profile_route'] has not been setup in this project.)
 
 ##Wireframes
 
@@ -56,15 +56,14 @@ User Stories
 
 ### Features Left to Implement
 
-- Adding reviews and comments functionality in buyer's order history page.
-- Adding non-delivery report functionality in buyer's order history page.
-- Refreshing vendor order page every minute.
-- Add vendor photo in add vendor profile page.
+- Adding reviews and comments functionality in buyer's order history page is good to have so that buyer can add in reviews and comments for the food he has ordered.
+- Adding non-delivery report functionality in buyer's order history page is good to have so that buyer can report to vendor he has not received the food over the system.
+- Refreshing vendor order page every minute so that vendor does not require to refresh his page to see any new orders.
+- Add vendor photo in add vendor profile page is good to have.
 - The commercial part between vendor and web abministrator are not resolved. Currently, payment by stripe are credited to my account. One possibility is payment to vendor directly and maybe certain commission I may receive monthly.
 Another possibility is a system to credit payment to vendor according to their sales. Hence, commercial aspect is brief at this moment.
-- email API to send to login users.
 - Need to change block entry to allow alphabets entry. Currently, it only allows numbers entry. This is because some blocks in Singapore have number follows by Alphabets.
-- Search function for buyer order history. 
+- Search function for buyer order history is good to have.
 
 ## Technologies Used
 
@@ -151,7 +150,8 @@ For running the codes locally,
 
 ### Testers account
 
-The following accounts are available for running the website as both accounts email were manually verified in admin.
+The following accounts are available for running and trying out the website.
+Alternatively, one can create an account and email notification will be sent to his/her email to confirm the email link. 
 
 user: Customer
 email : Customer@email.com 
