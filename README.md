@@ -10,75 +10,57 @@ My deployed website is [here](https://nks-8bear.herokuapp.com/).
  
 
 User Stories
-- As a vendor, I want to add my foods with photo so that customers can order them.
-- As a vendor, I want to edit my foods so that I can correct anything.
-- As a vendor, I want to able to set which area can I deliver the food to so that only customers within my delivery capability can order.
-- As a vendor, I want to able to view orders so that I can prepare the food
-- As a user, I want to insert my recipe steps, ingredients, tools/tips and photos and upload them to a display, so that I can refer my recipe information on the display interface.
-- As a user, I want to edit/delete my recipes, so that any mistakes can be correctable or deleted.
-- As a user, I want to keep my recipe only editable or deletable by me only, so that only I have the rights to edit/delete them.
-- As a public, I want to to be able to sort the recipes to the highest ratings/reviews or data relevancy or cuisine type or recipe names , so that I have a choice how the recipes are sorted for me.
-- As a public, I want to able to search for a certain recipe name, so that I can find all available recipes with the recipe name.
-- As a public, I want to have an overview of recipes by their photos, so that I can choose a recipe based on how the images appeal to me.
-- As a public with user account credentials, I want to be able to provide my feedbacks and ratings for recipe, so that my feedbacks/ratings provides my opinion on the recipe for the public to see.
-- As a public with user account credentials, I want to be able bookmarked a recipe, so that I can store them in my bookmarks.
 
-###Wireframes
-###ERD
+1. As a vendor, I want to create/view/update/delete profile.
+2. As a vendor, I want to create/view/update/delete food.
+3. As a vendor, I want to create/view/update/delete delivery areas.
+4. As a vendor, I want to view/update orders.
+5. As buyer, I want to create/view/update/delete profile.
+6. As buyer, I want to view orders history.
+7. As buyer, I want to create/view/update/delete orders in shopping cart
+8. As buyer, I want to view foods info and vendors info by filtering by categories and search box.
+9. As user, I want to create/view/update/delete user account. (Delete user is not created in this project.)
+
+##Wireframes
+
+##ERD
 
 ## Features
 ### Existing Features
 
-- Home (feature sample recipe) - allows public to know how a stored recipe will display if he chooses to upload a recipe, by having them to click on the "sample recipe"
-- Home (feature navigation links) - allows public to go to respective links, by having them clicking on 'Uncover Treasures' or 'Login to My Account' or 'New Account'.
-- Recipes/table (feature navigation bar) - allows public to go to respective links, by having them click on them.
-- Recipes/table (feature table/picture font) - allows public to toggle between recipes display in table or picture format, by having them to click on the either font.
-- Recipes/table (feature search box) - allows public to search for recipe/cuisine to show in results, by having them insert search terms in the search box and click on search button.
-- Recipes/table (feature table sorting) - allows public to sort by "Recipe Name" or "Cuisine" or "Self-rating" or "Date Posted" or "Ratings" or "Reviews", by clicking on the up/down button in the table header.
-- Recipes/table (feature recipes/reviews links) - allow public to open up individual recipe or open up reviews for the recipe respectively, by clicking on the blue colored links.
-- Recipes/picture frames (feature picture font) - allow public to view random picture(if more than one pictures posted) per recipe everytime the picture font button is clicked. 
-- Recipe (feature navigation bar) - allows public to go to respective links or go back to previous page, by having them click on them.
-- Recipe (feature ratings/reviews button) - allows public to open ratings/reviews page, by having them to click on the button.
-- Recipe (feature bookmark font button) - allows public to shows a popout to enter their email & password, once verified, the recipe will store in their account's bookmark, by clicking on the "add bookmark" button or "x" button if want to cancel.
-- Recipe (feature bookmark flash message) - allows public to know if they succeeded in bookmarking or failed in book marking or already bookmarked before, by showing respective flash messages at top of page.
-- Recipe (feature recipe's contributor other recipes) - allow public to find other recipes from the same contributor, by clicking on the blue colored recipes names.
-- Reviews (feature navigation bar) - allows public to go to respective links or go back to previous page, by having them click on them.
-- Reviews (feature form ) - allow user to post their reviews & ratings, by inserting the textbox in the form and click on the 'submit' button.
-- Reviews (feature flash message ) - allow user to know if they fail to post a review, by showing a flash message at the top of page.
-- User Login (feature form) - allow user login or cancel login, by inserting email and password and click login/cancel button.
-- My Recipes (feature navigation bar) - allows user to go to respective links or logout, by clicking on them.
-- My Recipes (feature user font and user name display) - allows user to have visual that he is in his own login page.
-- My Recipes (feature display recipe on new tab) - allows user to open a new tab to display his recipe which will have been the same page viewed by public, by clicking on respective recipe titles.
-- My Recipes (feature edit, delete, Add recipe links) - allows user to access the respective pages to perform edit/delete/Add recipe functions, by clicking on them.
-- My Recipes (feature my favourites dropdown) - allows user to view his bookmarked recipes with options to remove each of them, by clicking on the dropdown button and if choose to remove, by clicking on the remove bin font.
-- Edit Recipe (feature navigation bar) - allows user to go to navigate or go back to prior, by clicking on them.
-- Edit Recipe (feature form) - allows user to view existing details of recipe in editable textboxes, by clicking on respective textboxes and start editing.
-- Edit Recipe (feature blue add/remove buttons) - allows user to add blank steps with running number sequence or remove unwanted last step, by clicking on the buttons.
-- Edit Recipe (feature edit photos link) - allows user to goes to another page to edit the photos, by clicking on the link.
-- Edit Recipe (feature submit/back buttons) - allows user to submit(saved) his form or allows going back to his recipes page instead, by clicking on the buttons.
-- Edit Recipe's Photo (feature checkboxes on existing images) - allows user to select which images he like to remove, by checking the checkboxes.
-- Edit Recipe's Photo ( feature red add/remove button) - allows user to add/remove more "upload image" buttons, by clicking on the buttons.
-- Edit Recipe's Photo (feature "Upload image" button) - allows user to upload image, by clicking on button and submiting his photo.
-- Edit Recipe's Photo (feature submit/back buttons) - allows user to submit(saved) his changes in photos or allows going back to his edit recipe page instead, by clicking on the buttons.
-- Delete Recipe (feature modal) - allows user to confirm if he likes to proceed to delete his recipe or cancel, by clicking on either "ok" or "cancel" buttons.
-- Add Recipe (feature navigation bar) - allows user to go to navigate or go back to prior, by clicking on them.
-- Add Recipe (feature form) - allows user to add recipes details, by clicking on respective textboxes and start inserting texts.
-- Add Recipe (feature blue add/remove buttons) - allows user to add blank steps with running number sequence or remove unwanted last step, by clicking on the buttons.
-- Add Recipe's Photo ( feature red add/remove button) - allows user to add/remove more "upload image" buttons, by clicking on the buttons.
-- Add Recipe's Photo (feature "Upload image" button) - allows user to upload image, by clicking on button and submiting his photo.
-- Add Recipe (feature submit/back buttons) - allows user to submit(saved) his form or allows going back to his recipes page instead, by clicking on the buttons.
-- My Account (feature navigation bar) - allows user to go to navigate or logout, by clicking on them.
-- My Account (feature form) - allows user to see existing personal accounts details and edit them if he wishes to, by clicking onto the textboxes and start editing.
-- My Account (feature password check) - allows user to ensure password between both textboxes match by displaying feedbacks in green if passwords match or red if passwords don't match.
-- My Account (feature Submit Button becoming unclickable ) - allows user to unable to submit his form if either "username","matching passwords","email" or "country" is/are absent, by making unresponsive effect on submit button.
-- My Account ( feature exit button) - allows user to exit without saving, by clicking on the button.
-- New Account (feature form) - allows user to add texts in textboxes, by clicking on respective textboxes to start adding texts.
-- New Account (feature password check) - allows user to ensure password between both textboxes match by displaying feedbacks in green if passwords match or red if passwords don't match.
-- New Account (feature Submit Button becoming unclickable ) - allows user to unable to submit his form if either "username","matching passwords","email" or "country" is/are absent, by making unresponsive effect on submit button.
-- New Account (feature cancel button) allows user to return to previous page, by clicking on the button.
+- General (feature navigation bar) - allows user always use similar navigation bar whichever views he is in.
+- General (feature User display) - allows user to see his username on top right when he is login.
+- Landing Page (feature information on vendors) - allows user to know how many vendors existing in this system.
+- Landing Page (feature information on towns) - allows user to scroll through the towns to understand his town have how many possible vendors serving.
+- Landing Page (feature get started flowchart) - allow users to understand the site better.
+- My Home (feature secondary navigation bar) - allows user with consistant navigation experience in buyer page.
+- My Home (feature profile display) - allows user to see the current profile he is in for viewing the offered vendors and foods.
+- My Home (feature switch profile) - allows user to switch between profiles. Only Foods and Vendors that match user selected profiles' town and postal code will then appear in the vendor section and food section.
+- My Home (feature category dropdowns and search box) - allows user to have better experience filtering and searching more quickly. This is for **user story 8**.
+- My Home (feature add to cart button) - allows user to add food to cart.
+- My Profile (feature CRUD for profile) - allows user to CRUD on his profiles. This is for **user story 5**.
+- My Orders - This is for **user story 6**.
+- My Shopping Cart (feature Checkout button) - allows user to checkout to stripe payment page.
+- My Shopping Cart (feature CRUD) - This is for **user story 7**.
+- Vendor Profiles (feature CRUD) - This is for **user story 1**.
+- Vendor Food Gallery (feature CRUD) - This is for **user story 2**.
+- Vendor delivery area (feature CRUD) - This is for **user story 3**. Vendors will only add in towns and postal codes that they want to deliver to.
+- Vendor Orders (feature Read/Update) - This is for **user story 4**. Vendor can checked on outstanding orders as completion status and will see the order moved down to completed orders table.
+- Vendor Orders (feature search box) - allows vendor to search past history by food name, buyer name and date.
+- My Account (feature AllAuth functionalities) - This is for update/view for **user story 9**. AllAuth offers functionality to change password and update email.
+- Create Account (feature signup ) - This is create for **user story 9**.
+
 
 ### Features Left to Implement
-- Can possibly think of altering the review feature to become a feedback feature and each feedback allows posting of comments by public or recipe owner.
+
+- Adding reviews and comments functionality in buyer's order history page.
+- Adding non-delivery report functionality in buyer's order history page.
+- Refreshing vendor order page every minute.
+- Add vendor photo in add vendor profile page.
+- The commercial part between vendor and web abministrator are not resolved. Currently, payment by stripe are credited to my account. One possibility is payment to vendor directly and maybe certain commission I may receive monthly.
+Another possibility is a system to credit payment to vendor according to their sales. Hence, commercial aspect is brief at this moment.
+- email API to send to login users.
+
 
 
 ## Technologies Used
@@ -199,6 +181,18 @@ Due to associating most of the primary tags with bootstrap CSS, hence the conten
 
 This website is deployed to hosting platform Heroku from this git origin master branch.
 For running the codes locally, advise to run "pip3 install -r requirements.txt" in your IDE first to install the necessary libraries.
+
+### Testers account
+
+user: Customer
+email : Customer@email.com 
+password: tomjerry123
+
+user: vendor
+email: vendor@email.com
+password: spidervenom123
+
+Superuser for allowing vendor validation??
 
 ## Credits
 
