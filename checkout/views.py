@@ -94,13 +94,13 @@ def payment_completed(request):
 def handle_checkout_session(session):
 
     #  to retrieve the user and create an Order model(order_id)
-    for i in session.display_items:
-        buyer_id = i.custom.description.split(",")[0].replace("Id", "")
-        buyer = get_object_or_404(Buyer, pk=buyer_id)
-        user_object = buyer.user
+    # for i in session.display_items:
+    buyer_id = session.display_items[0].custom.description.split(",")[0].replace("Id", "")
+    buyer = get_object_or_404(Buyer, pk=buyer_id)
+    user_object = buyer.user
 
-        order = Order(order_number=session.id, user=user_object)
-        order.save()
+    order = Order(order_number=session.id, user=user_object)
+    order.save()
 
     #  retrieve each line items with same order_id and store in an OrderLineItem model
     for i in session.display_items:
