@@ -35,3 +35,19 @@
         background-color: brown;
         font-weight:bold;
     }
+
+@media screen and (max-width:600px) {
+
+    .right-nav{
+        
+        flex-direction:column;
+        text-align: center
+        
+    }
+
+    .right-nav ul{
+    
+        padding-right:10%;
+        
+    }
+}
