@@ -67,6 +67,7 @@ def payment_completed(request):
     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
     event = None
 
+
     try:
         event = stripe.Webhook.construct_event(
             payload, sig_header, endpoint_secret
@@ -85,8 +86,11 @@ def payment_completed(request):
     if event['type'] == 'checkout.session.completed':
         session = event['data']['object']
 
+        print("before handle checkout session")
         # Fulfill the purchase...
         handle_checkout_session(session)
+
+        print("after handle checkout session")
 
     return HttpResponse(status=200)
 
@@ -105,25 +109,34 @@ def handle_checkout_session(session):
         order = Order(order_number=session.id, user=user_object)
         order.save()
 
+        print("order created")
         break
 
     #  retrieve each line items with same order_id and store in an OrderLineItem model
     for i in session.display_items:
         print("hi I am in second loop")
+        print(i)
         buyer_id = i.custom.description.split(",")[0].replace("Id", "")
+        print(buyer_id)
         buyer = get_object_or_404(Buyer, pk=buyer_id)
-
+        print(buyer)
         order = get_object_or_404(Order, order_number=session.id)
+        print(order)
         process = get_object_or_404(Process, title="undelivered")
+        print(process)
         food_id = i.custom.name.split(",")[1].replace("Id","")
+        print(food_id)
         food = get_object_or_404(Food, pk=food_id)
+        print(food)
         quantity = i.quantity
         cost = (i.amount)*quantity/100
+        print(cost)
 
         order_line_item = OrderLineItem(order=order, process=process, food=food, quantity=quantity, cost=cost, buyer=buyer)
+        print(order_line_item)
         order_line_item.save()
 
-        break
+        print("end of second loop")
 
 
 
