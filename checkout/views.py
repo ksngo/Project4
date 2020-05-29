@@ -51,7 +51,7 @@ def checkout(request):
 
 @login_required
 def checkout_success(request):
-    request.session['shopping_cart'] = {}
+    
     messages.success(request, "Checkout Success.")
     return HttpResponse("Checkout Success")
 
@@ -86,6 +86,7 @@ def payment_completed(request):
 
         # Fulfill the purchase...
         handle_checkout_session(session)
+        request.session['shopping_cart'] = {}
 
     return HttpResponse(status=200)
 
