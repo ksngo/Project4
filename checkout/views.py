@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse, get_object_or_404, HttpResponse, redirect
+from django.shortcuts import render, reverse, get_object_or_404, HttpResponse
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.contrib.auth.decorators import login_required
@@ -51,7 +51,7 @@ def checkout(request):
 
 @login_required
 def checkout_success(request):
-    
+
     messages.success(request, "Checkout Success.")
     return HttpResponse("Checkout Success")
 
@@ -101,8 +101,6 @@ def handle_checkout_session(session):
 
         order = Order(order_number=session.id, user=user_object)
         order.save()
-
-        break
 
     #  retrieve each line items with same order_id and store in an OrderLineItem model
     for i in session.display_items:
