@@ -61,28 +61,22 @@ User Stories
 Another possibility is a system to credit payment to vendor according to their sales. Hence, commercial aspect is brief at this moment.
 - email API to send to login users.
 
-
-
 ## Technologies Used
 
 - [JQuery](https://jquery.com)
     - The project uses **JQuery** to simplify DOM manipulation.
-- [Google Font](https://fonts.googleapis.com)
-    - The project uses **Google Font** for some font-family.
-- [BootStrap 4.4](https://getbootstrap.com/docs/4.4/getting-started/introduction/)
-    - The project uses **BootStrap 4.4** for its framework of HTML,CSS styling & mobile responsiveness.
-- [BootStrap Icons](https://icons.getbootstrap.com/)
-    - The projects uses **BootStrap Icons** for a single font icon.
+- [BootStrap 4.5](https://getbootstrap.com/docs/4.5/getting-started/introduction/)
+    - The project uses **BootStrap 4.5** for its framework of HTML,CSS styling & mobile responsiveness.
 - [FontAwesome 4.7](https://fontawesome.com/v4.7.0/)
     - The project uses **FontAwesome 4.7** for various fonts icons.
 - [UploadCare](https://uploadcare.com/docs/quick_start/)
     - The project uses **Uploadcare** for uploading images management.
-- [Flask](https://flask.palletsprojects.com/en/1.1.x/foreword/)
-    - The project uses **Flask** for flask librarys and modules.
+- [Django 2.2.6](https://www.djangoproject.com/start/overview/)
+    - The project uses **Django 2.2.6** for its application frameworks.
 - [Python 3.8.2](https://www.python.org/downloads/release/python-382/)
     - The project uses **python 3.8.2** for its python languages.
-- [MongoDB](https://www.mongodb.com/)
-    - The project uses **MongoDB** for its database.
+- [Heroku](https://www.heroku.com/home)
+    - The project uses **Heroku PostgreSQL** for its deploymetn and database.
 
 
 ## Testing
