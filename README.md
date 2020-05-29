@@ -25,6 +25,10 @@ User Stories
 
 ##ERD
 
+
+<img src="../p4-erd.png">
+Please refer to above p4-erd.png file.
+
 ## Features
 ### Existing Features
 
