@@ -26,8 +26,6 @@ User Stories
 ##ERD
 
 <img src="/p4-erd.png">
-![Image of ERD](https://github.com/ksngo/Project4/blob/master/p4-erd.png)
-Please refer to above p4-erd.png file.
 
 ## Features
 ### Existing Features
