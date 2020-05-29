@@ -23,6 +23,8 @@ User Stories
 
 ##Wireframes
 
+My wireframes are sketched on papers. Refer to wireframe.jpg on top.
+
 ##ERD
 
 <img src="/p4-erd.png">
