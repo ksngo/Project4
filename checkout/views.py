@@ -53,6 +53,7 @@ def checkout(request):
 def checkout_success(request):
 
     messages.success(request, "Checkout Success.")
+    request.session['shopping_cart'] = {}
     return HttpResponse("Checkout Success")
 
 @login_required
@@ -86,15 +87,17 @@ def payment_completed(request):
 
         # Fulfill the purchase...
         handle_checkout_session(session)
-        request.session['shopping_cart'] = {}
 
     return HttpResponse(status=200)
 
 
 def handle_checkout_session(session):
 
+    print("hi I am in handlecheckoutsession")
     #  to retrieve the user and create an Order model(order_id)
+    print(session.display_items)
     for i in session.display_items:
+        print("hi I am in first loop")
         buyer_id = i.custom.description.split(",")[0].replace("Id", "")
         buyer = get_object_or_404(Buyer, pk=buyer_id)
         user_object = buyer.user
@@ -106,6 +109,7 @@ def handle_checkout_session(session):
 
     #  retrieve each line items with same order_id and store in an OrderLineItem model
     for i in session.display_items:
+        print("hi I am in second loop")
         buyer_id = i.custom.description.split(",")[0].replace("Id", "")
         buyer = get_object_or_404(Buyer, pk=buyer_id)
 
@@ -119,8 +123,7 @@ def handle_checkout_session(session):
         order_line_item = OrderLineItem(order=order, process=process, food=food, quantity=quantity, cost=cost, buyer=buyer)
         order_line_item.save()
 
-
-
+        break
 
 
 
