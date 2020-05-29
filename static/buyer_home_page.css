@@ -137,5 +137,23 @@
         flex: 90%;
         max-width: 90%;
     }
+
+    .profile-section-two {
+        clear:right;
+        
+    }
+
+    /* #filter-dropdown-grp {
+        padding:20%;
+    } */
+
+    .filter-dropdown {
+        padding-left: 50px;
+        padding-right:50px;
+        margin-bottom:8px;
+        margin-top:5px;
+    
+    }
+
 }
 
