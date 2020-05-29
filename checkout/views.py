@@ -52,9 +52,8 @@ def checkout(request):
 @login_required
 def checkout_success(request):
 
-    messages.success(request, "Checkout Success.")
     request.session['shopping_cart'] = {}
-    return HttpResponse("Checkout Success")
+    return HttpResponse("Checkout Success. Please refresh your shopping cart.")
 
 @login_required
 def checkout_cancelled(request):

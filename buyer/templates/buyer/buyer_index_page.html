@@ -55,7 +55,7 @@
                     <span class="text-success"> 
                      Current
                     </span> 
-                    {%else%} <a href="{% url 'index_by_profile_route' buyer_id=i.id %}"> Use  </a> 
+                    {%else%} <button class="buyer-buttons"><a href="{% url 'index_by_profile_route' buyer_id=i.id %}"> Use  </a> </button>
                     {%endif%}
                     </li>
             {%endfor%}
