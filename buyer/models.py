@@ -14,6 +14,7 @@ class Buyer(models.Model):
     date_joined = models.DateTimeField(auto_now_add=True)
     contact = models.PositiveIntegerField(validators=[MinValueValidator(10000000), MaxValueValidator(99999999)], null=False, blank=False)
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+ 
 
     def __str__(self):
         return '%s, %s %s (%s), %s' % (self.user.username, self.block, self.street, self.postal_code, self.town)

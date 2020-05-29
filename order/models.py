@@ -37,8 +37,6 @@ class Order(models.Model):
     alternative_delivery_address = models.TextField(null=True, blank=True)
     total_cost = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
 
-    # using UUID example is referencing to codeInstitute boutique_ado example
-
     # def _generate_order_number(self):
     #     return uuid.uuid4().hex.upper() 
 
