@@ -1,16 +1,16 @@
 # Full Stack Frameworks with Django MileStone(Project4) : 8Bear
 
-Recipesuccess is a website that user can saved his/her recipes here and is also a public library of recipes. 
-I want to ensure that user has an easy time referring to his/her own recipes hence the recipe display is structured in table format with each row
-storing a particular step and relating ingredients/tools/tips. The organised structure will also be beneficial for the public to see how ingredients/tips/tools are used for every step. It will look less daunting and user
-has a higher chance to cook the recipe. The organised structure giving viewer a bird eye view of the whole recipe process enables ease and confidence to tweak any aspects of the recipe to his/her own convenience.
-My deployed website is [here](https://nks-project3-mongodb.herokuapp.com/).
+8Bear is a website for the food industry and consumers in Singapore. The current food delivery systems and companies draw up to 30% commission or more from vendors who user their services to connect to customers.
+8Bear offers a platform for food vendors to take charge of the delivery themselves and cater their foods for certain towns or postal codes. Their customers can order their food from home through this website and
+vendors can read the orders from their order view page.  
+
+My deployed website is [here](https://nks-8bear.herokuapp.com/).
 
 ## UX
  
-This website is for user to store their recipes and for public to view at all recipes. Public can sign up for an account to become a user.
 
 User Stories
+- As a vendor, I want to 
 - As a user, I want to insert my recipe steps, ingredients, tools/tips and photos and upload them to a display, so that I can refer my recipe information on the display interface.
 - As a user, I want to edit/delete my recipes, so that any mistakes can be correctable or deleted.
 - As a user, I want to keep my recipe only editable or deletable by me only, so that only I have the rights to edit/delete them.
