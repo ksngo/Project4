@@ -136,16 +136,20 @@ Secondly, I will move on to test as customer with following account.
     - [x] Go to vendor access page. Under vendor_profile_one,  go to check orders button. The food ordered can be seen in outstanding orders table.
     - [x] Checked on the deliver checkbox. The row of order will transfer to the completed orders table.
 
-The project looks fine across different browsers like edge, chrome or firefox. I am using chrome primarily most of the time when debugging.
-In smaller devices, I have reduce the columns in the tables in "My recipes page" & "Recipes page" so that the table of content will generally be confined in the constraint of the device width.
-Due to associating most of the primary tags with bootstrap CSS, hence the contents mobile responsives are pretty much organised and set by bootstrap already.
+The website works for chrome, internet edge and firefox. 
+The mobile responsiveness are checked for sizes e.g. iphone5/7/8, ipad etc. with no issues.
     
 ## Deployment
 
 This website is deployed to hosting platform Heroku from this git origin master branch.
-For running the codes locally, advise to run "pip3 install -r requirements.txt" in your IDE first to install the necessary libraries.
+For running the codes locally, 
+1. In terminal, enter pip3 install -r requirements.txt to install the required packages per stated in the txt file.
+2. The project is built with django 2.2.6. Install django e.g. pip3 install django==2.2.6
+3. Setup your own configurations keys which consist of ("STRIPE_PUBLISHABLE_KEY", "STRIPE_SECRET_KEY", "SIGNING_SECRET", "UPLOADCARE_PUBLIC_KEY", "UPLOADCARE_SECRET_KEY" & "DATABASE_URL")
 
 ### Testers account
+
+The following accounts are available for running the website as both accounts email were manually verified in admin.
 
 user: Customer
 email : Customer@email.com 
@@ -155,16 +159,12 @@ user: vendor
 email: vendor@email.com
 password: spidervenom123
 
-Superuser for allowing vendor validation??
-
 ## Credits
 
-### Content
-- The recipes are copied from a book "Patchwork of Flavours, A collection of recipes from the generation before" by NTU Welfare Services Club published in 2007.
-
 ### Media
-- The photos used in this site were obtained from [PixaBay](https://pixabay.com/).
+- The photos used in this site are obtained from [PixaBay](https://pixabay.com/).
+- The 8bear logo is an original personal content.
 
 ### Acknowledgements
 
-- I received inspiration for this project from project example idea for Data Centric Development Milestone Project by [Code Institute](https://codeinstitute.net/).
+- Trent Global and Paul Chor Kun Xin for advises, guidances and helpful materials.
