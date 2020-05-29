@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import render, reverse, get_object_or_404, HttpResponse, redirect
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.contrib.auth.decorators import login_required
@@ -52,8 +52,8 @@ def checkout(request):
 @login_required
 def checkout_success(request):
     request.session['shopping_cart'] = {}
-    messages.success(request, "Checkout Success. Please refresh your Shopping Cart.")
-    return HttpResponse("Checkout Success")
+    messages.success(request, "Checkout Success.")
+    return redirect(reverse("view_cart_route"))
 
 @login_required
 def checkout_cancelled(request):
