@@ -10,7 +10,10 @@ My deployed website is [here](https://nks-8bear.herokuapp.com/).
  
 
 User Stories
-- As a vendor, I want to 
+- As a vendor, I want to add my foods with photo so that customers can order them.
+- As a vendor, I want to edit my foods so that I can correct anything.
+- As a vendor, I want to able to set which area can I deliver the food to so that only customers within my delivery capability can order.
+- As a vendor, I want to able to view orders so that I can prepare the food
 - As a user, I want to insert my recipe steps, ingredients, tools/tips and photos and upload them to a display, so that I can refer my recipe information on the display interface.
 - As a user, I want to edit/delete my recipes, so that any mistakes can be correctable or deleted.
 - As a user, I want to keep my recipe only editable or deletable by me only, so that only I have the rights to edit/delete them.

@@ -53,7 +53,7 @@ def checkout(request):
 def checkout_success(request):
     request.session['shopping_cart'] = {}
     messages.success(request, "Checkout Success.")
-    return redirect(reverse("view_cart_route"))
+    return HttpResponse("Checkout Success")
 
 @login_required
 def checkout_cancelled(request):
