@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
 import stripe
 from food.models import Food
 from order.models import Order, OrderLineItem, Process
@@ -51,7 +52,8 @@ def checkout(request):
 @login_required
 def checkout_success(request):
     request.session['shopping_cart'] = {}
-    return HttpResponse("checkout success")
+    messages.success(request, "Checkout Success. Please refresh your Shopping Cart.")
+    return HttpResponse("Checkout Success")
 
 @login_required
 def checkout_cancelled(request):
