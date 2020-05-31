@@ -14,3 +14,7 @@ function createValue(){
     document.getElementById('delivery-status').submit()
     
 }
+
+setTimeout(function(){
+    location.reload()
+}, 5000)

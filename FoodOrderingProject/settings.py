@@ -25,7 +25,7 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = '(-x0riz2=^)ew=gytm2(onf@1-091hed6ppr9^%&-z2x169w73'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["nks-8bear.herokuapp.com/", "*"]
 
@@ -64,8 +64,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    'whitenoise.middleware.WhiteNoiseMiddleware' 
 ]
+
+
 
 ROOT_URLCONF = 'FoodOrderingProject.urls'
 
