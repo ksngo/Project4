@@ -21,10 +21,6 @@ User Stories
 8. As buyer, I want to view foods info and vendors info by filtering by categories and search box.
 9. As user, I want to create/view/update/delete user account. (Delete profile html or route to delete_profile/<buyer_id> [name='delete_buyer_profile_route'] has not been setup in this project.)
 
-##Wireframes
-
-My wireframes are sketched on papers. Refer to wireframe.jpg on top.
-
 ##ERD
 
 <img src="/p4-erd.png">
